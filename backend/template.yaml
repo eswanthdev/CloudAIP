@@ -45,7 +45,7 @@ Parameters:
 
 Globals:
   Function:
-    Runtime: nodejs20.x
+    Runtime: python3.12
     MemorySize: 256
     Timeout: 10
     Architectures:
@@ -489,10 +489,10 @@ Resources:
       Description: Shared utilities for CloudAIP Lambda functions
       ContentUri: layers/common/
       CompatibleRuntimes:
-        - nodejs20.x
+        - python3.12
       RetentionPolicy: Retain
     Metadata:
-      BuildMethod: nodejs20.x
+      BuildMethod: python3.12
 
   # ===========================================================================
   # Lambda Functions
@@ -504,19 +504,12 @@ Resources:
     Properties:
       FunctionName: !Sub 'CloudAIP-Authorizer-${Environment}'
       CodeUri: lambda/authorizer/
-      Handler: index.handler
+      Handler: handler.lambda_handler
       Layers:
         - !Ref CommonLayer
       Environment:
         Variables:
           JWT_SECRET: !Ref JwtSecret
-    Metadata:
-      BuildMethod: esbuild
-      BuildProperties:
-        Minify: true
-        Target: es2022
-        EntryPoints:
-          - index.ts
 
   # 2. Auth Function
   AuthFunction:
@@ -524,7 +517,7 @@ Resources:
     Properties:
       FunctionName: !Sub 'CloudAIP-Auth-${Environment}'
       CodeUri: lambda/auth/
-      Handler: index.handler
+      Handler: handler.lambda_handler
       Timeout: 15
       Layers:
         - !Ref CommonLayer
@@ -594,13 +587,6 @@ Resources:
             ApiId: !Ref CloudAIPApi
             Path: /auth/me
             Method: GET
-    Metadata:
-      BuildMethod: esbuild
-      BuildProperties:
-        Minify: true
-        Target: es2022
-        EntryPoints:
-          - index.ts
 
   # 3. User Function
   UserFunction:
@@ -608,7 +594,7 @@ Resources:
     Properties:
       FunctionName: !Sub 'CloudAIP-Users-${Environment}'
       CodeUri: lambda/users/
-      Handler: index.handler
+      Handler: handler.lambda_handler
       Layers:
         - !Ref CommonLayer
       Policies:
@@ -639,13 +625,6 @@ Resources:
             ApiId: !Ref CloudAIPApi
             Path: /users/{userId}
             Method: DELETE
-    Metadata:
-      BuildMethod: esbuild
-      BuildProperties:
-        Minify: true
-        Target: es2022
-        EntryPoints:
-          - index.ts
 
   # 4. Course Function
   CourseFunction:
@@ -653,7 +632,7 @@ Resources:
     Properties:
       FunctionName: !Sub 'CloudAIP-Courses-${Environment}'
       CodeUri: lambda/courses/
-      Handler: index.handler
+      Handler: handler.lambda_handler
       Layers:
         - !Ref CommonLayer
       Policies:
@@ -694,13 +673,6 @@ Resources:
             ApiId: !Ref CloudAIPApi
             Path: /courses/{courseId}
             Method: DELETE
-    Metadata:
-      BuildMethod: esbuild
-      BuildProperties:
-        Minify: true
-        Target: es2022
-        EntryPoints:
-          - index.ts
 
   # 5. Module Function
   ModuleFunction:
@@ -708,7 +680,7 @@ Resources:
     Properties:
       FunctionName: !Sub 'CloudAIP-Modules-${Environment}'
       CodeUri: lambda/modules/
-      Handler: index.handler
+      Handler: handler.lambda_handler
       Layers:
         - !Ref CommonLayer
       Policies:
@@ -733,13 +705,6 @@ Resources:
             ApiId: !Ref CloudAIPApi
             Path: /modules/{moduleId}
             Method: DELETE
-    Metadata:
-      BuildMethod: esbuild
-      BuildProperties:
-        Minify: true
-        Target: es2022
-        EntryPoints:
-          - index.ts
 
   # 6. Lesson Function
   LessonFunction:
@@ -747,7 +712,7 @@ Resources:
     Properties:
       FunctionName: !Sub 'CloudAIP-Lessons-${Environment}'
       CodeUri: lambda/lessons/
-      Handler: index.handler
+      Handler: handler.lambda_handler
       Layers:
         - !Ref CommonLayer
       Policies:
@@ -780,13 +745,6 @@ Resources:
             ApiId: !Ref CloudAIPApi
             Path: /lessons/{lessonId}/video-url
             Method: GET
-    Metadata:
-      BuildMethod: esbuild
-      BuildProperties:
-        Minify: true
-        Target: es2022
-        EntryPoints:
-          - index.ts
 
   # 7. Enrollment Function
   EnrollmentFunction:
@@ -794,7 +752,7 @@ Resources:
     Properties:
       FunctionName: !Sub 'CloudAIP-Enrollments-${Environment}'
       CodeUri: lambda/enrollments/
-      Handler: index.handler
+      Handler: handler.lambda_handler
       Layers:
         - !Ref CommonLayer
       Policies:
@@ -821,13 +779,6 @@ Resources:
             ApiId: !Ref CloudAIPApi
             Path: /enrollments/{enrollmentId}
             Method: GET
-    Metadata:
-      BuildMethod: esbuild
-      BuildProperties:
-        Minify: true
-        Target: es2022
-        EntryPoints:
-          - index.ts
 
   # 8. Progress Function
   ProgressFunction:
@@ -835,7 +786,7 @@ Resources:
     Properties:
       FunctionName: !Sub 'CloudAIP-Progress-${Environment}'
       CodeUri: lambda/progress/
-      Handler: index.handler
+      Handler: handler.lambda_handler
       Layers:
         - !Ref CommonLayer
       Policies:
@@ -862,13 +813,6 @@ Resources:
             ApiId: !Ref CloudAIPApi
             Path: /progress/summary
             Method: GET
-    Metadata:
-      BuildMethod: esbuild
-      BuildProperties:
-        Minify: true
-        Target: es2022
-        EntryPoints:
-          - index.ts
 
   # 9. Certificate Function
   CertificateFunction:
@@ -876,7 +820,7 @@ Resources:
     Properties:
       FunctionName: !Sub 'CloudAIP-Certificates-${Environment}'
       CodeUri: lambda/certificates/
-      Handler: index.handler
+      Handler: handler.lambda_handler
       Layers:
         - !Ref CommonLayer
       Policies:
@@ -919,13 +863,6 @@ Resources:
             Method: GET
             Auth:
               Authorizer: NONE
-    Metadata:
-      BuildMethod: esbuild
-      BuildProperties:
-        Minify: true
-        Target: es2022
-        EntryPoints:
-          - index.ts
 
   # 10. Service Function
   ServiceFunction:
@@ -933,7 +870,7 @@ Resources:
     Properties:
       FunctionName: !Sub 'CloudAIP-Services-${Environment}'
       CodeUri: lambda/services/
-      Handler: index.handler
+      Handler: handler.lambda_handler
       Layers:
         - !Ref CommonLayer
       Policies:
@@ -974,13 +911,6 @@ Resources:
             ApiId: !Ref CloudAIPApi
             Path: /services/{serviceId}
             Method: DELETE
-    Metadata:
-      BuildMethod: esbuild
-      BuildProperties:
-        Minify: true
-        Target: es2022
-        EntryPoints:
-          - index.ts
 
   # 11. Service Request Function
   ServiceRequestFunction:
@@ -988,7 +918,7 @@ Resources:
     Properties:
       FunctionName: !Sub 'CloudAIP-ServiceRequests-${Environment}'
       CodeUri: lambda/service-requests/
-      Handler: index.handler
+      Handler: handler.lambda_handler
       Layers:
         - !Ref CommonLayer
       Policies:
@@ -1023,13 +953,6 @@ Resources:
             ApiId: !Ref CloudAIPApi
             Path: /service-requests/{requestId}
             Method: PATCH
-    Metadata:
-      BuildMethod: esbuild
-      BuildProperties:
-        Minify: true
-        Target: es2022
-        EntryPoints:
-          - index.ts
 
   # 12. Payment Function
   PaymentFunction:
@@ -1037,7 +960,7 @@ Resources:
     Properties:
       FunctionName: !Sub 'CloudAIP-Payments-${Environment}'
       CodeUri: lambda/payments/
-      Handler: index.handler
+      Handler: handler.lambda_handler
       Timeout: 15
       Layers:
         - !Ref CommonLayer
@@ -1073,13 +996,6 @@ Resources:
             ApiId: !Ref CloudAIPApi
             Path: /payments/{paymentId}
             Method: GET
-    Metadata:
-      BuildMethod: esbuild
-      BuildProperties:
-        Minify: true
-        Target: es2022
-        EntryPoints:
-          - index.ts
 
   # 13. Admin Function
   AdminFunction:
@@ -1087,7 +1003,7 @@ Resources:
     Properties:
       FunctionName: !Sub 'CloudAIP-Admin-${Environment}'
       CodeUri: lambda/admin/
-      Handler: index.handler
+      Handler: handler.lambda_handler
       Layers:
         - !Ref CommonLayer
       Policies:
@@ -1110,13 +1026,6 @@ Resources:
             ApiId: !Ref CloudAIPApi
             Path: /admin/recent-activity
             Method: GET
-    Metadata:
-      BuildMethod: esbuild
-      BuildProperties:
-        Minify: true
-        Target: es2022
-        EntryPoints:
-          - index.ts
 
   # 14. Upload Function
   UploadFunction:
@@ -1124,7 +1033,7 @@ Resources:
     Properties:
       FunctionName: !Sub 'CloudAIP-Uploads-${Environment}'
       CodeUri: lambda/uploads/
-      Handler: index.handler
+      Handler: handler.lambda_handler
       Layers:
         - !Ref CommonLayer
       Policies:
@@ -1143,13 +1052,6 @@ Resources:
             ApiId: !Ref CloudAIPApi
             Path: /uploads/{key}
             Method: DELETE
-    Metadata:
-      BuildMethod: esbuild
-      BuildProperties:
-        Minify: true
-        Target: es2022
-        EntryPoints:
-          - index.ts
 
 Outputs:
   ApiUrl:
