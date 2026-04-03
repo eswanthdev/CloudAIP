@@ -1,0 +1,929 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 2800" width="1800" height="2800">
+  <defs>
+    <filter id="shadow" x="-4%" y="-4%" width="108%" height="108%">
+      <feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="#000" flood-opacity="0.6"/>
+    </filter>
+    <filter id="glow" x="-15%" y="-15%" width="130%" height="130%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <marker id="arrowOrange" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#ff9900"/>
+    </marker>
+    <marker id="arrowCyan" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#00d4ff"/>
+    </marker>
+    <marker id="arrowGreen" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#4caf50"/>
+    </marker>
+    <marker id="arrowPurple" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#ab47bc"/>
+    </marker>
+    <marker id="arrowRed" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#ef5350"/>
+    </marker>
+    <marker id="arrowWhite" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#90a4ae"/>
+    </marker>
+    <marker id="arrowBlue" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#42a5f5"/>
+    </marker>
+    <marker id="arrowTeal" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#0891b2"/>
+    </marker>
+    <linearGradient id="titleGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00d4ff"/>
+      <stop offset="100%" stop-color="#0891b2"/>
+    </linearGradient>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0a0e27"/>
+      <stop offset="100%" stop-color="#060914"/>
+    </linearGradient>
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00d4ff" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#7c3aed" stop-opacity="0.08"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1800" height="2800" fill="url(#bgGrad)"/>
+  <!-- Grid -->
+  <g opacity="0.025">
+    <line x1="0" y1="0" x2="0" y2="2800" stroke="#fff" stroke-width="1" transform="translate(150,0)"/>
+    <line x1="0" y1="0" x2="0" y2="2800" stroke="#fff" stroke-width="1" transform="translate(300,0)"/>
+    <line x1="0" y1="0" x2="0" y2="2800" stroke="#fff" stroke-width="1" transform="translate(450,0)"/>
+    <line x1="0" y1="0" x2="0" y2="2800" stroke="#fff" stroke-width="1" transform="translate(600,0)"/>
+    <line x1="0" y1="0" x2="0" y2="2800" stroke="#fff" stroke-width="1" transform="translate(750,0)"/>
+    <line x1="0" y1="0" x2="0" y2="2800" stroke="#fff" stroke-width="1" transform="translate(900,0)"/>
+    <line x1="0" y1="0" x2="0" y2="2800" stroke="#fff" stroke-width="1" transform="translate(1050,0)"/>
+    <line x1="0" y1="0" x2="0" y2="2800" stroke="#fff" stroke-width="1" transform="translate(1200,0)"/>
+    <line x1="0" y1="0" x2="0" y2="2800" stroke="#fff" stroke-width="1" transform="translate(1350,0)"/>
+    <line x1="0" y1="0" x2="0" y2="2800" stroke="#fff" stroke-width="1" transform="translate(1500,0)"/>
+    <line x1="0" y1="0" x2="0" y2="2800" stroke="#fff" stroke-width="1" transform="translate(1650,0)"/>
+  </g>
+
+  <!-- ══════════════════ TITLE ══════════════════ -->
+  <rect x="0" y="0" width="1800" height="85" fill="url(#accentGrad)"/>
+  <text x="900" y="40" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="30" font-weight="700" fill="url(#titleGrad)" letter-spacing="2">CloudAIP — Complete AWS Serverless Architecture</text>
+  <text x="900" y="62" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="13" fill="#607d8b" letter-spacing="3">PRODUCTION INFRASTRUCTURE • ap-south-1 (MUMBAI) • v2.0 • MARCH 2026</text>
+  <line x1="100" y1="78" x2="1700" y2="78" stroke="#00d4ff" stroke-width="1" opacity="0.3"/>
+
+  <!-- ══════════════════ LAYER 1: CLIENT TIER ══════════════════ -->
+  <rect x="40" y="95" width="110" height="45" rx="6" fill="#111638" stroke="#1e2a5a" stroke-width="1"/>
+  <text x="95" y="113" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="#00d4ff" font-weight="700" letter-spacing="2">LAYER 1</text>
+  <text x="95" y="130" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#546e7a" letter-spacing="1">CLIENT TIER</text>
+
+  <!-- Browser -->
+  <g transform="translate(350, 100)" filter="url(#shadow)">
+    <rect x="0" y="0" width="130" height="70" rx="8" fill="#111638" stroke="#42a5f5" stroke-width="1.5"/>
+    <rect x="8" y="8" width="114" height="38" rx="4" fill="#0a0e27" stroke="#42a5f5" stroke-width="0.5"/>
+    <circle cx="15" cy="14" r="2.5" fill="#ef5350"/>
+    <circle cx="23" cy="14" r="2.5" fill="#ffb74d"/>
+    <circle cx="31" cy="14" r="2.5" fill="#4caf50"/>
+    <text x="75" y="36" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" fill="#42a5f5">cloudaip.com</text>
+    <rect x="35" y="50" width="60" height="7" rx="3" fill="#42a5f5" opacity="0.3"/>
+    <text x="65" y="78" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="#b0bec5" font-weight="500">Web Browser</text>
+  </g>
+
+  <!-- Mobile -->
+  <g transform="translate(550, 102)" filter="url(#shadow)">
+    <rect x="10" y="0" width="42" height="68" rx="8" fill="#111638" stroke="#42a5f5" stroke-width="1.5"/>
+    <rect x="14" y="8" width="34" height="44" rx="3" fill="#0a0e27" stroke="#42a5f5" stroke-width="0.5"/>
+    <circle cx="31" cy="58" r="3.5" fill="none" stroke="#42a5f5" stroke-width="0.8"/>
+    <text x="31" y="78" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="#b0bec5" font-weight="500">Mobile</text>
+  </g>
+
+  <!-- Admin User -->
+  <g transform="translate(700, 100)" filter="url(#shadow)">
+    <rect x="0" y="0" width="130" height="70" rx="8" fill="#111638" stroke="#ef5350" stroke-width="1.5"/>
+    <rect x="8" y="8" width="114" height="38" rx="4" fill="#0a0e27" stroke="#ef5350" stroke-width="0.5"/>
+    <text x="65" y="34" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" fill="#ef9a9a">/admin.html</text>
+    <rect x="35" y="50" width="60" height="7" rx="3" fill="#ef5350" opacity="0.3"/>
+    <text x="65" y="78" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="#ef9a9a" font-weight="500">Admin Dashboard</text>
+  </g>
+
+  <!-- Third-Party Integrations Box -->
+  <g transform="translate(1050, 95)" filter="url(#shadow)">
+    <rect x="0" y="0" width="700" height="85" rx="10" fill="#111638" stroke="#7c3aed" stroke-width="1.5"/>
+    <rect x="0" y="0" width="700" height="24" rx="10" fill="#7c3aed" opacity="0.15"/>
+    <rect x="0" y="12" width="700" height="12" fill="#7c3aed" opacity="0.15"/>
+    <text x="350" y="17" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="#b39ddb" font-weight="700" letter-spacing="2">THIRD-PARTY INTEGRATIONS</text>
+
+    <!-- GA4 -->
+    <rect x="15" y="32" width="120" height="42" rx="6" fill="#0a0e27" stroke="#ff9900" stroke-width="1"/>
+    <text x="75" y="50" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#ffb74d" font-weight="600">Google Analytics 4</text>
+    <text x="75" y="64" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="8" fill="#607d8b">Page views, events, conversions</text>
+
+    <!-- LinkedIn -->
+    <rect x="150" y="32" width="120" height="42" rx="6" fill="#0a0e27" stroke="#0077b5" stroke-width="1"/>
+    <text x="210" y="50" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#4fc3f7" font-weight="600">LinkedIn Insight</text>
+    <text x="210" y="64" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="8" fill="#607d8b">Conversion tracking, retarget</text>
+
+    <!-- WhatsApp -->
+    <rect x="285" y="32" width="120" height="42" rx="6" fill="#0a0e27" stroke="#25d366" stroke-width="1"/>
+    <text x="345" y="50" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#66bb6a" font-weight="600">WhatsApp Chat</text>
+    <text x="345" y="64" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="8" fill="#607d8b">Click-to-chat widget</text>
+
+    <!-- Calendly -->
+    <rect x="420" y="32" width="120" height="42" rx="6" fill="#0a0e27" stroke="#006BFF" stroke-width="1"/>
+    <text x="480" y="50" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#64b5f6" font-weight="600">Calendly</text>
+    <text x="480" y="64" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="8" fill="#607d8b">Discovery call booking</text>
+
+    <!-- HubSpot -->
+    <rect x="555" y="32" width="130" height="42" rx="6" fill="#0a0e27" stroke="#ff7a59" stroke-width="1"/>
+    <text x="620" y="50" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#ffab91" font-weight="600">HubSpot CRM</text>
+    <text x="620" y="64" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="8" fill="#607d8b">Lead sync via webhook</text>
+  </g>
+
+  <!-- Arrows: Clients down -->
+  <line x1="415" y1="185" x2="415" y2="220" stroke="#00d4ff" stroke-width="2" marker-end="url(#arrowCyan)"/>
+  <line x1="580" y1="185" x2="580" y2="220" stroke="#00d4ff" stroke-width="2" marker-end="url(#arrowCyan)"/>
+  <line x1="765" y1="185" x2="765" y2="220" stroke="#ef5350" stroke-width="2" marker-end="url(#arrowRed)"/>
+  <rect x="440" y="195" width="100" height="18" rx="4" fill="#0a0e27" stroke="#1e2a5a" stroke-width="0.5"/>
+  <text x="490" y="208" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#00d4ff" font-weight="600">HTTPS/TLS 1.2+</text>
+
+  <!-- ══════════════════ LAYER 2: EDGE & SECURITY ══════════════════ -->
+  <rect x="40" y="225" width="110" height="45" rx="6" fill="#111638" stroke="#1e2a5a" stroke-width="1"/>
+  <text x="95" y="243" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="#00d4ff" font-weight="700" letter-spacing="2">LAYER 2</text>
+  <text x="95" y="260" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#546e7a" letter-spacing="1">EDGE + SECURITY</text>
+
+  <!-- WAF -->
+  <g transform="translate(200, 230)" filter="url(#shadow)">
+    <rect x="0" y="0" width="240" height="100" rx="10" fill="#111638" stroke="#ef5350" stroke-width="2"/>
+    <rect x="0" y="0" width="240" height="24" rx="10" fill="#c62828" opacity="0.2"/>
+    <rect x="0" y="12" width="240" height="12" fill="#c62828" opacity="0.2"/>
+    <path d="M20,6 L28,3 L36,6 L36,16 Q28,22 20,16 Z" fill="none" stroke="#ef5350" stroke-width="1.5"/>
+    <text x="130" y="17" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="12" fill="#ffcdd2" font-weight="700">AWS WAF</text>
+    <text x="120" y="40" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#e0e0e0">Web Application Firewall</text>
+    <text x="120" y="56" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#90a4ae">Rate Limit: 2000 req/5min/IP</text>
+    <text x="120" y="70" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#90a4ae">SQLi + XSS + Bot Control</text>
+    <text x="120" y="84" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#90a4ae">IP Reputation + Geo Blocking</text>
+    <rect x="155" y="90" width="75" height="14" rx="3" fill="#ef535020" stroke="#ef5350" stroke-width="0.5"/>
+    <text x="192" y="100" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="8" fill="#ef9a9a">~$6/month</text>
+  </g>
+
+  <!-- ACM -->
+  <g transform="translate(200, 345)" filter="url(#shadow)">
+    <rect x="0" y="0" width="240" height="65" rx="10" fill="#111638" stroke="#ff9900" stroke-width="1.5"/>
+    <rect x="0" y="0" width="240" height="22" rx="10" fill="#e65100" opacity="0.15"/>
+    <rect x="0" y="10" width="240" height="12" fill="#e65100" opacity="0.15"/>
+    <rect x="17" y="6" width="14" height="12" rx="2" fill="none" stroke="#ff9900" stroke-width="1.2"/>
+    <path d="M19,6 L19,2 Q24,-2 29,2 L29,6" fill="none" stroke="#ff9900" stroke-width="1.2"/>
+    <text x="130" y="15" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="#ffe0b2" font-weight="700">ACM (SSL/TLS Certificate)</text>
+    <text x="120" y="38" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#e0e0e0">*.cloudaip.com</text>
+    <text x="120" y="54" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#90a4ae">Auto-Renewal | TLS 1.2+ Enforced | FREE</text>
+  </g>
+
+  <!-- Route 53 -->
+  <g transform="translate(500, 230)" filter="url(#shadow)">
+    <rect x="0" y="0" width="280" height="100" rx="10" fill="#111638" stroke="#42a5f5" stroke-width="2"/>
+    <rect x="0" y="0" width="280" height="24" rx="10" fill="#1565c0" opacity="0.25"/>
+    <rect x="0" y="12" width="280" height="12" fill="#1565c0" opacity="0.25"/>
+    <circle cx="26" cy="12" r="9" fill="none" stroke="#42a5f5" stroke-width="1.5"/>
+    <text x="26" y="16" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#42a5f5" font-weight="700">53</text>
+    <text x="150" y="17" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="12" fill="#bbdefb" font-weight="700">Amazon Route 53 (DNS)</text>
+    <text x="140" y="42" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="#e0e0e0" font-weight="500">Hosted Zone: cloudaip.com</text>
+    <text x="140" y="58" text-anchor="middle" font-family="'Courier New', monospace" font-size="10" fill="#81d4fa">A     cloudaip.com → CloudFront</text>
+    <text x="140" y="72" text-anchor="middle" font-family="'Courier New', monospace" font-size="10" fill="#81d4fa">CNAME www → cloudaip.com</text>
+    <text x="140" y="86" text-anchor="middle" font-family="'Courier New', monospace" font-size="10" fill="#81d4fa">MX    → SES Mail | TXT SPF+DKIM</text>
+    <rect x="195" y="90" width="75" height="14" rx="3" fill="#42a5f520" stroke="#42a5f5" stroke-width="0.5"/>
+    <text x="232" y="100" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="8" fill="#64b5f6">$0.90/mo</text>
+  </g>
+
+  <!-- CloudFront -->
+  <g transform="translate(840, 230)" filter="url(#shadow)">
+    <rect x="0" y="0" width="380" height="180" rx="12" fill="#111638" stroke="#ff9900" stroke-width="2"/>
+    <rect x="0" y="0" width="380" height="26" rx="12" fill="#e65100" opacity="0.2"/>
+    <rect x="0" y="14" width="380" height="12" fill="#e65100" opacity="0.2"/>
+    <polygon points="22,6 34,18 22,18" fill="#ff9900" opacity="0.7"/>
+    <polygon points="34,6 34,18 22,6" fill="#ffb74d" opacity="0.5"/>
+    <text x="200" y="19" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="13" fill="#fff3e0" font-weight="700">Amazon CloudFront (CDN)</text>
+    <text x="190" y="46" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="#e0e0e0" font-weight="500">450+ Global Edge Locations</text>
+
+    <!-- Config details in two columns -->
+    <text x="20" y="68" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#90a4ae" font-weight="600">Origin Config:</text>
+    <text x="20" y="82" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#78909c">Origin 1: S3 (static assets)</text>
+    <text x="20" y="95" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#78909c">Origin 2: API Gateway (/api/*)</text>
+    <text x="20" y="108" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#78909c">OAI: S3 access restricted</text>
+
+    <text x="210" y="68" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#90a4ae" font-weight="600">Cache Behavior:</text>
+    <text x="210" y="82" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#78909c">HTML: no-cache (always fresh)</text>
+    <text x="210" y="95" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#78909c">CSS/JS/Img: 24hr TTL</text>
+    <text x="210" y="108" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#78909c">API: no-cache, passthrough</text>
+
+    <text x="20" y="128" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#90a4ae" font-weight="600">Performance:</text>
+    <text x="20" y="142" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#78909c">HTTP/2 + HTTP/3 enabled</text>
+    <text x="20" y="155" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#78909c">Gzip + Brotli compression</text>
+    <text x="20" y="168" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#78909c">PriceClass_200 (Asia/US/EU)</text>
+
+    <text x="210" y="128" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#90a4ae" font-weight="600">Security:</text>
+    <text x="210" y="142" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#78909c">WAF WebACL attached</text>
+    <text x="210" y="155" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#78909c">Custom 403/404 → /index.html</text>
+    <text x="210" y="168" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#78909c">Geo-restriction: None</text>
+
+    <rect x="290" y="170" width="80" height="14" rx="3" fill="#ff990020" stroke="#ff9900" stroke-width="0.5"/>
+    <text x="330" y="180" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="8" fill="#ffb74d">$5-15/mo</text>
+  </g>
+
+  <!-- Arrows: Route53 → CloudFront -->
+  <line x1="780" y1="280" x2="835" y2="280" stroke="#42a5f5" stroke-width="2" marker-end="url(#arrowBlue)" stroke-dasharray="6,3"/>
+  <text x="808" y="272" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="8" fill="#64b5f6">DNS</text>
+
+  <!-- Arrow: WAF → CloudFront -->
+  <line x1="440" y1="275" x2="835" y2="275" stroke="#ef5350" stroke-width="1.5" marker-end="url(#arrowRed)" stroke-dasharray="5,3"/>
+  <text x="638" y="268" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="8" fill="#ef9a9a">WAF Rules Applied</text>
+
+  <!-- Arrow: ACM → CloudFront -->
+  <line x1="440" y1="370" x2="835" y2="320" stroke="#ff9900" stroke-width="1" marker-end="url(#arrowOrange)" stroke-dasharray="5,3"/>
+  <text x="620" y="340" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="8" fill="#ffb74d">SSL Cert</text>
+
+  <!-- ══════════════════ REGION BORDER ══════════════════ -->
+  <rect x="170" y="440" width="1580" height="1050" rx="16" fill="none" stroke="#00d4ff" stroke-width="1.5" stroke-dasharray="10,5" opacity="0.25"/>
+  <rect x="195" y="430" width="260" height="22" rx="5" fill="#0a0e27" stroke="#00d4ff" stroke-width="1" opacity="0.5"/>
+  <text x="325" y="446" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="12" fill="#00d4ff" font-weight="600" opacity="0.8">AWS Region: ap-south-1 (Mumbai)</text>
+
+  <!-- ══════════════════ LAYER 3: HOSTING + API ══════════════════ -->
+  <rect x="40" y="465" width="110" height="45" rx="6" fill="#111638" stroke="#1e2a5a" stroke-width="1"/>
+  <text x="95" y="483" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="#00d4ff" font-weight="700" letter-spacing="2">LAYER 3</text>
+  <text x="95" y="500" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#546e7a" letter-spacing="1">HOSTING + API</text>
+
+  <!-- CloudFront → S3 arrow -->
+  <path d="M 950 410 L 950 440 Q 950 455 940 455 L 580 455 Q 570 455 570 465 L 570 480" stroke="#ff9900" stroke-width="2" fill="none" marker-end="url(#arrowOrange)"/>
+  <rect x="700" y="445" width="100" height="16" rx="4" fill="#0a0e27"/>
+  <text x="750" y="457" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#ffb74d" font-weight="600">Static Assets</text>
+
+  <!-- CloudFront → API GW arrow -->
+  <path d="M 1100 410 L 1100 440 Q 1100 455 1110 455 L 1250 455 Q 1260 455 1260 465 L 1260 480" stroke="#ff9900" stroke-width="2" fill="none" marker-end="url(#arrowOrange)"/>
+  <rect x="1130" y="445" width="110" height="16" rx="4" fill="#0a0e27"/>
+  <text x="1185" y="457" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#ffb74d" font-weight="600">API Requests /api/*</text>
+
+  <!-- S3 Bucket -->
+  <g transform="translate(300, 485)" filter="url(#shadow)">
+    <rect x="0" y="0" width="420" height="140" rx="12" fill="#111638" stroke="#4caf50" stroke-width="2"/>
+    <rect x="0" y="0" width="420" height="26" rx="12" fill="#2e7d32" opacity="0.2"/>
+    <rect x="0" y="14" width="420" height="12" fill="#2e7d32" opacity="0.2"/>
+    <ellipse cx="24" cy="10" rx="11" ry="6" fill="none" stroke="#4caf50" stroke-width="1.5"/>
+    <line x1="13" y1="10" x2="13" y2="22" stroke="#4caf50" stroke-width="1.2"/>
+    <line x1="35" y1="10" x2="35" y2="22" stroke="#4caf50" stroke-width="1.2"/>
+    <ellipse cx="24" cy="22" rx="11" ry="6" fill="none" stroke="#4caf50" stroke-width="1.5"/>
+    <text x="220" y="18" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="13" fill="#c8e6c9" font-weight="700">Amazon S3 — Static Website</text>
+
+    <text x="20" y="46" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="#e0e0e0" font-weight="500">Bucket: cloudaip-website</text>
+
+    <text x="20" y="66" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#90a4ae" font-weight="600">Content Served:</text>
+    <text x="20" y="80" font-family="'Courier New', monospace" font-size="9" fill="#81d4fa">index.html          (Landing page)</text>
+    <text x="20" y="93" font-family="'Courier New', monospace" font-size="9" fill="#81d4fa">css/styles.css      (39KB stylesheet)</text>
+    <text x="20" y="106" font-family="'Courier New', monospace" font-size="9" fill="#81d4fa">js/main.js          (24KB interactive)</text>
+    <text x="20" y="119" font-family="'Courier New', monospace" font-size="9" fill="#81d4fa">pages/*.html         (about,train,blog..)</text>
+    <text x="20" y="132" font-family="'Courier New', monospace" font-size="9" fill="#81d4fa">pages/services/*.html (6 detail pages)</text>
+
+    <text x="250" y="66" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#90a4ae" font-weight="600">Configuration:</text>
+    <text x="250" y="80" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#78909c">Static hosting: Enabled</text>
+    <text x="250" y="93" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#78909c">Versioning: Enabled</text>
+    <text x="250" y="106" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#78909c">Encryption: SSE-S3 (AES-256)</text>
+    <text x="250" y="119" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#78909c">Access: CloudFront OAI only</text>
+    <text x="250" y="132" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#78909c">Lifecycle: 30d old versions</text>
+
+    <rect x="335" y="38" width="75" height="14" rx="3" fill="#4caf5020" stroke="#4caf50" stroke-width="0.5"/>
+    <text x="372" y="48" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="8" fill="#81c784">~$1/mo</text>
+  </g>
+
+  <!-- API Gateway -->
+  <g transform="translate(850, 485)" filter="url(#shadow)">
+    <rect x="0" y="0" width="420" height="140" rx="12" fill="#111638" stroke="#ff9900" stroke-width="2"/>
+    <rect x="0" y="0" width="420" height="26" rx="12" fill="#e65100" opacity="0.2"/>
+    <rect x="0" y="14" width="420" height="12" fill="#e65100" opacity="0.2"/>
+    <rect x="14" y="5" width="20" height="14" rx="3" fill="none" stroke="#ff9900" stroke-width="1.2"/>
+    <line x1="18" y1="10" x2="25" y2="10" stroke="#ff9900" stroke-width="0.8"/>
+    <line x1="18" y1="14" x2="30" y2="14" stroke="#ff9900" stroke-width="0.8"/>
+    <text x="220" y="18" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="13" fill="#fff3e0" font-weight="700">Amazon API Gateway (REST)</text>
+
+    <text x="20" y="46" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="#e0e0e0" font-weight="500">API: CloudAIP-API | Stage: prod</text>
+
+    <text x="20" y="66" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#90a4ae" font-weight="600">Endpoints:</text>
+    <rect x="20" y="72" width="380" height="17" rx="3" fill="#ff990010"/>
+    <text x="30" y="84" font-family="'Courier New', monospace" font-size="10" fill="#81d4fa">POST  /contact        → ContactFormHandler</text>
+    <rect x="20" y="91" width="380" height="17" rx="3" fill="#ff990008"/>
+    <text x="30" y="103" font-family="'Courier New', monospace" font-size="10" fill="#81d4fa">GET   /leads          → AdminAPIHandler</text>
+    <rect x="20" y="110" width="380" height="17" rx="3" fill="#ff990010"/>
+    <text x="30" y="122" font-family="'Courier New', monospace" font-size="10" fill="#81d4fa">PUT   /leads/{id}     → AdminAPIHandler</text>
+
+    <rect x="20" y="130" width="65" height="14" rx="3" fill="#ff990020" stroke="#ff9900" stroke-width="0.5"/>
+    <text x="52" y="140" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="8" fill="#ffb74d">CORS ✓</text>
+    <rect x="95" y="130" width="90" height="14" rx="3" fill="#ff990020" stroke="#ff9900" stroke-width="0.5"/>
+    <text x="140" y="140" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="8" fill="#ffb74d">100 req/s burst</text>
+    <rect x="195" y="130" width="85" height="14" rx="3" fill="#ef535020" stroke="#ef5350" stroke-width="0.5"/>
+    <text x="237" y="140" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="8" fill="#ef9a9a">API Key Auth</text>
+    <rect x="290" y="130" width="75" height="14" rx="3" fill="#ff990020" stroke="#ff9900" stroke-width="0.5"/>
+    <text x="327" y="140" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="8" fill="#ffb74d">$3.50/1M</text>
+  </g>
+
+  <!-- ══════════════════ LAYER 4: COMPUTE ══════════════════ -->
+  <rect x="40" y="660" width="110" height="45" rx="6" fill="#111638" stroke="#1e2a5a" stroke-width="1"/>
+  <text x="95" y="678" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="#00d4ff" font-weight="700" letter-spacing="2">LAYER 4</text>
+  <text x="95" y="695" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#546e7a" letter-spacing="1">COMPUTE</text>
+
+  <!-- Arrow: API GW → Contact Lambda -->
+  <path d="M 1000 625 L 1000 650 Q 1000 660 990 660 L 650 660 Q 640 660 640 670 L 640 685" stroke="#ff9900" stroke-width="2" fill="none" marker-end="url(#arrowOrange)"/>
+  <text x="820" y="655" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#ffb74d">POST /contact</text>
+
+  <!-- Arrow: API GW → Admin Lambda -->
+  <path d="M 1150 625 L 1150 650 Q 1150 660 1160 660 L 1350 660 Q 1360 660 1360 670 L 1360 685" stroke="#ff9900" stroke-width="2" fill="none" marker-end="url(#arrowOrange)"/>
+  <text x="1270" y="655" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#ffb74d">GET/PUT /leads</text>
+
+  <!-- Lambda: Contact Form Handler -->
+  <g transform="translate(400, 690)" filter="url(#shadow)">
+    <rect x="0" y="0" width="380" height="130" rx="12" fill="#111638" stroke="#4caf50" stroke-width="2"/>
+    <rect x="0" y="0" width="380" height="26" rx="12" fill="#2e7d32" opacity="0.25"/>
+    <rect x="0" y="14" width="380" height="12" fill="#2e7d32" opacity="0.25"/>
+    <text x="24" y="19" font-family="'Segoe UI', Arial, sans-serif" font-size="18" fill="#4caf50" font-weight="800">λ</text>
+    <text x="200" y="18" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="12" fill="#c8e6c9" font-weight="700">Lambda: ContactFormHandler</text>
+
+    <text x="20" y="46" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="#e0e0e0" font-weight="500">Node.js 20.x | arm64 (Graviton2)</text>
+
+    <text x="20" y="66" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#90a4ae" font-weight="600">Execution Flow:</text>
+    <text x="20" y="80" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#78909c">1. Validate input (name, email, company, spend)</text>
+    <text x="20" y="93" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#78909c">2. Generate UUID, store lead in DynamoDB</text>
+    <text x="20" y="106" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#78909c">3. Send notification email via SES</text>
+    <text x="20" y="119" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#78909c">4. Return 200 with leadId</text>
+
+    <rect x="275" y="38" width="95" height="14" rx="3" fill="#4caf5020" stroke="#4caf50" stroke-width="0.5"/>
+    <text x="322" y="48" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="8" fill="#81c784">256MB | 15s timeout</text>
+  </g>
+
+  <!-- Lambda: Admin API Handler -->
+  <g transform="translate(1050, 690)" filter="url(#shadow)">
+    <rect x="0" y="0" width="380" height="130" rx="12" fill="#111638" stroke="#4caf50" stroke-width="2"/>
+    <rect x="0" y="0" width="380" height="26" rx="12" fill="#2e7d32" opacity="0.25"/>
+    <rect x="0" y="14" width="380" height="12" fill="#2e7d32" opacity="0.25"/>
+    <text x="24" y="19" font-family="'Segoe UI', Arial, sans-serif" font-size="18" fill="#4caf50" font-weight="800">λ</text>
+    <text x="200" y="18" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="12" fill="#c8e6c9" font-weight="700">Lambda: AdminAPIHandler</text>
+
+    <text x="20" y="46" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="#e0e0e0" font-weight="500">Node.js 20.x | arm64 (Graviton2)</text>
+
+    <text x="20" y="66" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#90a4ae" font-weight="600">Operations:</text>
+    <text x="20" y="80" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#78909c">GET /leads — Query by status, paginated</text>
+    <text x="20" y="93" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#78909c">PUT /leads/{id} — Update lead status/notes</text>
+    <text x="20" y="106" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#78909c">GET /leads/export — CSV export all leads</text>
+    <text x="20" y="119" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#78909c">Auth: API Key validated via API Gateway</text>
+
+    <rect x="275" y="38" width="95" height="14" rx="3" fill="#4caf5020" stroke="#4caf50" stroke-width="0.5"/>
+    <text x="322" y="48" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="8" fill="#81c784">256MB | 15s timeout</text>
+  </g>
+
+  <!-- IAM Roles -->
+  <g transform="translate(200, 720)" filter="url(#shadow)">
+    <rect x="0" y="0" width="160" height="80" rx="8" fill="#111638" stroke="#ef5350" stroke-width="1.5" stroke-dasharray="6,3"/>
+    <rect x="0" y="0" width="160" height="22" rx="8" fill="#c62828" opacity="0.15"/>
+    <rect x="0" y="10" width="160" height="12" fill="#c62828" opacity="0.15"/>
+    <path d="M20,5 L28,2 L36,5 L36,16 Q28,22 20,16 Z" fill="none" stroke="#ef5350" stroke-width="1.2"/>
+    <text x="90" y="15" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#ef9a9a" font-weight="700">IAM Execution Roles</text>
+    <text x="80" y="38" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#90a4ae">Least-privilege policies</text>
+    <text x="80" y="52" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="8" fill="#78909c">DynamoDB: PutItem, Query</text>
+    <text x="80" y="64" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="8" fill="#78909c">SES: SendEmail</text>
+    <text x="80" y="76" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="8" fill="#78909c">CloudWatch: PutLogEvents</text>
+  </g>
+
+  <!-- IAM → Lambdas -->
+  <line x1="360" y1="750" x2="395" y2="750" stroke="#ef5350" stroke-width="1.2" marker-end="url(#arrowRed)" stroke-dasharray="4,2"/>
+  <path d="M 360 760 L 380 760 Q 390 760 390 770 L 390 810 Q 390 820 400 820 L 1050 780" stroke="#ef5350" stroke-width="1" fill="none" marker-end="url(#arrowRed)" stroke-dasharray="4,2" opacity="0.5"/>
+
+  <!-- ══════════════════ LAYER 5: DATA & NOTIFICATIONS ══════════════════ -->
+  <rect x="40" y="860" width="110" height="45" rx="6" fill="#111638" stroke="#1e2a5a" stroke-width="1"/>
+  <text x="95" y="878" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="#00d4ff" font-weight="700" letter-spacing="2">LAYER 5</text>
+  <text x="95" y="895" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#546e7a" letter-spacing="1">DATA + NOTIFY</text>
+
+  <!-- Arrow: Contact Lambda → DynamoDB -->
+  <line x1="590" y1="820" x2="590" y2="890" stroke="#ab47bc" stroke-width="2" marker-end="url(#arrowPurple)"/>
+  <text x="615" y="860" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#ce93d8">PutItem</text>
+
+  <!-- Arrow: Admin Lambda → DynamoDB -->
+  <path d="M 1240 820 L 1240 860 Q 1240 870 1230 870 L 1000 895" stroke="#ab47bc" stroke-width="2" fill="none" marker-end="url(#arrowPurple)"/>
+  <text x="1150" y="865" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#ce93d8">Query / UpdateItem</text>
+
+  <!-- DynamoDB -->
+  <g transform="translate(300, 900)" filter="url(#shadow)">
+    <rect x="0" y="0" width="700" height="160" rx="12" fill="#111638" stroke="#ab47bc" stroke-width="2"/>
+    <rect x="0" y="0" width="700" height="26" rx="12" fill="#6a1b9a" opacity="0.2"/>
+    <rect x="0" y="14" width="700" height="12" fill="#6a1b9a" opacity="0.2"/>
+    <rect x="14" y="5" width="18" height="14" rx="2" fill="none" stroke="#ab47bc" stroke-width="1.3"/>
+    <line x1="14" y1="10" x2="32" y2="10" stroke="#ab47bc" stroke-width="0.7"/>
+    <line x1="14" y1="14" x2="32" y2="14" stroke="#ab47bc" stroke-width="0.7"/>
+    <text x="360" y="18" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="13" fill="#e1bee7" font-weight="700">Amazon DynamoDB — CloudAIP-Leads</text>
+
+    <text x="20" y="46" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#90a4ae" font-weight="600">Table Schema:</text>
+    <text x="20" y="62" font-family="'Courier New', monospace" font-size="10" fill="#81d4fa">PK: leadId       (String, UUID v4)</text>
+    <text x="20" y="76" font-family="'Courier New', monospace" font-size="10" fill="#81d4fa">SK: createdAt    (String, ISO 8601)</text>
+    <text x="20" y="92" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#90a4ae" font-weight="600">Attributes:</text>
+    <text x="20" y="106" font-family="'Courier New', monospace" font-size="9" fill="#78909c">fullName, email, company, monthlySpend,</text>
+    <text x="20" y="119" font-family="'Courier New', monospace" font-size="9" fill="#78909c">message, contactMethod, status, source,</text>
+    <text x="20" y="132" font-family="'Courier New', monospace" font-size="9" fill="#78909c">updatedAt, notes</text>
+
+    <text x="380" y="46" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#90a4ae" font-weight="600">Global Secondary Indexes:</text>
+    <rect x="380" y="52" width="300" height="18" rx="3" fill="#ab47bc10"/>
+    <text x="390" y="65" font-family="'Courier New', monospace" font-size="10" fill="#ce93d8">status-index   (PK=status, SK=createdAt)</text>
+    <rect x="380" y="72" width="300" height="18" rx="3" fill="#ab47bc08"/>
+    <text x="390" y="85" font-family="'Courier New', monospace" font-size="10" fill="#ce93d8">email-index    (PK=email)</text>
+
+    <text x="380" y="106" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#90a4ae" font-weight="600">Configuration:</text>
+    <text x="380" y="120" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#78909c">Billing: On-Demand (PAY_PER_REQUEST)</text>
+    <text x="380" y="133" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#78909c">PITR: Enabled (35-day window)</text>
+    <text x="380" y="146" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#78909c">Encryption: AWS managed key (default)</text>
+
+    <text x="20" y="152" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#607d8b">Status values: new → contacted → qualified → converted</text>
+
+    <rect x="610" y="148" width="80" height="14" rx="3" fill="#ab47bc20" stroke="#ab47bc" stroke-width="0.5"/>
+    <text x="650" y="158" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="8" fill="#ce93d8">$1-5/mo</text>
+  </g>
+
+  <!-- Arrow: Contact Lambda → SES -->
+  <path d="M 500 820 L 500 850 Q 500 860 490 860 L 360 860 Q 350 860 350 870 L 350 1100" stroke="#ef5350" stroke-width="2" fill="none" marker-end="url(#arrowRed)"/>
+  <text x="420" y="855" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#ef9a9a">SendEmail</text>
+
+  <!-- SES -->
+  <g transform="translate(200, 1105)" filter="url(#shadow)">
+    <rect x="0" y="0" width="320" height="130" rx="12" fill="#111638" stroke="#ef5350" stroke-width="2"/>
+    <rect x="0" y="0" width="320" height="26" rx="12" fill="#c62828" opacity="0.2"/>
+    <rect x="0" y="12" width="320" height="14" fill="#c62828" opacity="0.2"/>
+    <rect x="12" y="5" width="20" height="14" rx="3" fill="none" stroke="#ef5350" stroke-width="1.2"/>
+    <polyline points="12,5 22,14 32,5" fill="none" stroke="#ef5350" stroke-width="1"/>
+    <text x="170" y="18" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="12" fill="#ffcdd2" font-weight="700">Amazon SES (Email)</text>
+
+    <text x="20" y="46" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="#e0e0e0" font-weight="500">Verified Domain: cloudaip.com</text>
+    <text x="20" y="64" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#90a4ae" font-weight="600">Email Functions:</text>
+    <text x="20" y="78" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#78909c">1. New lead notification → admin@cloudaip.com</text>
+    <text x="20" y="91" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#78909c">2. Auto-reply to lead (thank you email)</text>
+    <text x="20" y="104" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#78909c">3. HTML template with lead details + CTA</text>
+    <text x="20" y="120" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#90a4ae">DKIM ✓  SPF ✓  DMARC ✓  Rate: 14/sec</text>
+
+    <rect x="235" y="116" width="75" height="14" rx="3" fill="#ef535020" stroke="#ef5350" stroke-width="0.5"/>
+    <text x="272" y="126" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="8" fill="#ef9a9a">$0.10/1K</text>
+  </g>
+
+  <!-- SNS -->
+  <g transform="translate(580, 1105)" filter="url(#shadow)">
+    <rect x="0" y="0" width="260" height="100" rx="12" fill="#111638" stroke="#ff9900" stroke-width="1.5"/>
+    <rect x="0" y="0" width="260" height="24" rx="12" fill="#e65100" opacity="0.15"/>
+    <rect x="0" y="12" width="260" height="12" fill="#e65100" opacity="0.15"/>
+    <text x="140" y="17" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="#ffe0b2" font-weight="700">Amazon SNS</text>
+    <text x="130" y="42" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#e0e0e0">Alarm Notifications</text>
+    <text x="130" y="60" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#78909c">Topic: cloudaip-alerts</text>
+    <text x="130" y="74" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#78909c">Subscribers: admin@cloudaip.com</text>
+    <text x="130" y="88" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#78909c">Triggered by CloudWatch alarms</text>
+  </g>
+
+  <!-- CloudTrail -->
+  <g transform="translate(900, 1105)" filter="url(#shadow)">
+    <rect x="0" y="0" width="260" height="100" rx="12" fill="#111638" stroke="#0891b2" stroke-width="1.5"/>
+    <rect x="0" y="0" width="260" height="24" rx="12" fill="#0891b2" opacity="0.15"/>
+    <rect x="0" y="12" width="260" height="12" fill="#0891b2" opacity="0.15"/>
+    <text x="140" y="17" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="#80deea" font-weight="700">AWS CloudTrail</text>
+    <text x="130" y="42" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#e0e0e0">Audit Logging</text>
+    <text x="130" y="60" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#78909c">All API calls recorded</text>
+    <text x="130" y="74" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#78909c">Management + Data events</text>
+    <text x="130" y="88" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#78909c">S3 log delivery: cloudaip-trail</text>
+  </g>
+
+  <!-- ══════════════════ LAYER 6: MONITORING ══════════════════ -->
+  <rect x="40" y="1250" width="110" height="45" rx="6" fill="#111638" stroke="#1e2a5a" stroke-width="1"/>
+  <text x="95" y="1268" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="#00d4ff" font-weight="700" letter-spacing="2">LAYER 6</text>
+  <text x="95" y="1285" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#546e7a" letter-spacing="1">MONITORING</text>
+
+  <!-- Arrow: Lambdas → CloudWatch -->
+  <path d="M 680 820 L 680 840 Q 680 850 690 850 L 750 850 Q 760 850 760 860 L 760 1250" stroke="#42a5f5" stroke-width="1.5" fill="none" marker-end="url(#arrowBlue)" stroke-dasharray="5,3"/>
+  <path d="M 1340 820 L 1340 840 Q 1340 850 1330 850 L 900 850 Q 890 850 890 860 L 890 1250" stroke="#42a5f5" stroke-width="1.2" fill="none" marker-end="url(#arrowBlue)" stroke-dasharray="5,3"/>
+  <text x="830" y="1245" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#64b5f6">Logs + Metrics</text>
+
+  <!-- CloudWatch -->
+  <g transform="translate(300, 1260)" filter="url(#shadow)">
+    <rect x="0" y="0" width="700" height="140" rx="12" fill="#111638" stroke="#42a5f5" stroke-width="2"/>
+    <rect x="0" y="0" width="700" height="26" rx="12" fill="#1565c0" opacity="0.2"/>
+    <rect x="0" y="14" width="700" height="12" fill="#1565c0" opacity="0.2"/>
+    <rect x="12" y="8" width="4" height="10" fill="#42a5f5"/>
+    <rect x="18" y="4" width="4" height="14" fill="#42a5f5"/>
+    <rect x="24" y="6" width="4" height="12" fill="#42a5f5"/>
+    <rect x="30" y="2" width="4" height="16" fill="#42a5f5"/>
+    <text x="360" y="18" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="13" fill="#bbdefb" font-weight="700">Amazon CloudWatch — Logs, Metrics &amp; Alarms</text>
+
+    <text x="20" y="46" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#90a4ae" font-weight="600">Log Groups (30-day retention):</text>
+    <text x="20" y="62" font-family="'Courier New', monospace" font-size="9" fill="#81d4fa">/aws/lambda/ContactFormHandler</text>
+    <text x="20" y="76" font-family="'Courier New', monospace" font-size="9" fill="#81d4fa">/aws/lambda/AdminAPIHandler</text>
+    <text x="20" y="90" font-family="'Courier New', monospace" font-size="9" fill="#81d4fa">/aws/apigateway/CloudAIP-API</text>
+
+    <text x="380" y="46" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#90a4ae" font-weight="600">Alarms:</text>
+    <text x="380" y="62" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#ef9a9a">Lambda Error Rate > 5% (5min) → SNS</text>
+    <text x="380" y="76" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#ef9a9a">API Gateway 5xx > 1% (5min) → SNS</text>
+    <text x="380" y="90" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#ef9a9a">DynamoDB Throttle > 0 → SNS</text>
+
+    <text x="20" y="110" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#90a4ae" font-weight="600">Custom Metrics:</text>
+    <text x="20" y="126" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#78909c">LeadsSubmitted | APIErrors | ResponseLatency</text>
+
+    <text x="380" y="110" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#90a4ae" font-weight="600">Dashboard:</text>
+    <text x="380" y="126" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#78909c">Real-time ops dashboard + business KPIs</text>
+
+    <rect x="610" y="126" width="80" height="14" rx="3" fill="#42a5f520" stroke="#42a5f5" stroke-width="0.5"/>
+    <text x="650" y="136" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="8" fill="#64b5f6">$3-5/mo</text>
+  </g>
+
+  <!-- S3 Access Logs bucket -->
+  <g transform="translate(1100, 1260)" filter="url(#shadow)">
+    <rect x="0" y="0" width="230" height="80" rx="10" fill="#111638" stroke="#4caf50" stroke-width="1.5"/>
+    <rect x="0" y="0" width="230" height="22" rx="10" fill="#2e7d32" opacity="0.15"/>
+    <rect x="0" y="10" width="230" height="12" fill="#2e7d32" opacity="0.15"/>
+    <text x="120" y="15" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#c8e6c9" font-weight="700">S3: Access Logs</text>
+    <text x="115" y="40" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#e0e0e0">cloudaip-logs</text>
+    <text x="115" y="56" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#78909c">CloudFront access logs</text>
+    <text x="115" y="70" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#78909c">Lifecycle: 90-day expiry</text>
+  </g>
+
+  <!-- CloudWatch → SNS connection -->
+  <path d="M 650 1260 L 650 1220 Q 650 1210 660 1210 L 700 1205" stroke="#ff9900" stroke-width="1.2" fill="none" marker-end="url(#arrowOrange)" stroke-dasharray="5,3"/>
+  <text x="690" y="1220" font-family="'Segoe UI', Arial, sans-serif" font-size="8" fill="#ffb74d">Alarm → SNS</text>
+
+  <!-- ══════════════════ DIVIDER ══════════════════ -->
+  <line x1="50" y1="1520" x2="1750" y2="1520" stroke="#00d4ff" stroke-width="1" opacity="0.2"/>
+
+  <!-- ══════════════════ CI/CD PIPELINE ══════════════════ -->
+  <text x="900" y="1560" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="24" fill="url(#titleGrad)" font-weight="700" letter-spacing="2">CI/CD Deployment Pipeline</text>
+  <text x="900" y="1582" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="12" fill="#607d8b" letter-spacing="3">INFRASTRUCTURE AS CODE | AUTOMATED DEPLOYMENT</text>
+
+  <!-- Developer -->
+  <g transform="translate(100, 1620)" filter="url(#shadow)">
+    <rect x="0" y="0" width="180" height="90" rx="10" fill="#111638" stroke="#42a5f5" stroke-width="1.5"/>
+    <rect x="15" y="10" width="150" height="40" rx="5" fill="#0a0e27" stroke="#42a5f5" stroke-width="0.5"/>
+    <text x="90" y="36" text-anchor="middle" font-family="'Courier New', monospace" font-size="10" fill="#42a5f5">$ git push origin main</text>
+    <rect x="55" y="56" width="70" height="8" rx="3" fill="#42a5f5" opacity="0.3"/>
+    <text x="90" y="82" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="#b0bec5" font-weight="500">Developer</text>
+  </g>
+
+  <!-- Arrow → GitHub -->
+  <line x1="280" y1="1665" x2="360" y2="1665" stroke="#90a4ae" stroke-width="2" marker-end="url(#arrowWhite)"/>
+  <text x="320" y="1655" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#78909c">git push</text>
+
+  <!-- GitHub -->
+  <g transform="translate(365, 1620)" filter="url(#shadow)">
+    <rect x="0" y="0" width="200" height="90" rx="10" fill="#111638" stroke="#90a4ae" stroke-width="1.5"/>
+    <rect x="0" y="0" width="200" height="22" rx="10" fill="#37474f" opacity="0.3"/>
+    <rect x="0" y="10" width="200" height="12" fill="#37474f" opacity="0.3"/>
+    <circle cx="26" cy="11" r="9" fill="none" stroke="#b0bec5" stroke-width="1.2"/>
+    <text x="110" y="15" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="#e0e0e0" font-weight="700">GitHub Repository</text>
+    <text x="100" y="42" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#90a4ae">cloudaip/cloudaip-website</text>
+    <text x="100" y="58" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#78909c">Branch: main | protected</text>
+    <text x="100" y="72" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#78909c">GitHub Actions workflow</text>
+    <text x="100" y="84" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#78909c">Triggers on push to main</text>
+  </g>
+
+  <!-- Arrow → CloudFormation -->
+  <line x1="565" y1="1650" x2="660" y2="1650" stroke="#90a4ae" stroke-width="2" marker-end="url(#arrowWhite)"/>
+  <text x="613" y="1640" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#78909c">webhook</text>
+
+  <!-- Arrow → S3 Sync -->
+  <line x1="565" y1="1680" x2="660" y2="1740" stroke="#4caf50" stroke-width="2" fill="none" marker-end="url(#arrowGreen)"/>
+  <text x="600" y="1720" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#81c784">build</text>
+
+  <!-- CloudFormation -->
+  <g transform="translate(665, 1610)" filter="url(#shadow)">
+    <rect x="0" y="0" width="260" height="110" rx="10" fill="#111638" stroke="#ff9900" stroke-width="2"/>
+    <rect x="0" y="0" width="260" height="24" rx="10" fill="#e65100" opacity="0.2"/>
+    <rect x="0" y="12" width="260" height="12" fill="#e65100" opacity="0.2"/>
+    <rect x="14" y="4" width="18" height="5" rx="1" fill="#ff9900" opacity="0.5"/>
+    <rect x="14" y="10" width="18" height="5" rx="1" fill="#ff9900" opacity="0.7"/>
+    <rect x="14" y="16" width="18" height="5" rx="1" fill="#ff9900"/>
+    <text x="140" y="17" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="12" fill="#fff3e0" font-weight="700">CloudFormation / SAM</text>
+    <text x="130" y="42" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#e0e0e0">Infrastructure as Code</text>
+    <text x="130" y="60" text-anchor="middle" font-family="'Courier New', monospace" font-size="10" fill="#81d4fa">backend/template.yaml</text>
+    <text x="130" y="78" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#90a4ae">sam build &amp;&amp; sam deploy</text>
+    <text x="130" y="94" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#78909c">Change Sets | Auto-Rollback</text>
+    <text x="130" y="108" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="8" fill="#607d8b">Stack: cloudaip-backend</text>
+  </g>
+
+  <!-- Arrows from CloudFormation to deployed services -->
+  <line x1="925" y1="1640" x2="1000" y2="1625" stroke="#4caf50" stroke-width="2" marker-end="url(#arrowGreen)"/>
+  <line x1="925" y1="1665" x2="1000" y2="1665" stroke="#ff9900" stroke-width="2" marker-end="url(#arrowOrange)"/>
+  <line x1="925" y1="1690" x2="1000" y2="1705" stroke="#ab47bc" stroke-width="2" marker-end="url(#arrowPurple)"/>
+
+  <!-- Deploy targets -->
+  <g transform="translate(1005, 1600)">
+    <rect x="0" y="0" width="100" height="55" rx="8" fill="#111638" stroke="#4caf50" stroke-width="1.5" filter="url(#shadow)"/>
+    <text x="50" y="24" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="20" fill="#4caf50" font-weight="800">λ</text>
+    <text x="50" y="44" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#90a4ae">Lambda x2</text>
+  </g>
+  <g transform="translate(1005, 1660)">
+    <rect x="0" y="0" width="100" height="40" rx="8" fill="#111638" stroke="#ff9900" stroke-width="1.5" filter="url(#shadow)"/>
+    <text x="50" y="25" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#ffb74d">API Gateway</text>
+    <text x="50" y="36" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="8" fill="#607d8b">REST API</text>
+  </g>
+  <g transform="translate(1005, 1705)">
+    <rect x="0" y="0" width="100" height="40" rx="8" fill="#111638" stroke="#ab47bc" stroke-width="1.5" filter="url(#shadow)"/>
+    <text x="50" y="25" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#ce93d8">DynamoDB</text>
+    <text x="50" y="36" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="8" fill="#607d8b">Leads Table</text>
+  </g>
+
+  <!-- S3 Sync Deploy -->
+  <g transform="translate(665, 1740)" filter="url(#shadow)">
+    <rect x="0" y="0" width="260" height="65" rx="8" fill="#111638" stroke="#4caf50" stroke-width="1.5"/>
+    <rect x="0" y="0" width="260" height="20" rx="8" fill="#2e7d32" opacity="0.15"/>
+    <rect x="0" y="10" width="260" height="10" fill="#2e7d32" opacity="0.15"/>
+    <text x="130" y="15" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#c8e6c9" font-weight="700">Frontend Deploy (S3 Sync)</text>
+    <text x="130" y="38" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" fill="#81d4fa">aws s3 sync . s3://cloudaip-website</text>
+    <text x="130" y="55" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#78909c">+ CloudFront cache invalidation (/*)</text>
+  </g>
+
+  <!-- ══════════════════ DIVIDER ══════════════════ -->
+  <line x1="50" y1="1840" x2="1750" y2="1840" stroke="#00d4ff" stroke-width="1" opacity="0.2"/>
+
+  <!-- ══════════════════ REQUEST LIFECYCLE ══════════════════ -->
+  <text x="900" y="1875" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="22" fill="url(#titleGrad)" font-weight="700" letter-spacing="2">Request Lifecycle: Contact Form Submission</text>
+
+  <g transform="translate(80, 1910)">
+    <rect x="0" y="0" width="1640" height="90" rx="12" fill="#111638" stroke="#1e2a5a" stroke-width="1.5"/>
+
+    <!-- Step 1 -->
+    <circle cx="80" cy="35" r="22" fill="#00d4ff" opacity="0.1" stroke="#00d4ff" stroke-width="1.5"/>
+    <text x="80" y="32" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="14" fill="#00d4ff" font-weight="800">1</text>
+    <text x="80" y="46" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="8" fill="#00d4ff">SUBMIT</text>
+    <text x="80" y="75" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#78909c">User fills form</text>
+    <text x="80" y="85" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="8" fill="#546e7a">fetch() POST</text>
+
+    <line x1="105" y1="35" x2="195" y2="35" stroke="#00d4ff" stroke-width="2" marker-end="url(#arrowCyan)"/>
+
+    <!-- Step 2 -->
+    <circle cx="225" cy="35" r="22" fill="#ff9900" opacity="0.1" stroke="#ff9900" stroke-width="1.5"/>
+    <text x="225" y="32" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="14" fill="#ff9900" font-weight="800">2</text>
+    <text x="225" y="46" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="8" fill="#ff9900">EDGE</text>
+    <text x="225" y="75" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#78909c">CloudFront</text>
+    <text x="225" y="85" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="8" fill="#546e7a">WAF check</text>
+
+    <line x1="250" y1="35" x2="380" y2="35" stroke="#ff9900" stroke-width="2" marker-end="url(#arrowOrange)"/>
+
+    <!-- Step 3 -->
+    <circle cx="410" cy="35" r="22" fill="#ff9900" opacity="0.1" stroke="#ff9900" stroke-width="1.5"/>
+    <text x="410" y="32" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="14" fill="#ff9900" font-weight="800">3</text>
+    <text x="410" y="46" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="8" fill="#ff9900">ROUTE</text>
+    <text x="410" y="75" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#78909c">API Gateway</text>
+    <text x="410" y="85" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="8" fill="#546e7a">Validate + CORS</text>
+
+    <line x1="435" y1="35" x2="565" y2="35" stroke="#4caf50" stroke-width="2" marker-end="url(#arrowGreen)"/>
+
+    <!-- Step 4 -->
+    <circle cx="595" cy="35" r="22" fill="#4caf50" opacity="0.1" stroke="#4caf50" stroke-width="1.5"/>
+    <text x="595" y="32" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="14" fill="#4caf50" font-weight="800">4</text>
+    <text x="595" y="46" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="8" fill="#4caf50">PROCESS</text>
+    <text x="595" y="75" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#78909c">Lambda</text>
+    <text x="595" y="85" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="8" fill="#546e7a">Validate input</text>
+
+    <line x1="620" y1="35" x2="750" y2="35" stroke="#ab47bc" stroke-width="2" marker-end="url(#arrowPurple)"/>
+
+    <!-- Step 5 -->
+    <circle cx="780" cy="35" r="22" fill="#ab47bc" opacity="0.1" stroke="#ab47bc" stroke-width="1.5"/>
+    <text x="780" y="32" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="14" fill="#ab47bc" font-weight="800">5</text>
+    <text x="780" y="46" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="8" fill="#ab47bc">STORE</text>
+    <text x="780" y="75" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#78909c">DynamoDB</text>
+    <text x="780" y="85" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="8" fill="#546e7a">PutItem lead</text>
+
+    <line x1="805" y1="35" x2="935" y2="35" stroke="#ef5350" stroke-width="2" marker-end="url(#arrowRed)"/>
+
+    <!-- Step 6 -->
+    <circle cx="965" cy="35" r="22" fill="#ef5350" opacity="0.1" stroke="#ef5350" stroke-width="1.5"/>
+    <text x="965" y="32" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="14" fill="#ef5350" font-weight="800">6</text>
+    <text x="965" y="46" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="8" fill="#ef5350">NOTIFY</text>
+    <text x="965" y="75" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#78909c">SES Email</text>
+    <text x="965" y="85" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="8" fill="#546e7a">Admin + Lead</text>
+
+    <line x1="990" y1="35" x2="1120" y2="35" stroke="#42a5f5" stroke-width="2" marker-end="url(#arrowBlue)"/>
+
+    <!-- Step 7 -->
+    <circle cx="1150" cy="35" r="22" fill="#42a5f5" opacity="0.1" stroke="#42a5f5" stroke-width="1.5"/>
+    <text x="1150" y="32" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="14" fill="#42a5f5" font-weight="800">7</text>
+    <text x="1150" y="46" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="8" fill="#42a5f5">LOG</text>
+    <text x="1150" y="75" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#78909c">CloudWatch</text>
+    <text x="1150" y="85" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="8" fill="#546e7a">Structured log</text>
+
+    <line x1="1175" y1="35" x2="1305" y2="35" stroke="#4caf50" stroke-width="2" marker-end="url(#arrowGreen)"/>
+
+    <!-- Step 8 -->
+    <circle cx="1335" cy="35" r="22" fill="#4caf50" opacity="0.1" stroke="#4caf50" stroke-width="1.5"/>
+    <text x="1335" y="32" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="14" fill="#4caf50" font-weight="800">8</text>
+    <text x="1335" y="46" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="8" fill="#4caf50">RESPOND</text>
+    <text x="1335" y="75" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#78909c">200 OK</text>
+    <text x="1335" y="85" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="8" fill="#546e7a">{leadId: "..."}</text>
+
+    <line x1="1360" y1="35" x2="1490" y2="35" stroke="#00d4ff" stroke-width="2" marker-end="url(#arrowCyan)"/>
+
+    <!-- Step 9 -->
+    <circle cx="1520" cy="35" r="22" fill="#00d4ff" opacity="0.1" stroke="#00d4ff" stroke-width="1.5"/>
+    <text x="1520" y="32" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="14" fill="#00d4ff" font-weight="800">9</text>
+    <text x="1520" y="46" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="8" fill="#00d4ff">CONFIRM</text>
+    <text x="1520" y="75" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#78909c">UI Success</text>
+    <text x="1520" y="85" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="8" fill="#546e7a">Thank you msg</text>
+  </g>
+
+  <!-- ══════════════════ DIVIDER ══════════════════ -->
+  <line x1="50" y1="2030" x2="1750" y2="2030" stroke="#00d4ff" stroke-width="1" opacity="0.2"/>
+
+  <!-- ══════════════════ COST + SCALING + SERVICES SUMMARY ══════════════════ -->
+  <text x="900" y="2065" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="22" fill="url(#titleGrad)" font-weight="700" letter-spacing="2">Infrastructure Summary</text>
+
+  <!-- Cost Box -->
+  <g transform="translate(80, 2090)" filter="url(#shadow)">
+    <rect x="0" y="0" width="500" height="280" rx="12" fill="#111638" stroke="#4caf50" stroke-width="1.5"/>
+    <rect x="0" y="0" width="500" height="28" rx="12" fill="#2e7d32" opacity="0.2"/>
+    <rect x="0" y="15" width="500" height="13" fill="#2e7d32" opacity="0.2"/>
+    <text x="250" y="20" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="13" fill="#c8e6c9" font-weight="700">Monthly Cost Estimation</text>
+
+    <text x="20" y="52" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#90a4ae" font-weight="600">Service</text>
+    <text x="380" y="52" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#90a4ae" font-weight="600">Est. Cost</text>
+    <line x1="20" y1="58" x2="480" y2="58" stroke="#1e2a5a" stroke-width="1"/>
+
+    <rect x="15" y="62" width="470" height="18" rx="2" fill="#0a0e27"/>
+    <text x="20" y="75" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#e0e0e0">Amazon S3 (website + logs)</text>
+    <text x="380" y="75" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#81c784">$1.00</text>
+
+    <text x="20" y="97" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#e0e0e0">Amazon CloudFront (CDN)</text>
+    <text x="380" y="97" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#81c784">$5 - $15</text>
+
+    <rect x="15" y="104" width="470" height="18" rx="2" fill="#0a0e27"/>
+    <text x="20" y="117" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#e0e0e0">Amazon API Gateway</text>
+    <text x="380" y="117" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#81c784">$3.50</text>
+
+    <text x="20" y="137" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#e0e0e0">AWS Lambda (2 functions)</text>
+    <text x="380" y="137" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#81c784">$0 - $5</text>
+
+    <rect x="15" y="144" width="470" height="18" rx="2" fill="#0a0e27"/>
+    <text x="20" y="157" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#e0e0e0">Amazon DynamoDB (on-demand)</text>
+    <text x="380" y="157" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#81c784">$1 - $5</text>
+
+    <text x="20" y="177" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#e0e0e0">Amazon SES (email)</text>
+    <text x="380" y="177" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#81c784">$0.10</text>
+
+    <rect x="15" y="184" width="470" height="18" rx="2" fill="#0a0e27"/>
+    <text x="20" y="197" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#e0e0e0">Amazon Route 53 (DNS)</text>
+    <text x="380" y="197" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#81c784">$0.90</text>
+
+    <text x="20" y="217" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#e0e0e0">CloudWatch (logs + alarms)</text>
+    <text x="380" y="217" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#81c784">$3 - $5</text>
+
+    <rect x="15" y="224" width="470" height="18" rx="2" fill="#0a0e27"/>
+    <text x="20" y="237" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#e0e0e0">AWS WAF + ACM (free SSL)</text>
+    <text x="380" y="237" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#81c784">$6.00</text>
+
+    <line x1="20" y1="248" x2="480" y2="248" stroke="#4caf50" stroke-width="1"/>
+    <text x="20" y="268" font-family="'Segoe UI', Arial, sans-serif" font-size="13" fill="#e0e0e0" font-weight="700">TOTAL ESTIMATED</text>
+    <text x="380" y="268" font-family="'Segoe UI', Arial, sans-serif" font-size="13" fill="#4caf50" font-weight="700">$20 - $40/mo</text>
+  </g>
+
+  <!-- AWS Services Count -->
+  <g transform="translate(650, 2090)" filter="url(#shadow)">
+    <rect x="0" y="0" width="500" height="280" rx="12" fill="#111638" stroke="#00d4ff" stroke-width="1.5"/>
+    <rect x="0" y="0" width="500" height="28" rx="12" fill="#00d4ff" opacity="0.1"/>
+    <rect x="0" y="15" width="500" height="13" fill="#00d4ff" opacity="0.1"/>
+    <text x="250" y="20" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="13" fill="#80deea" font-weight="700">AWS Services Used (14 Total)</text>
+
+    <text x="20" y="52" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#90a4ae" font-weight="600">#</text>
+    <text x="40" y="52" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#90a4ae" font-weight="600">Service</text>
+    <text x="280" y="52" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#90a4ae" font-weight="600">Purpose</text>
+    <line x1="20" y1="58" x2="480" y2="58" stroke="#1e2a5a" stroke-width="1"/>
+
+    <rect x="15" y="62" width="470" height="15" rx="2" fill="#0a0e27"/>
+    <text x="20" y="73" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#81d4fa">1</text>
+    <text x="40" y="73" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#e0e0e0">Amazon S3</text>
+    <text x="280" y="73" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#78909c">Static website hosting + logs</text>
+
+    <text x="20" y="90" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#81d4fa">2</text>
+    <text x="40" y="90" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#e0e0e0">Amazon CloudFront</text>
+    <text x="280" y="90" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#78909c">Global CDN + SSL termination</text>
+
+    <rect x="15" y="96" width="470" height="15" rx="2" fill="#0a0e27"/>
+    <text x="20" y="107" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#81d4fa">3</text>
+    <text x="40" y="107" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#e0e0e0">Amazon Route 53</text>
+    <text x="280" y="107" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#78909c">DNS management</text>
+
+    <text x="20" y="124" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#81d4fa">4</text>
+    <text x="40" y="124" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#e0e0e0">Amazon API Gateway</text>
+    <text x="280" y="124" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#78909c">REST API routing + throttling</text>
+
+    <rect x="15" y="130" width="470" height="15" rx="2" fill="#0a0e27"/>
+    <text x="20" y="141" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#81d4fa">5</text>
+    <text x="40" y="141" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#e0e0e0">AWS Lambda (x2)</text>
+    <text x="280" y="141" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#78909c">Serverless compute (Node.js 20)</text>
+
+    <text x="20" y="158" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#81d4fa">6</text>
+    <text x="40" y="158" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#e0e0e0">Amazon DynamoDB</text>
+    <text x="280" y="158" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#78909c">NoSQL database (leads)</text>
+
+    <rect x="15" y="164" width="470" height="15" rx="2" fill="#0a0e27"/>
+    <text x="20" y="175" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#81d4fa">7</text>
+    <text x="40" y="175" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#e0e0e0">Amazon SES</text>
+    <text x="280" y="175" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#78909c">Email notifications</text>
+
+    <text x="20" y="192" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#81d4fa">8</text>
+    <text x="40" y="192" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#e0e0e0">Amazon SNS</text>
+    <text x="280" y="192" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#78909c">Alarm notifications</text>
+
+    <rect x="15" y="198" width="470" height="15" rx="2" fill="#0a0e27"/>
+    <text x="20" y="209" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#81d4fa">9</text>
+    <text x="40" y="209" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#e0e0e0">AWS WAF</text>
+    <text x="280" y="209" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#78909c">Firewall + DDoS protection</text>
+
+    <text x="20" y="226" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#81d4fa">10</text>
+    <text x="40" y="226" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#e0e0e0">AWS ACM</text>
+    <text x="280" y="226" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#78909c">SSL certificate (free)</text>
+
+    <rect x="15" y="232" width="470" height="15" rx="2" fill="#0a0e27"/>
+    <text x="20" y="243" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#81d4fa">11</text>
+    <text x="40" y="243" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#e0e0e0">Amazon CloudWatch</text>
+    <text x="280" y="243" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#78909c">Monitoring + alarms + logs</text>
+
+    <text x="20" y="260" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#81d4fa">12</text>
+    <text x="40" y="260" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#e0e0e0">AWS CloudTrail</text>
+    <text x="280" y="260" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#78909c">Audit logging</text>
+
+    <rect x="15" y="266" width="470" height="15" rx="2" fill="#0a0e27"/>
+    <text x="20" y="277" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#81d4fa">13</text>
+    <text x="40" y="277" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#e0e0e0">AWS IAM</text>
+    <text x="280" y="277" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#78909c">Identity + access management</text>
+  </g>
+
+  <!-- Scalability Box -->
+  <g transform="translate(1220, 2090)" filter="url(#shadow)">
+    <rect x="0" y="0" width="500" height="280" rx="12" fill="#111638" stroke="#7c3aed" stroke-width="1.5"/>
+    <rect x="0" y="0" width="500" height="28" rx="12" fill="#7c3aed" opacity="0.15"/>
+    <rect x="0" y="15" width="500" height="13" fill="#7c3aed" opacity="0.15"/>
+    <text x="250" y="20" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="13" fill="#b39ddb" font-weight="700">Performance &amp; Scalability</text>
+
+    <text x="20" y="52" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#90a4ae" font-weight="600">Component</text>
+    <text x="250" y="52" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#90a4ae" font-weight="600">Scale / Latency</text>
+    <line x1="20" y1="58" x2="480" y2="58" stroke="#1e2a5a" stroke-width="1"/>
+
+    <rect x="15" y="62" width="470" height="30" rx="2" fill="#0a0e27"/>
+    <text x="20" y="75" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#e0e0e0">CloudFront</text>
+    <text x="250" y="75" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#81c784">450+ edges, &lt; 50ms cached</text>
+    <text x="250" y="88" font-family="'Segoe UI', Arial, sans-serif" font-size="8" fill="#607d8b">Auto-scale, unlimited throughput</text>
+
+    <text x="20" y="110" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#e0e0e0">API Gateway</text>
+    <text x="250" y="110" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#81c784">10,000 req/sec, &lt; 30ms overhead</text>
+
+    <rect x="15" y="118" width="470" height="30" rx="2" fill="#0a0e27"/>
+    <text x="20" y="131" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#e0e0e0">Lambda</text>
+    <text x="250" y="131" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#81c784">1000 concurrent, &lt; 100ms warm</text>
+    <text x="250" y="144" font-family="'Segoe UI', Arial, sans-serif" font-size="8" fill="#607d8b">arm64 Graviton2, 20% better perf/$</text>
+
+    <text x="20" y="166" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#e0e0e0">DynamoDB</text>
+    <text x="250" y="166" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#81c784">Unlimited, &lt; 10ms single-digit</text>
+
+    <rect x="15" y="174" width="470" height="20" rx="2" fill="#0a0e27"/>
+    <text x="20" y="187" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#e0e0e0">S3</text>
+    <text x="250" y="187" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#81c784">5,500 GET/sec/prefix, unlimited</text>
+
+    <text x="20" y="210" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#90a4ae" font-weight="600">Key Metrics:</text>
+    <text x="20" y="228" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#78909c">Page Load: &lt; 1s (global via CDN)</text>
+    <text x="20" y="243" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#78909c">API Response: &lt; 200ms (cold) / &lt; 50ms (warm)</text>
+    <text x="20" y="258" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#78909c">Availability: 99.99% (multi-AZ serverless)</text>
+    <text x="20" y="273" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#78909c">S3 Durability: 99.999999999% (11 nines)</text>
+  </g>
+
+  <!-- ══════════════════ LEGEND ══════════════════ -->
+  <g transform="translate(80, 2400)" filter="url(#shadow)">
+    <rect x="0" y="0" width="1640" height="80" rx="12" fill="#111638" stroke="#1e2a5a" stroke-width="1.5"/>
+    <text x="820" y="20" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="13" fill="#e0e0e0" font-weight="700">LEGEND</text>
+
+    <rect x="30" y="38" width="22" height="14" rx="4" fill="none" stroke="#ff9900" stroke-width="1.5"/>
+    <text x="60" y="49" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#b0bec5">AWS General</text>
+
+    <rect x="170" y="38" width="22" height="14" rx="4" fill="none" stroke="#42a5f5" stroke-width="1.5"/>
+    <text x="200" y="49" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#b0bec5">Networking</text>
+
+    <rect x="300" y="38" width="22" height="14" rx="4" fill="none" stroke="#4caf50" stroke-width="1.5"/>
+    <text x="330" y="49" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#b0bec5">Compute/Storage</text>
+
+    <rect x="460" y="38" width="22" height="14" rx="4" fill="none" stroke="#ab47bc" stroke-width="1.5"/>
+    <text x="490" y="49" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#b0bec5">Database</text>
+
+    <rect x="580" y="38" width="22" height="14" rx="4" fill="none" stroke="#ef5350" stroke-width="1.5"/>
+    <text x="610" y="49" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#b0bec5">Security/Email</text>
+
+    <rect x="740" y="38" width="22" height="14" rx="4" fill="none" stroke="#0891b2" stroke-width="1.5"/>
+    <text x="770" y="49" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#b0bec5">Audit/Trail</text>
+
+    <rect x="880" y="38" width="22" height="14" rx="4" fill="none" stroke="#7c3aed" stroke-width="1.5"/>
+    <text x="910" y="49" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#b0bec5">Third-Party</text>
+
+    <line x1="1030" y1="45" x2="1060" y2="45" stroke="#ff9900" stroke-width="2" marker-end="url(#arrowOrange)"/>
+    <text x="1070" y="49" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#b0bec5">Data Flow</text>
+
+    <line x1="1170" y1="45" x2="1200" y2="45" stroke="#90a4ae" stroke-width="1.5" stroke-dasharray="5,3"/>
+    <text x="1210" y="49" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#b0bec5">Config/Attach</text>
+
+    <rect x="1330" y="35" width="22" height="18" rx="4" fill="#00d4ff" opacity="0.1" stroke="#00d4ff" stroke-width="1"/>
+    <text x="1360" y="49" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#b0bec5">Step Indicator</text>
+
+    <rect x="1480" y="36" width="60" height="16" rx="3" fill="#00d4ff10" stroke="#1e2a5a" stroke-width="0.5"/>
+    <text x="1510" y="48" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#00d4ff">Region</text>
+    <text x="1550" y="49" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#b0bec5">Boundary</text>
+  </g>
+
+  <!-- ══════════════════ FOOTER ══════════════════ -->
+  <line x1="50" y1="2510" x2="1750" y2="2510" stroke="#1e2a5a" stroke-width="1"/>
+  <text x="900" y="2540" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="11" fill="#546e7a">CloudAIP Technical Architecture Diagram v2.0 | 14 AWS Services | 5 Third-Party Integrations | Confidential</text>
+  <text x="900" y="2560" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="10" fill="#37474f">Generated March 2026 | hello@cloudaip.com | cloudaip.com</text>
+</svg>

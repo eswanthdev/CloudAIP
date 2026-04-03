@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- SEO Meta Tags -->
+    <title>FinOps Enforcer — Automated Cloud Governance & Cost Control | CloudAIP</title>
+    <meta name="description" content="Automated guardrails, tagging enforcement, policy-as-code, and IaC cost estimation integrated into your CI/CD pipeline. Permanent cloud cost control starting at $2,500.">
+    <meta name="keywords" content="FinOps governance, cloud cost control, tagging enforcement, policy as code, IaC cost estimation, Infracost, AWS Service Control Policies, Azure Policy, budget alerts, cloud guardrails">
+    <meta name="author" content="CloudAIP">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://cloudaip.com/pages/services/finops-enforcer.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="FinOps Enforcer — Automated Cloud Governance | CloudAIP">
+    <meta property="og:description" content="Automated guardrails, tagging enforcement, and IaC cost estimation for permanent cloud cost control.">
+    <meta property="og:url" content="https://cloudaip.com/pages/services/finops-enforcer.html">
+    <meta property="og:image" content="https://cloudaip.com/assets/og-image.jpg">
+    <meta property="og:site_name" content="CloudAIP">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="FinOps Enforcer — Automated Cloud Governance | CloudAIP">
+    <meta name="twitter:description" content="Automated guardrails, tagging enforcement, and IaC cost estimation for permanent cloud cost control.">
+    <meta name="twitter:image" content="https://cloudaip.com/assets/og-image.jpg">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../../assets/favicon.ico">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="../../css/styles.css">
+
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg-primary: #0a0e27; --bg-card: #111638; --border-color: #1e2a5a;
+            --cyan: #00d4ff; --teal: #0891b2; --purple: #7c3aed;
+            --text-white: #ffffff; --text-muted: #94a3b8; --text-light: #cbd5e1;
+            --gradient-primary: linear-gradient(135deg, #00d4ff, #0891b2);
+            --gradient-accent: linear-gradient(135deg, #7c3aed, #00d4ff);
+            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --nav-height: 72px;
+        }
+        html { scroll-behavior: smooth; font-size: 16px; }
+        body { font-family: var(--font-family); background-color: var(--bg-primary); color: var(--text-white); line-height: 1.6; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+        a { text-decoration: none; color: inherit; transition: color 0.3s ease; }
+        ul, ol { list-style: none; }
+        img { max-width: 100%; height: auto; display: block; }
+        button, input, textarea, select { font-family: inherit; font-size: inherit; border: none; outline: none; background: none; }
+        .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+        .section { padding: 100px 0; }
+        .section__label { display: inline-block; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 3px; background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 12px; }
+        .section__title { font-size: 2.5rem; font-weight: 800; margin-bottom: 16px; line-height: 1.2; }
+        .section__subtitle { font-size: 1.125rem; color: var(--text-muted); max-width: 600px; margin-bottom: 48px; }
+        .section__header { text-align: center; margin-bottom: 60px; }
+        .section__header .section__subtitle { margin-left: auto; margin-right: auto; }
+
+        .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 32px; border-radius: 8px; font-weight: 600; font-size: 1rem; cursor: pointer; transition: all 0.3s ease; white-space: nowrap; }
+        .btn--primary { background: var(--gradient-primary); color: var(--text-white); border: none; box-shadow: 0 4px 20px rgba(0, 212, 255, 0.3); }
+        .btn--primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0, 212, 255, 0.4); }
+        .btn--outline { background: transparent; color: var(--text-white); border: 2px solid var(--border-color); }
+        .btn--outline:hover { border-color: var(--cyan); color: var(--cyan); transform: translateY(-2px); }
+        .btn--small { padding: 10px 24px; font-size: 0.875rem; }
+
+        /* Navigation */
+        .nav { position: fixed; top: 0; left: 0; width: 100%; height: var(--nav-height); z-index: 1000; background: rgba(10, 14, 39, 0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(30, 42, 90, 0.5); transition: all 0.3s ease; }
+        .nav--scrolled { background: rgba(10, 14, 39, 0.95); box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3); }
+        .nav__container { display: flex; align-items: center; justify-content: space-between; height: 100%; max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+        .nav__logo { font-size: 1.5rem; font-weight: 800; background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; letter-spacing: -0.5px; }
+        .nav__links { display: flex; align-items: center; gap: 32px; }
+        .nav__link { font-size: 0.9rem; font-weight: 500; color: var(--text-light); transition: color 0.3s ease; position: relative; }
+        .nav__link::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: var(--gradient-primary); transition: width 0.3s ease; }
+        .nav__link:hover { color: var(--cyan); }
+        .nav__link:hover::after { width: 100%; }
+        .nav__cta { padding: 10px 24px; font-size: 0.875rem; }
+        .nav__hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; z-index: 1001; }
+        .nav__hamburger-line { width: 24px; height: 2px; background: var(--text-white); transition: all 0.3s ease; border-radius: 2px; }
+        .nav__hamburger--active .nav__hamburger-line:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .nav__hamburger--active .nav__hamburger-line:nth-child(2) { opacity: 0; }
+        .nav__hamburger--active .nav__hamburger-line:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+        /* Page Hero */
+        .page-hero { padding: 160px 0 80px; position: relative; overflow: hidden; text-align: center; }
+        .page-hero__glow { position: absolute; width: 500px; height: 500px; border-radius: 50%; filter: blur(120px); opacity: 0.15; pointer-events: none; }
+        .page-hero__glow--cyan { background: var(--cyan); top: -200px; right: -100px; }
+        .page-hero__glow--purple { background: var(--purple); bottom: -200px; left: -100px; }
+        .page-hero__title { font-size: 3.5rem; font-weight: 900; margin-bottom: 20px; line-height: 1.1; }
+        .page-hero__title span { background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .page-hero__subtitle { font-size: 1.25rem; color: var(--text-muted); max-width: 650px; margin: 0 auto; }
+
+        /* Deliverables Grid */
+        .deliverables-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+        .deliverable-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; padding: 36px 28px; transition: all 0.3s ease; }
+        .deliverable-card:hover { transform: translateY(-4px); border-color: var(--cyan); box-shadow: 0 8px 30px rgba(0, 212, 255, 0.1); }
+        .deliverable-card__icon { font-size: 2.5rem; margin-bottom: 16px; }
+        .deliverable-card__title { font-size: 1.15rem; font-weight: 700; margin-bottom: 10px; }
+        .deliverable-card__text { color: var(--text-muted); font-size: 0.9rem; line-height: 1.7; }
+
+        /* Process Steps */
+        .process-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+        .process-step { text-align: center; position: relative; }
+        .process-step__number { width: 56px; height: 56px; border-radius: 50%; background: var(--gradient-primary); display: flex; align-items: center; justify-content: center; font-size: 1.25rem; font-weight: 800; margin: 0 auto 16px; }
+        .process-step__title { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
+        .process-step__text { color: var(--text-muted); font-size: 0.85rem; line-height: 1.6; }
+        .process-step::after { content: ''; position: absolute; top: 28px; left: 60%; width: 80%; height: 2px; background: var(--border-color); }
+        .process-step:last-child::after { display: none; }
+
+        /* Tools Section */
+        .tools-list { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+        .tool-tag { padding: 10px 20px; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 40px; font-size: 0.9rem; font-weight: 500; color: var(--text-light); transition: all 0.3s ease; }
+        .tool-tag:hover { border-color: var(--cyan); color: var(--cyan); }
+
+        /* Info Cards */
+        .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+        .info-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; padding: 40px; }
+        .info-card__title { font-size: 1.3rem; font-weight: 700; margin-bottom: 16px; }
+        .info-card__text { color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; }
+        .info-card__price { font-size: 2.5rem; font-weight: 900; background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 8px; }
+        .info-card__price-note { color: var(--text-muted); font-size: 0.9rem; }
+        .info-card__list { margin-top: 16px; }
+        .info-card__list li { padding: 8px 0; color: var(--text-light); font-size: 0.9rem; display: flex; align-items: flex-start; gap: 10px; }
+        .info-card__list li::before { content: '\2713'; color: var(--cyan); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+
+        /* CTA Section */
+        .cta-section { text-align: center; padding: 100px 0; }
+        .cta-section__title { font-size: 2.5rem; font-weight: 800; margin-bottom: 16px; }
+        .cta-section__text { color: var(--text-muted); font-size: 1.1rem; max-width: 550px; margin: 0 auto 32px; }
+
+        /* Overview */
+        .overview-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; padding: 48px; max-width: 900px; margin: 0 auto; }
+        .overview-card__text { color: var(--text-light); font-size: 1.05rem; line-height: 1.8; }
+
+        /* Footer */
+        .footer { background: #060816; padding: 80px 0 0; border-top: 1px solid var(--border-color); }
+        .footer__grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr 1.5fr; gap: 40px; margin-bottom: 60px; }
+        .footer__brand-description { color: var(--text-muted); font-size: 0.9rem; margin-top: 16px; line-height: 1.7; }
+        .footer__aws-badge { display: inline-flex; align-items: center; gap: 6px; margin-top: 16px; padding: 6px 12px; background: rgba(255, 153, 0, 0.1); border: 1px solid rgba(255, 153, 0, 0.2); border-radius: 6px; font-size: 0.8rem; color: #ff9900; }
+        .footer__heading { font-size: 0.95rem; font-weight: 700; margin-bottom: 20px; }
+        .footer__link { display: block; color: var(--text-muted); font-size: 0.9rem; padding: 4px 0; transition: color 0.3s ease; }
+        .footer__link:hover { color: var(--cyan); }
+        .footer__contact-item { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 8px; }
+        .footer__social { display: flex; gap: 12px; margin-top: 16px; }
+        .footer__social-link { width: 36px; height: 36px; border-radius: 8px; background: var(--bg-card); border: 1px solid var(--border-color); display: flex; align-items: center; justify-content: center; font-size: 0.9rem; transition: all 0.3s ease; }
+        .footer__social-link:hover { border-color: var(--cyan); background: rgba(0, 212, 255, 0.1); }
+        .footer__newsletter-form { display: flex; gap: 8px; }
+        .footer__newsletter-input { flex: 1; padding: 10px 14px; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 8px; color: var(--text-white); font-size: 0.85rem; }
+        .footer__newsletter-btn { padding: 10px 16px; background: var(--gradient-primary); border: none; border-radius: 8px; color: var(--text-white); font-weight: 600; font-size: 0.85rem; cursor: pointer; }
+        .footer__bottom { padding: 24px 0; border-top: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+        .footer__copyright { color: var(--text-muted); font-size: 0.85rem; }
+        .footer__legal { display: flex; gap: 24px; }
+        .footer__legal-link { color: var(--text-muted); font-size: 0.85rem; transition: color 0.3s ease; }
+        .footer__legal-link:hover { color: var(--cyan); }
+
+        .whatsapp-float { position: fixed; bottom: 24px; right: 24px; width: 56px; height: 56px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4); z-index: 999; transition: transform 0.3s ease; }
+        .whatsapp-float:hover { transform: scale(1.1); }
+
+        [data-animate] { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
+        [data-animate].animated { opacity: 1; transform: translateY(0); }
+
+        @media (max-width: 768px) {
+            .nav__links { position: fixed; top: 0; right: -100%; width: 280px; height: 100vh; background: var(--bg-primary); flex-direction: column; justify-content: center; padding: 40px; border-left: 1px solid var(--border-color); transition: right 0.3s ease; }
+            .nav__links--active { right: 0; }
+            .nav__hamburger { display: flex; }
+            .page-hero__title { font-size: 2.5rem; }
+            .deliverables-grid { grid-template-columns: 1fr; }
+            .process-steps { grid-template-columns: 1fr 1fr; }
+            .process-step::after { display: none; }
+            .info-grid { grid-template-columns: 1fr; }
+            .footer__grid { grid-template-columns: 1fr 1fr; }
+            .section__title { font-size: 2rem; }
+            .cta-section__title { font-size: 2rem; }
+        }
+        @media (max-width: 480px) {
+            .process-steps { grid-template-columns: 1fr; }
+            .footer__grid { grid-template-columns: 1fr; }
+            .page-hero__title { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===================== NAVIGATION ===================== -->
+    <nav class="nav" id="nav" role="navigation" aria-label="Main navigation">
+        <div class="nav__container">
+            <a href="../../index.html" class="nav__logo" aria-label="CloudAIP Home">CloudAIP</a>
+            <ul class="nav__links" id="navLinks" role="menubar">
+                <li role="none"><a href="../../index.html#services" class="nav__link" role="menuitem">Services</a></li>
+                <li role="none"><a href="../training.html" class="nav__link" role="menuitem">Training</a></li>
+                <li role="none"><a href="../pricing.html" class="nav__link" role="menuitem">Pricing</a></li>
+                <li role="none"><a href="../about.html" class="nav__link" role="menuitem">About</a></li>
+                <li role="none"><a href="../blog.html" class="nav__link" role="menuitem">Blog</a></li>
+                <li role="none"><a href="../../index.html#contact" class="btn btn--primary nav__cta" role="menuitem">Contact Us</a></li>
+            </ul>
+            <button class="nav__hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span class="nav__hamburger-line"></span>
+                <span class="nav__hamburger-line"></span>
+                <span class="nav__hamburger-line"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ===================== PAGE HERO ===================== -->
+    <section class="page-hero" aria-label="FinOps Enforcer hero">
+        <div class="page-hero__glow page-hero__glow--cyan"></div>
+        <div class="page-hero__glow page-hero__glow--purple"></div>
+        <div class="container">
+            <h1 class="page-hero__title" data-animate><span>FinOps Enforcer</span></h1>
+            <p class="page-hero__subtitle" data-animate>Automated governance. Permanent cost control.</p>
+        </div>
+    </section>
+
+    <!-- ===================== OVERVIEW ===================== -->
+    <section class="section" aria-label="Service overview">
+        <div class="container">
+            <div class="section__header">
+                <span class="section__label">Overview</span>
+                <h2 class="section__title">Governance That Never Sleeps</h2>
+            </div>
+            <div class="overview-card" data-animate>
+                <p class="overview-card__text">Automated guardrails, governance policies, tagging enforcement, and IaC cost estimation integrated into your CI/CD pipeline. Stop relying on manual reviews and tribal knowledge to control cloud costs. The FinOps Enforcer embeds cost governance directly into your engineering workflows so compliance is automatic, not aspirational.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== WHAT'S INCLUDED ===================== -->
+    <section class="section" style="background: rgba(15, 20, 65, 0.4);" aria-label="What is included">
+        <div class="container">
+            <div class="section__header">
+                <span class="section__label">Deliverables</span>
+                <h2 class="section__title">What's Included</h2>
+                <p class="section__subtitle">Six governance capabilities that lock in cost discipline across your entire cloud estate.</p>
+            </div>
+            <div class="deliverables-grid">
+                <div class="deliverable-card" data-animate>
+                    <div class="deliverable-card__icon">&#x1F3F7;&#xFE0F;</div>
+                    <h3 class="deliverable-card__title">Automated Tagging Enforcement</h3>
+                    <p class="deliverable-card__text">Policy-as-code rules that prevent resource creation without required tags. Auto-remediation for non-compliant resources ensures 100% tag coverage across your estate.</p>
+                </div>
+                <div class="deliverable-card" data-animate>
+                    <div class="deliverable-card__icon">&#x1F6A8;</div>
+                    <h3 class="deliverable-card__title">Budget Alerts & Hard Limits</h3>
+                    <p class="deliverable-card__text">Multi-level budget alerts (50%, 75%, 90%, 100%) with optional hard limits that prevent overspend. Per-team and per-project budgets give granular cost control.</p>
+                </div>
+                <div class="deliverable-card" data-animate>
+                    <div class="deliverable-card__icon">&#x1F4DC;</div>
+                    <h3 class="deliverable-card__title">Policy-as-Code Implementation</h3>
+                    <p class="deliverable-card__text">AWS Service Control Policies, Azure Policies, GCP Organization Policies. Restrict expensive instance types, regions, and services before they ever get provisioned.</p>
+                </div>
+                <div class="deliverable-card" data-animate>
+                    <div class="deliverable-card__icon">&#x1F4B0;</div>
+                    <h3 class="deliverable-card__title">IaC Cost Estimation in CI/CD</h3>
+                    <p class="deliverable-card__text">Integrate Infracost or custom solutions into Terraform/CloudFormation pipelines. Engineers see cost impact before deploying, making cost a first-class engineering concern.</p>
+                </div>
+                <div class="deliverable-card" data-animate>
+                    <div class="deliverable-card__icon">&#x2705;</div>
+                    <h3 class="deliverable-card__title">Approval Workflows for Expensive Resources</h3>
+                    <p class="deliverable-card__text">Automated approval workflows for resources exceeding cost thresholds. Slack/Teams notifications for review ensure expensive resources get human oversight before deployment.</p>
+                </div>
+                <div class="deliverable-card" data-animate>
+                    <div class="deliverable-card__icon">&#x1F4CA;</div>
+                    <h3 class="deliverable-card__title">Compliance & Cost Reporting</h3>
+                    <p class="deliverable-card__text">Automated weekly/monthly compliance reports. Track tag compliance, budget adherence, and policy violations with executive-ready dashboards and trend analysis.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== TOOLS USED ===================== -->
+    <section class="section" aria-label="Tools and technologies">
+        <div class="container">
+            <div class="section__header">
+                <span class="section__label">Technology</span>
+                <h2 class="section__title">Tools We Use</h2>
+                <p class="section__subtitle">Industry-standard tools and platforms to build governance that scales.</p>
+            </div>
+            <div class="tools-list" data-animate>
+                <span class="tool-tag">Terraform</span>
+                <span class="tool-tag">CloudFormation</span>
+                <span class="tool-tag">Open Policy Agent (OPA)</span>
+                <span class="tool-tag">Infracost</span>
+                <span class="tool-tag">AWS Config Rules</span>
+                <span class="tool-tag">Azure Policy</span>
+                <span class="tool-tag">Custom Lambda Functions</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== PROCESS ===================== -->
+    <section class="section" style="background: rgba(15, 20, 65, 0.4);" aria-label="Our process">
+        <div class="container">
+            <div class="section__header">
+                <span class="section__label">Process</span>
+                <h2 class="section__title">How It Works</h2>
+                <p class="section__subtitle">A structured, four-step engagement that takes you from policy design to continuous enforcement.</p>
+            </div>
+            <div class="process-steps">
+                <div class="process-step" data-animate>
+                    <div class="process-step__number">1</div>
+                    <h3 class="process-step__title">Policy Design Workshop</h3>
+                    <p class="process-step__text">We work with your team to define tagging standards, budget thresholds, and governance policies aligned to your business goals.</p>
+                </div>
+                <div class="process-step" data-animate>
+                    <div class="process-step__number">2</div>
+                    <h3 class="process-step__title">Implementation & Testing</h3>
+                    <p class="process-step__text">Policies are coded, tested in sandbox environments, and validated against your existing infrastructure before going live.</p>
+                </div>
+                <div class="process-step" data-animate>
+                    <div class="process-step__number">3</div>
+                    <h3 class="process-step__title">CI/CD Integration</h3>
+                    <p class="process-step__text">Cost estimation and policy checks are woven into your deployment pipeline so governance is enforced automatically on every push.</p>
+                </div>
+                <div class="process-step" data-animate>
+                    <div class="process-step__number">4</div>
+                    <h3 class="process-step__title">Monitoring & Iteration</h3>
+                    <p class="process-step__text">Ongoing monitoring of compliance metrics with regular policy refinement to adapt as your cloud environment evolves.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== PRICING & WHO IT'S FOR ===================== -->
+    <section class="section" aria-label="Pricing and fit">
+        <div class="container">
+            <div class="info-grid">
+                <div class="info-card" data-animate>
+                    <span class="section__label">Investment</span>
+                    <h3 class="info-card__title">Pricing & Timeline</h3>
+                    <div class="info-card__price">$2,500 - $5,000</div>
+                    <p class="info-card__price-note">One-time engagement fee</p>
+                    <ul class="info-card__list" style="margin-top: 24px;">
+                        <li>Timeline: 4-6 weeks end-to-end</li>
+                        <li>Includes policy design, implementation, and CI/CD integration</li>
+                        <li>30-day post-deployment support included</li>
+                        <li>Price varies by cloud complexity and number of accounts</li>
+                    </ul>
+                </div>
+                <div class="info-card" data-animate>
+                    <span class="section__label">Ideal Fit</span>
+                    <h3 class="info-card__title">Who It's For</h3>
+                    <ul class="info-card__list">
+                        <li>Organizations where developers spin up resources without oversight</li>
+                        <li>Companies with tag compliance below 80%</li>
+                        <li>Teams preparing for FinOps maturity advancement</li>
+                        <li>Engineering orgs that want cost visibility before deployment</li>
+                        <li>Companies needing audit-ready cloud governance</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== CTA ===================== -->
+    <section class="cta-section" style="background: rgba(15, 20, 65, 0.4);" aria-label="Call to action">
+        <div class="container">
+            <span class="section__label">Get Started</span>
+            <h2 class="cta-section__title" data-animate>Ready to Enforce Cloud Governance?</h2>
+            <p class="cta-section__text" data-animate>Stop overspending. Start enforcing. Let's design governance policies that protect your budget automatically.</p>
+            <a href="../../index.html#contact" class="btn btn--primary" data-animate>Enforce Cloud Governance</a>
+        </div>
+    </section>
+
+    <!-- ===================== FOOTER ===================== -->
+    <footer class="footer" id="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer__grid">
+                <div>
+                    <a href="../../index.html" class="nav__logo" aria-label="CloudAIP Home">CloudAIP</a>
+                    <p class="footer__brand-description">Expert FinOps consulting and cloud certification training. Helping mid-size companies cut cloud costs by 20-40% through data-driven financial management and governance.</p>
+                    <div class="footer__aws-badge">&#x2601;&#xFE0F; Built on AWS</div>
+                </div>
+                <div>
+                    <h4 class="footer__heading">Quick Links</h4>
+                    <nav aria-label="Footer quick links">
+                        <a href="../../index.html" class="footer__link">Home</a>
+                        <a href="../../index.html#services" class="footer__link">Services</a>
+                        <a href="../../index.html#calculator" class="footer__link">ROI Calculator</a>
+                        <a href="../pricing.html" class="footer__link">Pricing</a>
+                        <a href="../about.html" class="footer__link">About Us</a>
+                        <a href="../../index.html#contact" class="footer__link">Contact</a>
+                    </nav>
+                </div>
+                <div>
+                    <h4 class="footer__heading">Services</h4>
+                    <nav aria-label="Footer services links">
+                        <a href="finops-assessment.html" class="footer__link">FinOps Assessment</a>
+                        <a href="finops-visualizer.html" class="footer__link">Cost Visualization</a>
+                        <a href="finops-optimizer.html" class="footer__link">Cloud Optimization</a>
+                        <a href="finops-enforcer.html" class="footer__link">Governance</a>
+                        <a href="finops-smart-saver.html" class="footer__link">Smart Saver</a>
+                        <a href="finops-faas.html" class="footer__link">Managed FinOps</a>
+                    </nav>
+                </div>
+                <div>
+                    <h4 class="footer__heading">Training</h4>
+                    <nav aria-label="Footer training links">
+                        <a href="../training.html" class="footer__link">FinOps Practitioner</a>
+                        <a href="../training.html" class="footer__link">AWS Certifications</a>
+                        <a href="../training.html" class="footer__link">Azure Certifications</a>
+                        <a href="../training.html" class="footer__link">GCP Certifications</a>
+                        <a href="../training.html" class="footer__link">Combo Bundles</a>
+                    </nav>
+                </div>
+                <div>
+                    <h4 class="footer__heading">Contact</h4>
+                    <div class="footer__contact-item">&#x2709;&#xFE0F; hello@cloudaip.com</div>
+                    <div class="footer__contact-item">&#x1F4DE; +1 (555) 123-4567</div>
+                    <div class="footer__social">
+                        <a href="https://linkedin.com/company/cloudaip" class="footer__social-link" aria-label="Follow CloudAIP on LinkedIn" target="_blank" rel="noopener noreferrer">in</a>
+                        <a href="https://twitter.com/cloudaip" class="footer__social-link" aria-label="Follow CloudAIP on Twitter" target="_blank" rel="noopener noreferrer">&#x1D54F;</a>
+                        <a href="https://youtube.com/@cloudaip" class="footer__social-link" aria-label="Subscribe to CloudAIP on YouTube" target="_blank" rel="noopener noreferrer">&#x25B6;</a>
+                    </div>
+                    <div class="footer__newsletter">
+                        <h4 class="footer__heading" style="margin-top: 24px;">Newsletter</h4>
+                        <form class="footer__newsletter-form" aria-label="Newsletter signup">
+                            <input type="email" class="footer__newsletter-input" placeholder="Your email" aria-label="Email for newsletter">
+                            <button type="submit" class="footer__newsletter-btn" aria-label="Subscribe to newsletter">Subscribe</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <p class="footer__copyright">&copy; 2024 CloudAIP. All rights reserved.</p>
+                <div class="footer__legal">
+                    <a href="#" class="footer__legal-link">Privacy Policy</a>
+                    <a href="#" class="footer__legal-link">Terms of Service</a>
+                    <a href="#" class="footer__legal-link">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/919876543210" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat with us on WhatsApp">&#x1F4AC;</a>
+
+    <script src="../../js/main.js"></script>
+    <script>
+        var hamburger = document.getElementById('hamburger');
+        var navLinks = document.getElementById('navLinks');
+        hamburger.addEventListener('click', function() {
+            this.classList.toggle('nav__hamburger--active');
+            navLinks.classList.toggle('nav__links--active');
+            var expanded = this.getAttribute('aria-expanded') === 'true';
+            this.setAttribute('aria-expanded', !expanded);
+        });
+        navLinks.querySelectorAll('.nav__link').forEach(function(link) {
+            link.addEventListener('click', function() {
+                hamburger.classList.remove('nav__hamburger--active');
+                navLinks.classList.remove('nav__links--active');
+                hamburger.setAttribute('aria-expanded', 'false');
+            });
+        });
+        var nav = document.getElementById('nav');
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 50) { nav.classList.add('nav--scrolled'); } else { nav.classList.remove('nav--scrolled'); }
+        });
+        var animateElements = document.querySelectorAll('[data-animate]');
+        function handleScrollAnimation() {
+            animateElements.forEach(function(el) {
+                var rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight * 0.85) { el.classList.add('animated'); }
+            });
+        }
+        window.addEventListener('scroll', handleScrollAnimation);
+        window.addEventListener('load', handleScrollAnimation);
+    </script>
+</body>
+</html>

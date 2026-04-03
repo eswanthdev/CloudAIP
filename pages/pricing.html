@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Pricing — FinOps Consulting & Cloud Training Packages | CloudAIP</title>
+    <meta name="description" content="Transparent pricing for CloudAIP FinOps consulting services and cloud certification training. Packages starting at $2,500. View detailed feature comparison and find your perfect plan.">
+    <meta name="keywords" content="FinOps pricing, cloud consulting costs, cloud training pricing, FinOps packages, cloud cost optimization pricing, AWS training cost, Azure training cost">
+    <meta name="author" content="CloudAIP">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://cloudaip.com/pages/pricing.html">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Pricing — FinOps Consulting & Cloud Training | CloudAIP">
+    <meta property="og:description" content="Transparent pricing for FinOps consulting and cloud training. Packages from $2,500 to enterprise custom.">
+    <meta property="og:url" content="https://cloudaip.com/pages/pricing.html">
+    <meta property="og:image" content="https://cloudaip.com/assets/og-image.jpg">
+    <meta property="og:site_name" content="CloudAIP">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Pricing — FinOps Consulting & Training | CloudAIP">
+    <meta name="twitter:description" content="Transparent pricing for FinOps consulting and cloud training.">
+    <meta name="twitter:image" content="https://cloudaip.com/assets/og-image.jpg">
+
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg-primary: #0a0e27; --bg-card: #111638; --border-color: #1e2a5a;
+            --cyan: #00d4ff; --teal: #0891b2; --purple: #7c3aed;
+            --text-white: #ffffff; --text-muted: #94a3b8; --text-light: #cbd5e1;
+            --gradient-primary: linear-gradient(135deg, #00d4ff, #0891b2);
+            --gradient-accent: linear-gradient(135deg, #7c3aed, #00d4ff);
+            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --nav-height: 72px;
+            --aws: #ff9900; --azure: #0078d4; --gcp: #4285f4; --finops: #7c3aed;
+        }
+        html { scroll-behavior: smooth; font-size: 16px; }
+        body { font-family: var(--font-family); background-color: var(--bg-primary); color: var(--text-white); line-height: 1.6; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+        a { text-decoration: none; color: inherit; transition: color 0.3s ease; }
+        ul, ol { list-style: none; }
+        button, input, textarea, select { font-family: inherit; font-size: inherit; border: none; outline: none; background: none; }
+        .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+        .section { padding: 100px 0; }
+        .section__label { display: inline-block; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 3px; background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 12px; }
+        .section__title { font-size: 2.5rem; font-weight: 800; margin-bottom: 16px; line-height: 1.2; }
+        .section__subtitle { font-size: 1.125rem; color: var(--text-muted); max-width: 600px; margin-bottom: 48px; }
+        .section__header { text-align: center; margin-bottom: 60px; }
+        .section__header .section__subtitle { margin-left: auto; margin-right: auto; }
+
+        .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 32px; border-radius: 8px; font-weight: 600; font-size: 1rem; cursor: pointer; transition: all 0.3s ease; white-space: nowrap; }
+        .btn--primary { background: var(--gradient-primary); color: var(--text-white); border: none; box-shadow: 0 4px 20px rgba(0, 212, 255, 0.3); }
+        .btn--primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0, 212, 255, 0.4); }
+        .btn--outline { background: transparent; color: var(--text-white); border: 2px solid var(--border-color); }
+        .btn--outline:hover { border-color: var(--cyan); color: var(--cyan); transform: translateY(-2px); }
+        .btn--full { width: 100%; }
+
+        .nav { position: fixed; top: 0; left: 0; width: 100%; height: var(--nav-height); z-index: 1000; background: rgba(10, 14, 39, 0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(30, 42, 90, 0.5); transition: all 0.3s ease; }
+        .nav--scrolled { background: rgba(10, 14, 39, 0.95); box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3); }
+        .nav__container { display: flex; align-items: center; justify-content: space-between; height: 100%; max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+        .nav__logo { font-size: 1.5rem; font-weight: 800; background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; letter-spacing: -0.5px; }
+        .nav__links { display: flex; align-items: center; gap: 32px; }
+        .nav__link { font-size: 0.9rem; font-weight: 500; color: var(--text-light); transition: color 0.3s ease; position: relative; }
+        .nav__link::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: var(--gradient-primary); transition: width 0.3s ease; }
+        .nav__link:hover { color: var(--cyan); }
+        .nav__link:hover::after { width: 100%; }
+        .nav__cta { padding: 10px 24px; font-size: 0.875rem; }
+        .nav__hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; z-index: 1001; }
+        .nav__hamburger-line { width: 24px; height: 2px; background: var(--text-white); transition: all 0.3s ease; border-radius: 2px; }
+        .nav__hamburger--active .nav__hamburger-line:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .nav__hamburger--active .nav__hamburger-line:nth-child(2) { opacity: 0; }
+        .nav__hamburger--active .nav__hamburger-line:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+        .page-hero { padding: 160px 0 80px; position: relative; overflow: hidden; text-align: center; }
+        .page-hero__glow { position: absolute; width: 500px; height: 500px; border-radius: 50%; filter: blur(120px); opacity: 0.15; pointer-events: none; }
+        .page-hero__glow--cyan { background: var(--cyan); top: -200px; right: -100px; }
+        .page-hero__glow--purple { background: var(--purple); bottom: -200px; left: -100px; }
+        .page-hero__title { font-size: 3.5rem; font-weight: 900; margin-bottom: 20px; line-height: 1.1; }
+        .page-hero__title span { background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .page-hero__subtitle { font-size: 1.25rem; color: var(--text-muted); max-width: 650px; margin: 0 auto; }
+
+        /* Service Pricing Table */
+        .pricing-table { width: 100%; border-collapse: collapse; background: var(--bg-card); border-radius: 16px; overflow: hidden; border: 1px solid var(--border-color); }
+        .pricing-table th { background: rgba(0, 212, 255, 0.08); padding: 16px 20px; text-align: left; font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; color: var(--cyan); border-bottom: 1px solid var(--border-color); }
+        .pricing-table td { padding: 16px 20px; border-bottom: 1px solid var(--border-color); color: var(--text-light); font-size: 0.95rem; }
+        .pricing-table tr:last-child td { border-bottom: none; }
+        .pricing-table tr:hover td { background: rgba(0, 212, 255, 0.03); }
+        .pricing-table__service { font-weight: 600; color: var(--text-white); }
+        .pricing-table__price { font-weight: 700; background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+
+        /* Package Cards */
+        .packages-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; align-items: stretch; }
+        .package-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; padding: 36px 28px; display: flex; flex-direction: column; transition: all 0.3s ease; position: relative; }
+        .package-card:hover { transform: translateY(-4px); box-shadow: 0 8px 30px rgba(0, 212, 255, 0.1); }
+        .package-card--popular { border-color: var(--cyan); box-shadow: 0 4px 30px rgba(0, 212, 255, 0.15); }
+        .package-card__badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--gradient-primary); color: #fff; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; padding: 4px 16px; border-radius: 50px; }
+        .package-card__name { font-size: 1.2rem; font-weight: 700; margin-bottom: 8px; }
+        .package-card__price { font-size: 2.5rem; font-weight: 900; background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 4px; }
+        .package-card__save { font-size: 0.8rem; color: #10b981; font-weight: 600; margin-bottom: 8px; }
+        .package-card__desc { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 24px; line-height: 1.6; }
+        .package-card__features { flex: 1; margin-bottom: 24px; }
+        .package-card__feature { display: flex; align-items: flex-start; gap: 10px; padding: 8px 0; color: var(--text-light); font-size: 0.9rem; }
+        .package-card__feature::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--cyan); flex-shrink: 0; margin-top: 8px; }
+        .package-card__divider { height: 1px; background: var(--border-color); margin: 16px 0; }
+
+        /* Feature Matrix */
+        .matrix-table { width: 100%; border-collapse: collapse; background: var(--bg-card); border-radius: 16px; overflow: hidden; border: 1px solid var(--border-color); }
+        .matrix-table th { padding: 16px 14px; text-align: center; font-weight: 700; font-size: 0.85rem; border-bottom: 2px solid var(--border-color); color: var(--cyan); }
+        .matrix-table th:first-child { text-align: left; width: 35%; }
+        .matrix-table td { padding: 14px; border-bottom: 1px solid var(--border-color); text-align: center; color: var(--text-light); font-size: 0.9rem; }
+        .matrix-table td:first-child { text-align: left; font-weight: 500; color: var(--text-white); }
+        .matrix-table tr:last-child td { border-bottom: none; }
+        .matrix-table tr:hover td { background: rgba(0, 212, 255, 0.03); }
+        .matrix-check { color: #10b981; font-size: 1.1rem; }
+        .matrix-dash { color: var(--border-color); }
+
+        /* Training Table */
+        .training-table { width: 100%; border-collapse: collapse; background: var(--bg-card); border-radius: 16px; overflow: hidden; border: 1px solid var(--border-color); }
+        .training-table th { background: rgba(0, 212, 255, 0.08); padding: 14px 16px; text-align: left; font-weight: 700; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: var(--cyan); border-bottom: 1px solid var(--border-color); }
+        .training-table td { padding: 14px 16px; border-bottom: 1px solid var(--border-color); color: var(--text-light); font-size: 0.9rem; }
+        .training-table tr:last-child td { border-bottom: none; }
+        .training-table tr:hover td { background: rgba(0, 212, 255, 0.03); }
+        .training-table__name { font-weight: 600; color: var(--text-white); }
+        .training-table__badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 0.7rem; font-weight: 700; color: #fff; }
+        .training-table__badge--aws { background: var(--aws); }
+        .training-table__badge--azure { background: var(--azure); }
+        .training-table__badge--gcp { background: var(--gcp); }
+        .training-table__badge--finops { background: var(--finops); }
+        .training-table__badge--combo { background: linear-gradient(135deg, var(--cyan), var(--teal)); }
+
+        /* FAQ */
+        .faq-list { max-width: 800px; margin: 0 auto; }
+        .faq-item { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; margin-bottom: 16px; overflow: hidden; }
+        .faq-item__question { padding: 20px 24px; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: color 0.3s ease; }
+        .faq-item__question:hover { color: var(--cyan); }
+        .faq-item__icon { font-size: 1.2rem; transition: transform 0.3s ease; color: var(--cyan); }
+        .faq-item__answer { padding: 0 24px 20px; color: var(--text-muted); line-height: 1.7; font-size: 0.95rem; display: none; }
+        .faq-item--active .faq-item__answer { display: block; }
+        .faq-item--active .faq-item__icon { transform: rotate(45deg); }
+
+        /* Guarantee Badge */
+        .guarantee { text-align: center; padding: 48px; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; max-width: 600px; margin: 0 auto; }
+        .guarantee__icon { font-size: 3rem; margin-bottom: 16px; }
+        .guarantee__title { font-size: 1.5rem; font-weight: 800; margin-bottom: 12px; }
+        .guarantee__text { color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; }
+
+        /* CTA */
+        .cta-section { text-align: center; padding: 80px 0; background: linear-gradient(135deg, rgba(0, 212, 255, 0.05), rgba(124, 58, 237, 0.05)); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); }
+        .cta-section__title { font-size: 2.5rem; font-weight: 800; margin-bottom: 16px; }
+        .cta-section__text { color: var(--text-muted); font-size: 1.1rem; max-width: 500px; margin: 0 auto 32px; }
+
+        /* Table wrapper for horizontal scroll on mobile */
+        .table-wrap { overflow-x: auto; border-radius: 16px; }
+
+        /* Footer */
+        .footer { background: #060816; padding: 80px 0 0; border-top: 1px solid var(--border-color); }
+        .footer__grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr 1.5fr; gap: 40px; margin-bottom: 60px; }
+        .footer__brand-description { color: var(--text-muted); font-size: 0.9rem; margin-top: 16px; line-height: 1.7; }
+        .footer__aws-badge { display: inline-flex; align-items: center; gap: 6px; margin-top: 16px; padding: 6px 12px; background: rgba(255, 153, 0, 0.1); border: 1px solid rgba(255, 153, 0, 0.2); border-radius: 6px; font-size: 0.8rem; color: var(--aws); }
+        .footer__heading { font-size: 0.95rem; font-weight: 700; margin-bottom: 20px; }
+        .footer__link { display: block; color: var(--text-muted); font-size: 0.9rem; padding: 4px 0; transition: color 0.3s ease; }
+        .footer__link:hover { color: var(--cyan); }
+        .footer__contact-item { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 8px; }
+        .footer__social { display: flex; gap: 12px; margin-top: 16px; }
+        .footer__social-link { width: 36px; height: 36px; border-radius: 8px; background: var(--bg-card); border: 1px solid var(--border-color); display: flex; align-items: center; justify-content: center; font-size: 0.9rem; transition: all 0.3s ease; }
+        .footer__social-link:hover { border-color: var(--cyan); background: rgba(0, 212, 255, 0.1); }
+        .footer__newsletter-form { display: flex; gap: 8px; }
+        .footer__newsletter-input { flex: 1; padding: 10px 14px; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 8px; color: var(--text-white); font-size: 0.85rem; }
+        .footer__newsletter-btn { padding: 10px 16px; background: var(--gradient-primary); border: none; border-radius: 8px; color: var(--text-white); font-weight: 600; font-size: 0.85rem; cursor: pointer; }
+        .footer__bottom { padding: 24px 0; border-top: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+        .footer__copyright { color: var(--text-muted); font-size: 0.85rem; }
+        .footer__legal { display: flex; gap: 24px; }
+        .footer__legal-link { color: var(--text-muted); font-size: 0.85rem; transition: color 0.3s ease; }
+        .footer__legal-link:hover { color: var(--cyan); }
+
+        .whatsapp-float { position: fixed; bottom: 24px; right: 24px; width: 56px; height: 56px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4); z-index: 999; transition: transform 0.3s ease; }
+        .whatsapp-float:hover { transform: scale(1.1); }
+
+        [data-animate] { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
+        [data-animate].animated { opacity: 1; transform: translateY(0); }
+
+        @media (max-width: 1024px) {
+            .packages-grid { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 768px) {
+            .nav__links { position: fixed; top: 0; right: -100%; width: 280px; height: 100vh; background: var(--bg-primary); flex-direction: column; justify-content: center; padding: 40px; border-left: 1px solid var(--border-color); transition: right 0.3s ease; }
+            .nav__links--active { right: 0; }
+            .nav__hamburger { display: flex; }
+            .page-hero__title { font-size: 2.5rem; }
+            .packages-grid { grid-template-columns: 1fr; }
+            .footer__grid { grid-template-columns: 1fr 1fr; }
+            .section__title { font-size: 2rem; }
+        }
+        @media (max-width: 480px) {
+            .footer__grid { grid-template-columns: 1fr; }
+            .page-hero__title { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="nav" id="nav" role="navigation" aria-label="Main navigation">
+        <div class="nav__container">
+            <a href="../index.html" class="nav__logo" aria-label="CloudAIP Home">CloudAIP</a>
+            <ul class="nav__links" id="navLinks" role="menubar">
+                <li role="none"><a href="../index.html#services" class="nav__link" role="menuitem">Services</a></li>
+                <li role="none"><a href="training.html" class="nav__link" role="menuitem">Training</a></li>
+                <li role="none"><a href="pricing.html" class="nav__link" role="menuitem">Pricing</a></li>
+                <li role="none"><a href="about.html" class="nav__link" role="menuitem">About</a></li>
+                <li role="none"><a href="blog.html" class="nav__link" role="menuitem">Blog</a></li>
+                <li role="none"><a href="../index.html#contact" class="btn btn--primary nav__cta" role="menuitem">Contact Us</a></li>
+            </ul>
+            <button class="nav__hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span class="nav__hamburger-line"></span>
+                <span class="nav__hamburger-line"></span>
+                <span class="nav__hamburger-line"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="page-hero" aria-label="Pricing hero">
+        <div class="page-hero__glow page-hero__glow--cyan"></div>
+        <div class="page-hero__glow page-hero__glow--purple"></div>
+        <div class="container">
+            <h1 class="page-hero__title" data-animate><span>Transparent</span> Pricing</h1>
+            <p class="page-hero__subtitle" data-animate>No hidden fees, no surprises. Choose the plan that fits your cloud optimization needs and budget. Every engagement includes a satisfaction guarantee.</p>
+        </div>
+    </section>
+
+    <!-- Service Pricing Table -->
+    <section class="section" aria-label="Service pricing comparison">
+        <div class="container">
+            <div class="section__header">
+                <span class="section__label">Services</span>
+                <h2 class="section__title">Individual Service Pricing</h2>
+                <p class="section__subtitle">Each service is available individually or as part of a bundled package for maximum savings.</p>
+            </div>
+            <div class="table-wrap" data-animate>
+                <table class="pricing-table">
+                    <thead>
+                        <tr>
+                            <th>Service</th>
+                            <th>Description</th>
+                            <th>Timeline</th>
+                            <th>Price (USD)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="pricing-table__service">FinOps Maturity Assessment</td>
+                            <td>Full cost audit, tagging review, RI evaluation, 90-day roadmap</td>
+                            <td>2-3 weeks</td>
+                            <td class="pricing-table__price">$900 - $1,800</td>
+                        </tr>
+                        <tr>
+                            <td class="pricing-table__service">FinOps Visualizer</td>
+                            <td>Custom dashboards, cost allocation, anomaly alerts, budget tracking</td>
+                            <td>3-4 weeks</td>
+                            <td class="pricing-table__price">$1,200 - $3,000</td>
+                        </tr>
+                        <tr>
+                            <td class="pricing-table__service">FinOps Optimizer</td>
+                            <td>Right-sizing, RI/SP recommendations, idle cleanup, architecture review</td>
+                            <td>4-6 weeks</td>
+                            <td class="pricing-table__price">$1,800 - $4,200</td>
+                        </tr>
+                        <tr>
+                            <td class="pricing-table__service">FinOps Enforcer</td>
+                            <td>Automated governance, policy-as-code, budget guardrails, compliance</td>
+                            <td>4-6 weeks</td>
+                            <td class="pricing-table__price">$2,500 - $5,000</td>
+                        </tr>
+                        <tr>
+                            <td class="pricing-table__service">FinOps Smart Saver</td>
+                            <td>10 hrs/month retainer: monthly reviews, optimization, vendor support</td>
+                            <td>Monthly</td>
+                            <td class="pricing-table__price">$750 - $1,200/mo</td>
+                        </tr>
+                        <tr>
+                            <td class="pricing-table__service">FinOps as a Service (FaaS)</td>
+                            <td>Dedicated FinOps engineer, daily monitoring, weekly sprints, 20% savings guarantee</td>
+                            <td>Monthly</td>
+                            <td class="pricing-table__price">$2,500 - $6,000/mo</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Package Cards -->
+    <section class="section" style="background: rgba(15, 20, 65, 0.4);" aria-label="Package pricing">
+        <div class="container">
+            <div class="section__header">
+                <span class="section__label">Packages</span>
+                <h2 class="section__title">Bundled Packages</h2>
+                <p class="section__subtitle">Save 15-25% by bundling services. Each package builds on the previous one for deeper optimization.</p>
+            </div>
+            <div class="packages-grid">
+
+                <!-- Starter -->
+                <div class="package-card" data-animate>
+                    <h3 class="package-card__name">FinOps Starter</h3>
+                    <div class="package-card__price">$2,500</div>
+                    <div class="package-card__save">Save 15% vs. individual pricing</div>
+                    <p class="package-card__desc">Assessment + Visualizer bundle. Perfect for companies just beginning their FinOps journey and needing cost visibility.</p>
+                    <div class="package-card__divider"></div>
+                    <div class="package-card__features">
+                        <div class="package-card__feature">Full FinOps maturity assessment across all 6 domains</div>
+                        <div class="package-card__feature">Cloud billing and cost allocation review</div>
+                        <div class="package-card__feature">Tagging taxonomy design and audit</div>
+                        <div class="package-card__feature">Custom cost dashboards and reporting</div>
+                        <div class="package-card__feature">Anomaly detection alerts setup</div>
+                        <div class="package-card__feature">Budget tracking and showback reports</div>
+                        <div class="package-card__feature">90-day optimization roadmap</div>
+                        <div class="package-card__feature">2 weeks of post-delivery support</div>
+                    </div>
+                    <a href="../index.html#contact" class="btn btn--outline btn--full">Get Started</a>
+                </div>
+
+                <!-- Accelerator -->
+                <div class="package-card package-card--popular" data-animate>
+                    <span class="package-card__badge">Most Popular</span>
+                    <h3 class="package-card__name">FinOps Accelerator</h3>
+                    <div class="package-card__price">$4,999</div>
+                    <div class="package-card__save">Save 20% vs. individual pricing</div>
+                    <p class="package-card__desc">Assessment + Visualizer + Optimizer. Our most popular package for companies serious about reducing cloud costs.</p>
+                    <div class="package-card__divider"></div>
+                    <div class="package-card__features">
+                        <div class="package-card__feature">Everything in FinOps Starter</div>
+                        <div class="package-card__feature">Hands-on right-sizing analysis and implementation</div>
+                        <div class="package-card__feature">Reserved Instance / Savings Plan recommendations</div>
+                        <div class="package-card__feature">Idle and orphaned resource cleanup</div>
+                        <div class="package-card__feature">Storage tier optimization</div>
+                        <div class="package-card__feature">Architecture review for cost efficiency</div>
+                        <div class="package-card__feature">Container and serverless optimization</div>
+                        <div class="package-card__feature">4 weeks of post-delivery support</div>
+                    </div>
+                    <a href="../index.html#contact" class="btn btn--primary btn--full">Get Started</a>
+                </div>
+
+                <!-- Complete -->
+                <div class="package-card" data-animate>
+                    <h3 class="package-card__name">FinOps Complete</h3>
+                    <div class="package-card__price">$7,999</div>
+                    <div class="package-card__save">Save 25% vs. individual pricing</div>
+                    <p class="package-card__desc">Assessment + Visualizer + Optimizer + Enforcer. The full optimization and governance solution for sustainable savings.</p>
+                    <div class="package-card__divider"></div>
+                    <div class="package-card__features">
+                        <div class="package-card__feature">Everything in FinOps Accelerator</div>
+                        <div class="package-card__feature">Automated tagging enforcement via policy-as-code</div>
+                        <div class="package-card__feature">Budget alerts and hard spending limits</div>
+                        <div class="package-card__feature">IaC cost estimation in CI/CD pipelines</div>
+                        <div class="package-card__feature">Approval workflows for expensive resources</div>
+                        <div class="package-card__feature">Compliance reporting and dashboards</div>
+                        <div class="package-card__feature">Team training session (2 hours)</div>
+                        <div class="package-card__feature">6 weeks of post-delivery support</div>
+                    </div>
+                    <a href="../index.html#contact" class="btn btn--outline btn--full">Get Started</a>
+                </div>
+
+                <!-- Enterprise -->
+                <div class="package-card" data-animate>
+                    <h3 class="package-card__name">FinOps Enterprise</h3>
+                    <div class="package-card__price">Custom</div>
+                    <div class="package-card__save">Tailored to your organization</div>
+                    <p class="package-card__desc">Everything + FaaS (6 months). A fully managed FinOps engagement with a dedicated engineer and guaranteed savings.</p>
+                    <div class="package-card__divider"></div>
+                    <div class="package-card__features">
+                        <div class="package-card__feature">Everything in FinOps Complete</div>
+                        <div class="package-card__feature">Dedicated FinOps engineer (6 months)</div>
+                        <div class="package-card__feature">Daily cost monitoring and anomaly response</div>
+                        <div class="package-card__feature">Weekly optimization sprints</div>
+                        <div class="package-card__feature">Monthly executive reports and QBRs</div>
+                        <div class="package-card__feature">Vendor negotiation support</div>
+                        <div class="package-card__feature">Guaranteed 20% minimum savings or money back</div>
+                        <div class="package-card__feature">Unlimited support during engagement</div>
+                    </div>
+                    <a href="../index.html#contact" class="btn btn--outline btn--full">Contact Sales</a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Feature Comparison Matrix -->
+    <section class="section" aria-label="Feature comparison matrix">
+        <div class="container">
+            <div class="section__header">
+                <span class="section__label">Compare</span>
+                <h2 class="section__title">Feature Comparison</h2>
+                <p class="section__subtitle">See exactly what is included in each package to make the right choice for your organization.</p>
+            </div>
+            <div class="table-wrap" data-animate>
+                <table class="matrix-table">
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>Starter</th>
+                            <th>Accelerator</th>
+                            <th>Complete</th>
+                            <th>Enterprise</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>FinOps Maturity Assessment</td>
+                            <td><span class="matrix-check">&#10003;</span></td>
+                            <td><span class="matrix-check">&#10003;</span></td>
+                            <td><span class="matrix-check">&#10003;</span></td>
+                            <td><span class="matrix-check">&#10003;</span></td>
+                        </tr>
+                        <tr>
+                            <td>Cost Dashboards & Reporting</td>
+                            <td><span class="matrix-check">&#10003;</span></td>
+                            <td><span class="matrix-check">&#10003;</span></td>
+                            <td><span class="matrix-check">&#10003;</span></td>
+                            <td><span class="matrix-check">&#10003;</span></td>
+                        </tr>
+                        <tr>
+                            <td>Tagging Taxonomy Design</td>
+                            <td><span class="matrix-check">&#10003;</span></td>
+                            <td><span class="matrix-check">&#10003;</span></td>
+                            <td><span class="matrix-check">&#10003;</span></td>
+                            <td><span class="matrix-check">&#10003;</span></td>
+                        </tr>
+                        <tr>
+                            <td>Anomaly Detection Alerts</td>
+                            <td><span class="matrix-check">&#10003;</span></td>
+                            <td><span class="matrix-check">&#10003;</span></td>
+                            <td><span class="matrix-check">&#10003;</span></td>
+                            <td><span class="matrix-check">&#10003;</span></td>
+                        </tr>
+                        <tr>
+                            <td>90-Day Optimization Roadmap</td>
+                            <td><span class="matrix-check">&#10003;</span></td>
+                            <td><span class="matrix-check">&#10003;</span></td>
+                            <td><span class="matrix-check">&#10003;</span></td>
+                            <td><span class="matrix-check">&#10003;</span></td>
+                        </tr>
+                        <tr>
+                            <td>Right-Sizing Analysis</td>
+                            <td><span class="matrix-dash">--</span></td>
+                            <td><span class="matrix-check">&#10003;</span></td>
+                            <td><span class="matrix-check">&#10003;</span></td>
+                            <td><span class="matrix-check">&#10003;</span></td>
+                        </tr>
+                        <tr>
+                            <td>RI / Savings Plan Recommendations</td>
+                            <td><span class="matrix-dash">--</span></td>
+                            <td><span class="matrix-check">&#10003;</span></td>
+                            <td><span class="matrix-check">&#10003;</span></td>
+                            <td><span class="matrix-check">&#10003;</span></td>
+                        </tr>
+                        <tr>
+                            <td>Idle Resource Cleanup</td>
+                            <td><span class="matrix-dash">--</span></td>
+                            <td><span class="matrix-check">&#10003;</span></td>
+                            <td><span class="matrix-check">&#10003;</span></td>
+                            <td><span class="matrix-check">&#10003;</span></td>
+                        </tr>
+                        <tr>
+                            <td>Architecture Review</td>
+                            <td><span class="matrix-dash">--</span></td>
+                            <td><span class="matrix-check">&#10003;</span></td>
+                            <td><span class="matrix-check">&#10003;</span></td>
+                            <td><span class="matrix-check">&#10003;</span></td>
+                        </tr>
+                        <tr>
+                            <td>Container / Serverless Optimization</td>
+                            <td><span class="matrix-dash">--</span></td>
+                            <td><span class="matrix-check">&#10003;</span></td>
+                            <td><span class="matrix-check">&#10003;</span></td>
+                            <td><span class="matrix-check">&#10003;</span></td>
+                        </tr>
+                        <tr>
+                            <td>Automated Tagging Enforcement</td>
+                            <td><span class="matrix-dash">--</span></td>
+                            <td><span class="matrix-dash">--</span></td>
+                            <td><span class="matrix-check">&#10003;</span></td>
+                            <td><span class="matrix-check">&#10003;</span></td>
+                        </tr>
+                        <tr>
+                            <td>Budget Alerts & Hard Limits</td>
+                            <td><span class="matrix-dash">--</span></td>
+                            <td><span class="matrix-dash">--</span></td>
+                            <td><span class="matrix-check">&#10003;</span></td>
+                            <td><span class="matrix-check">&#10003;</span></td>
+                        </tr>
+                        <tr>
+                            <td>Policy-as-Code Implementation</td>
+                            <td><span class="matrix-dash">--</span></td>
+                            <td><span class="matrix-dash">--</span></td>
+                            <td><span class="matrix-check">&#10003;</span></td>
+                            <td><span class="matrix-check">&#10003;</span></td>
+                        </tr>
+                        <tr>
+                            <td>IaC Cost Estimation in CI/CD</td>
+                            <td><span class="matrix-dash">--</span></td>
+                            <td><span class="matrix-dash">--</span></td>
+                            <td><span class="matrix-check">&#10003;</span></td>
+                            <td><span class="matrix-check">&#10003;</span></td>
+                        </tr>
+                        <tr>
+                            <td>Compliance Reporting</td>
+                            <td><span class="matrix-dash">--</span></td>
+                            <td><span class="matrix-dash">--</span></td>
+                            <td><span class="matrix-check">&#10003;</span></td>
+                            <td><span class="matrix-check">&#10003;</span></td>
+                        </tr>
+                        <tr>
+                            <td>Dedicated FinOps Engineer</td>
+                            <td><span class="matrix-dash">--</span></td>
+                            <td><span class="matrix-dash">--</span></td>
+                            <td><span class="matrix-dash">--</span></td>
+                            <td><span class="matrix-check">&#10003;</span></td>
+                        </tr>
+                        <tr>
+                            <td>Daily Cost Monitoring</td>
+                            <td><span class="matrix-dash">--</span></td>
+                            <td><span class="matrix-dash">--</span></td>
+                            <td><span class="matrix-dash">--</span></td>
+                            <td><span class="matrix-check">&#10003;</span></td>
+                        </tr>
+                        <tr>
+                            <td>Weekly Optimization Sprints</td>
+                            <td><span class="matrix-dash">--</span></td>
+                            <td><span class="matrix-dash">--</span></td>
+                            <td><span class="matrix-dash">--</span></td>
+                            <td><span class="matrix-check">&#10003;</span></td>
+                        </tr>
+                        <tr>
+                            <td>Vendor Negotiation Support</td>
+                            <td><span class="matrix-dash">--</span></td>
+                            <td><span class="matrix-dash">--</span></td>
+                            <td><span class="matrix-dash">--</span></td>
+                            <td><span class="matrix-check">&#10003;</span></td>
+                        </tr>
+                        <tr>
+                            <td>20% Minimum Savings Guarantee</td>
+                            <td><span class="matrix-dash">--</span></td>
+                            <td><span class="matrix-dash">--</span></td>
+                            <td><span class="matrix-dash">--</span></td>
+                            <td><span class="matrix-check">&#10003;</span></td>
+                        </tr>
+                        <tr>
+                            <td>Post-Delivery Support</td>
+                            <td>2 weeks</td>
+                            <td>4 weeks</td>
+                            <td>6 weeks</td>
+                            <td>Unlimited</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Training Pricing -->
+    <section class="section" style="background: rgba(15, 20, 65, 0.4);" aria-label="Training pricing">
+        <div class="container">
+            <div class="section__header">
+                <span class="section__label">Training</span>
+                <h2 class="section__title">Certification Training Pricing</h2>
+                <p class="section__subtitle">All courses include live instruction, hands-on labs, practice exams, and post-course support.</p>
+            </div>
+            <div class="table-wrap" data-animate>
+                <table class="training-table">
+                    <thead>
+                        <tr>
+                            <th>Course</th>
+                            <th>Provider</th>
+                            <th>Duration</th>
+                            <th>Level</th>
+                            <th>Price (USD)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="training-table__name">FinOps Certified Practitioner</td>
+                            <td><span class="training-table__badge training-table__badge--finops">FinOps</span></td>
+                            <td>4 weeks</td>
+                            <td>Intermediate</td>
+                            <td class="pricing-table__price">$99</td>
+                        </tr>
+                        <tr>
+                            <td class="training-table__name">AWS Cloud Practitioner (CLF-C02)</td>
+                            <td><span class="training-table__badge training-table__badge--aws">AWS</span></td>
+                            <td>4 weeks</td>
+                            <td>Beginner</td>
+                            <td class="pricing-table__price">$85</td>
+                        </tr>
+                        <tr>
+                            <td class="training-table__name">AWS Solutions Architect Associate (SAA-C03)</td>
+                            <td><span class="training-table__badge training-table__badge--aws">AWS</span></td>
+                            <td>6 weeks</td>
+                            <td>Intermediate</td>
+                            <td class="pricing-table__price">$149</td>
+                        </tr>
+                        <tr>
+                            <td class="training-table__name">Azure Fundamentals (AZ-900)</td>
+                            <td><span class="training-table__badge training-table__badge--azure">Azure</span></td>
+                            <td>3 weeks</td>
+                            <td>Beginner</td>
+                            <td class="pricing-table__price">$75</td>
+                        </tr>
+                        <tr>
+                            <td class="training-table__name">Azure Administrator (AZ-104)</td>
+                            <td><span class="training-table__badge training-table__badge--azure">Azure</span></td>
+                            <td>6 weeks</td>
+                            <td>Intermediate</td>
+                            <td class="pricing-table__price">$149</td>
+                        </tr>
+                        <tr>
+                            <td class="training-table__name">GCP Cloud Digital Leader</td>
+                            <td><span class="training-table__badge training-table__badge--gcp">GCP</span></td>
+                            <td>4 weeks</td>
+                            <td>Beginner</td>
+                            <td class="pricing-table__price">$85</td>
+                        </tr>
+                        <tr>
+                            <td class="training-table__name">GCP Associate Cloud Engineer</td>
+                            <td><span class="training-table__badge training-table__badge--gcp">GCP</span></td>
+                            <td>6 weeks</td>
+                            <td>Intermediate</td>
+                            <td class="pricing-table__price">$149</td>
+                        </tr>
+                        <tr>
+                            <td class="training-table__name">Combo Bundle (Any 3 Certs)</td>
+                            <td><span class="training-table__badge training-table__badge--combo">Bundle</span></td>
+                            <td>12-14 weeks</td>
+                            <td>All Levels</td>
+                            <td class="pricing-table__price">$299</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Guarantee -->
+    <section class="section" aria-label="Money-back guarantee">
+        <div class="container">
+            <div class="guarantee" data-animate>
+                <div class="guarantee__icon">&#x1F6E1;</div>
+                <h3 class="guarantee__title">100% Satisfaction Guarantee</h3>
+                <p class="guarantee__text">We stand behind every engagement. If you are not satisfied with the quality of our work within the first two weeks, we will refund your payment in full -- no questions asked. For our Enterprise package, we guarantee a minimum 20% savings on your cloud spend, or we will continue working at no additional cost until we deliver.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section" style="background: rgba(15, 20, 65, 0.4);" aria-label="Pricing FAQ">
+        <div class="container">
+            <div class="section__header">
+                <span class="section__label">FAQ</span>
+                <h2 class="section__title">Pricing Questions</h2>
+                <p class="section__subtitle">Common questions about our pricing, payment, and engagement terms.</p>
+            </div>
+            <div class="faq-list">
+                <div class="faq-item" data-animate>
+                    <div class="faq-item__question" onclick="this.parentElement.classList.toggle('faq-item--active')">
+                        What determines the price within each service's range?
+                        <span class="faq-item__icon">+</span>
+                    </div>
+                    <div class="faq-item__answer">The price depends on the complexity of your cloud environment: number of cloud accounts/subscriptions, monthly cloud spend, number of services in use, and whether you are single-cloud or multi-cloud. During our free discovery call, we will assess your environment and provide a fixed-price quote before any engagement begins.</div>
+                </div>
+                <div class="faq-item" data-animate>
+                    <div class="faq-item__question" onclick="this.parentElement.classList.toggle('faq-item--active')">
+                        What are the payment terms?
+                        <span class="faq-item__icon">+</span>
+                    </div>
+                    <div class="faq-item__answer">For project-based engagements (Starter, Accelerator, Complete), we require 50% upfront and 50% upon delivery. For monthly retainer services (Smart Saver, FaaS, Enterprise), payment is due at the beginning of each month. We accept bank transfers, credit cards, and can issue invoices with Net-30 terms for established clients.</div>
+                </div>
+                <div class="faq-item" data-animate>
+                    <div class="faq-item__question" onclick="this.parentElement.classList.toggle('faq-item--active')">
+                        Do you offer a percentage-of-savings pricing model?
+                        <span class="faq-item__icon">+</span>
+                    </div>
+                    <div class="faq-item__answer">Yes, for the FinOps Optimizer service and Enterprise package, we can structure pricing as a percentage of verified savings (typically 20-30% of the savings we deliver in the first year). This model aligns our incentives with your goals and ensures we are focused on delivering maximum value. Contact us to discuss this option.</div>
+                </div>
+                <div class="faq-item" data-animate>
+                    <div class="faq-item__question" onclick="this.parentElement.classList.toggle('faq-item--active')">
+                        Can I upgrade my package later?
+                        <span class="faq-item__icon">+</span>
+                    </div>
+                    <div class="faq-item__answer">Absolutely. Many clients start with the Starter package and upgrade to Accelerator or Complete after seeing initial results. When upgrading, you only pay the difference between packages, with a small adjustment for the bundled discount. There is no penalty for upgrading mid-engagement.</div>
+                </div>
+                <div class="faq-item" data-animate>
+                    <div class="faq-item__question" onclick="this.parentElement.classList.toggle('faq-item--active')">
+                        Is there a minimum contract length for retainer services?
+                        <span class="faq-item__icon">+</span>
+                    </div>
+                    <div class="faq-item__answer">Smart Saver requires a minimum 3-month commitment, and FaaS (FinOps as a Service) requires a minimum 6-month commitment. This ensures enough time to implement meaningful optimizations and demonstrate ROI. After the initial commitment, services continue month-to-month with 30 days notice for cancellation.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section" aria-label="Call to action">
+        <div class="container">
+            <h2 class="cta-section__title" data-animate>Not Sure Which Package?</h2>
+            <p class="cta-section__text" data-animate>Get a free 30-minute consultation. We will assess your cloud environment and recommend the right package for your needs and budget.</p>
+            <div data-animate>
+                <a href="../index.html#contact" class="btn btn--primary">Get Free Consultation</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer__grid">
+                <div>
+                    <a href="../index.html" class="nav__logo" aria-label="CloudAIP Home">CloudAIP</a>
+                    <p class="footer__brand-description">Expert FinOps consulting and cloud certification training. Helping mid-size companies cut cloud costs by 20-40% through data-driven financial management and governance.</p>
+                    <div class="footer__aws-badge">&#x2601;&#xFE0F; Built on AWS</div>
+                </div>
+                <div>
+                    <h4 class="footer__heading">Quick Links</h4>
+                    <nav aria-label="Footer quick links">
+                        <a href="../index.html" class="footer__link">Home</a>
+                        <a href="../index.html#services" class="footer__link">Services</a>
+                        <a href="../index.html#calculator" class="footer__link">ROI Calculator</a>
+                        <a href="pricing.html" class="footer__link">Pricing</a>
+                        <a href="about.html" class="footer__link">About Us</a>
+                        <a href="../index.html#contact" class="footer__link">Contact</a>
+                    </nav>
+                </div>
+                <div>
+                    <h4 class="footer__heading">Services</h4>
+                    <nav aria-label="Footer services links">
+                        <a href="services/finops-assessment.html" class="footer__link">FinOps Assessment</a>
+                        <a href="services/finops-visualizer.html" class="footer__link">Cost Visualization</a>
+                        <a href="services/finops-optimizer.html" class="footer__link">Cloud Optimization</a>
+                        <a href="services/finops-enforcer.html" class="footer__link">Governance</a>
+                        <a href="services/finops-smart-saver.html" class="footer__link">Smart Saver</a>
+                        <a href="services/finops-faas.html" class="footer__link">Managed FinOps</a>
+                    </nav>
+                </div>
+                <div>
+                    <h4 class="footer__heading">Training</h4>
+                    <nav aria-label="Footer training links">
+                        <a href="training.html" class="footer__link">FinOps Practitioner</a>
+                        <a href="training.html" class="footer__link">AWS Certifications</a>
+                        <a href="training.html" class="footer__link">Azure Certifications</a>
+                        <a href="training.html" class="footer__link">GCP Certifications</a>
+                        <a href="training.html" class="footer__link">Combo Bundles</a>
+                    </nav>
+                </div>
+                <div>
+                    <h4 class="footer__heading">Contact</h4>
+                    <div class="footer__contact-item">&#x2709;&#xFE0F; hello@cloudaip.com</div>
+                    <div class="footer__contact-item">&#x1F4DE; +1 (555) 123-4567</div>
+                    <div class="footer__social">
+                        <a href="https://linkedin.com/company/cloudaip" class="footer__social-link" aria-label="Follow CloudAIP on LinkedIn" target="_blank" rel="noopener noreferrer">in</a>
+                        <a href="https://twitter.com/cloudaip" class="footer__social-link" aria-label="Follow CloudAIP on Twitter" target="_blank" rel="noopener noreferrer">&#x1D54F;</a>
+                        <a href="https://youtube.com/@cloudaip" class="footer__social-link" aria-label="Subscribe to CloudAIP on YouTube" target="_blank" rel="noopener noreferrer">&#x25B6;</a>
+                    </div>
+                    <div class="footer__newsletter">
+                        <h4 class="footer__heading" style="margin-top: 24px;">Newsletter</h4>
+                        <form class="footer__newsletter-form" aria-label="Newsletter signup">
+                            <input type="email" class="footer__newsletter-input" placeholder="Your email" aria-label="Email for newsletter">
+                            <button type="submit" class="footer__newsletter-btn" aria-label="Subscribe to newsletter">Subscribe</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <p class="footer__copyright">&copy; 2024 CloudAIP. All rights reserved.</p>
+                <div class="footer__legal">
+                    <a href="#" class="footer__legal-link">Privacy Policy</a>
+                    <a href="#" class="footer__legal-link">Terms of Service</a>
+                    <a href="#" class="footer__legal-link">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/919876543210" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat with us on WhatsApp">&#x1F4AC;</a>
+
+    <script src="../js/main.js"></script>
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        hamburger.addEventListener('click', function() {
+            this.classList.toggle('nav__hamburger--active');
+            navLinks.classList.toggle('nav__links--active');
+            const expanded = this.getAttribute('aria-expanded') === 'true';
+            this.setAttribute('aria-expanded', !expanded);
+        });
+        navLinks.querySelectorAll('.nav__link').forEach(function(link) {
+            link.addEventListener('click', function() {
+                hamburger.classList.remove('nav__hamburger--active');
+                navLinks.classList.remove('nav__links--active');
+                hamburger.setAttribute('aria-expanded', 'false');
+            });
+        });
+        var nav = document.getElementById('nav');
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 50) { nav.classList.add('nav--scrolled'); } else { nav.classList.remove('nav--scrolled'); }
+        });
+        var animateElements = document.querySelectorAll('[data-animate]');
+        function handleScrollAnimation() {
+            animateElements.forEach(function(el) {
+                var rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight * 0.85) { el.classList.add('animated'); }
+            });
+        }
+        window.addEventListener('scroll', handleScrollAnimation);
+        window.addEventListener('load', handleScrollAnimation);
+    </script>
+</body>
+</html>

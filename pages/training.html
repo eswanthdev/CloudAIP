@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- SEO Meta Tags -->
+    <title>FinOps & AWS AI Training — Ignite & Transform Tiers | CloudAIP</title>
+    <meta name="description" content="Expert-led FinOps and AWS AI training with two tiers: Ignite for core skills and Transform for career placement support. Live classes, video recordings, mock interviews, and resume prep.">
+    <meta name="keywords" content="FinOps training, AWS AI training, cloud certification, FinOps certification, AWS AI practitioner, career placement, mock interviews, resume preparation, LinkedIn optimization">
+    <meta name="author" content="CloudAIP">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://cloudaip.com/pages/training.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="FinOps & AWS AI Training — Ignite & Transform Tiers | CloudAIP">
+    <meta property="og:description" content="Expert-led FinOps and AWS AI training. Ignite tier for core skills, Transform tier for full career support until placement.">
+    <meta property="og:url" content="https://cloudaip.com/pages/training.html">
+    <meta property="og:image" content="https://cloudaip.com/assets/og-image.jpg">
+    <meta property="og:site_name" content="CloudAIP">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="FinOps & AWS AI Training | CloudAIP">
+    <meta name="twitter:description" content="Expert-led FinOps and AWS AI training with Ignite and Transform tiers. Enroll today.">
+    <meta name="twitter:image" content="https://cloudaip.com/assets/og-image.jpg">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="../css/styles.css">
+
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg-primary: #0a0e27; --bg-card: #111638; --border-color: #1e2a5a;
+            --cyan: #00d4ff; --teal: #0891b2; --purple: #7c3aed;
+            --text-white: #ffffff; --text-muted: #94a3b8; --text-light: #cbd5e1;
+            --gradient-primary: linear-gradient(135deg, #00d4ff, #0891b2);
+            --gradient-accent: linear-gradient(135deg, #7c3aed, #00d4ff);
+            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --nav-height: 72px;
+            --aws: #ff9900; --finops: #7c3aed;
+        }
+        html { scroll-behavior: smooth; font-size: 16px; }
+        body { font-family: var(--font-family); background-color: var(--bg-primary); color: var(--text-white); line-height: 1.6; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+        a { text-decoration: none; color: inherit; transition: color 0.3s ease; }
+        ul, ol { list-style: none; }
+        img { max-width: 100%; height: auto; display: block; }
+        button, input, textarea, select { font-family: inherit; font-size: inherit; border: none; outline: none; background: none; }
+        .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+        .section { padding: 100px 0; }
+        .section__label { display: inline-block; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 3px; background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 12px; }
+        .section__title { font-size: 2.5rem; font-weight: 800; margin-bottom: 16px; line-height: 1.2; }
+        .section__subtitle { font-size: 1.125rem; color: var(--text-muted); max-width: 600px; margin-bottom: 48px; }
+        .section__header { text-align: center; margin-bottom: 60px; }
+        .section__header .section__subtitle { margin-left: auto; margin-right: auto; }
+
+        .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 32px; border-radius: 8px; font-weight: 600; font-size: 1rem; cursor: pointer; transition: all 0.3s ease; white-space: nowrap; }
+        .btn--primary { background: var(--gradient-primary); color: var(--text-white); border: none; box-shadow: 0 4px 20px rgba(0, 212, 255, 0.3); }
+        .btn--primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0, 212, 255, 0.4); }
+        .btn--outline { background: transparent; color: var(--text-white); border: 2px solid var(--border-color); }
+        .btn--outline:hover { border-color: var(--cyan); color: var(--cyan); transform: translateY(-2px); }
+        .btn--small { padding: 10px 24px; font-size: 0.875rem; }
+        .btn--full { width: 100%; }
+
+        /* Navigation */
+        .nav { position: fixed; top: 0; left: 0; width: 100%; height: var(--nav-height); z-index: 1000; background: rgba(10, 14, 39, 0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(30, 42, 90, 0.5); transition: all 0.3s ease; }
+        .nav--scrolled { background: rgba(10, 14, 39, 0.95); box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3); }
+        .nav__container { display: flex; align-items: center; justify-content: space-between; height: 100%; max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+        .nav__logo { font-size: 1.5rem; font-weight: 800; background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; letter-spacing: -0.5px; }
+        .nav__links { display: flex; align-items: center; gap: 32px; }
+        .nav__link { font-size: 0.9rem; font-weight: 500; color: var(--text-light); transition: color 0.3s ease; position: relative; }
+        .nav__link::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: var(--gradient-primary); transition: width 0.3s ease; }
+        .nav__link:hover { color: var(--cyan); }
+        .nav__link:hover::after { width: 100%; }
+        .nav__cta { padding: 10px 24px; font-size: 0.875rem; }
+        .nav__hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; z-index: 1001; }
+        .nav__hamburger-line { width: 24px; height: 2px; background: var(--text-white); transition: all 0.3s ease; border-radius: 2px; }
+        .nav__hamburger--active .nav__hamburger-line:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .nav__hamburger--active .nav__hamburger-line:nth-child(2) { opacity: 0; }
+        .nav__hamburger--active .nav__hamburger-line:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+        /* Page Hero */
+        .page-hero { padding: 160px 0 80px; position: relative; overflow: hidden; text-align: center; }
+        .page-hero__glow { position: absolute; width: 500px; height: 500px; border-radius: 50%; filter: blur(120px); opacity: 0.15; pointer-events: none; }
+        .page-hero__glow--cyan { background: var(--cyan); top: -200px; right: -100px; }
+        .page-hero__glow--purple { background: var(--purple); bottom: -200px; left: -100px; }
+        .page-hero__title { font-size: 3.5rem; font-weight: 900; margin-bottom: 20px; line-height: 1.1; }
+        .page-hero__title span { background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .page-hero__subtitle { font-size: 1.25rem; color: var(--text-muted); max-width: 650px; margin: 0 auto; }
+
+        /* Benefits Grid */
+        .benefits-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+        .benefit-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 32px 24px; text-align: center; transition: all 0.3s ease; }
+        .benefit-card:hover { transform: translateY(-4px); border-color: var(--cyan); box-shadow: 0 8px 30px rgba(0, 212, 255, 0.1); }
+        .benefit-card__icon { font-size: 2.5rem; margin-bottom: 16px; }
+        .benefit-card__title { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; }
+        .benefit-card__text { color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; }
+
+        /* Course Section */
+        .course-section { margin-bottom: 80px; }
+        .course-section:last-child { margin-bottom: 0; }
+        .course-section__header { text-align: center; margin-bottom: 48px; }
+        .course-section__badge { display: inline-flex; align-items: center; gap: 10px; padding: 8px 20px; border-radius: 50px; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 16px; }
+        .course-section__badge--finops { background: rgba(124, 58, 237, 0.15); border: 1px solid rgba(124, 58, 237, 0.3); color: var(--finops); }
+        .course-section__badge--aws { background: rgba(255, 153, 0, 0.15); border: 1px solid rgba(255, 153, 0, 0.3); color: var(--aws); }
+        .course-section__name { font-size: 2rem; font-weight: 800; margin-bottom: 12px; }
+        .course-section__desc { font-size: 1.05rem; color: var(--text-muted); max-width: 600px; margin: 0 auto; }
+
+        /* Tier Cards */
+        .tiers-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; max-width: 900px; margin: 0 auto; }
+        .tier-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; padding: 40px 32px; transition: all 0.3s ease; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+        .tier-card:hover { transform: translateY(-4px); box-shadow: 0 8px 30px rgba(0, 212, 255, 0.1); }
+        .tier-card--transform { border-color: rgba(0, 212, 255, 0.3); }
+        .tier-card--transform .tier-card__popular { position: absolute; top: 20px; right: -30px; background: var(--gradient-primary); color: #fff; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; padding: 4px 40px; transform: rotate(45deg); }
+        .tier-card__top-bar { position: absolute; top: 0; left: 0; right: 0; height: 4px; }
+        .tier-card__top-bar--ignite { background: linear-gradient(135deg, #f59e0b, #ef4444); }
+        .tier-card__top-bar--transform { background: var(--gradient-primary); }
+        .tier-card__tier-name { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px; }
+        .tier-card__tier-name--ignite { color: #f59e0b; }
+        .tier-card__tier-name--transform { background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .tier-card__title { font-size: 1.5rem; font-weight: 800; margin-bottom: 8px; }
+        .tier-card__subtitle { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 24px; line-height: 1.6; }
+        .tier-card__features { margin-bottom: 32px; flex: 1; }
+        .tier-card__feature { display: flex; align-items: flex-start; gap: 12px; padding: 8px 0; color: var(--text-light); font-size: 0.9rem; }
+        .tier-card__feature-icon { flex-shrink: 0; margin-top: 2px; font-size: 1rem; }
+        .tier-card__feature-icon--check { color: var(--cyan); }
+        .tier-card__feature-icon--x { color: #475569; }
+        .tier-card__feature--disabled { color: #475569; }
+
+        /* Enrollment Form */
+        .enroll-form { max-width: 700px; margin: 0 auto; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; padding: 48px; }
+        .enroll-form__row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
+        .enroll-form__group { margin-bottom: 20px; }
+        .enroll-form__label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 8px; color: var(--text-light); }
+        .enroll-form__input, .enroll-form__select, .enroll-form__textarea { width: 100%; padding: 12px 16px; background: var(--bg-primary); border: 1px solid var(--border-color); border-radius: 8px; color: var(--text-white); font-size: 0.95rem; transition: border-color 0.3s ease; }
+        .enroll-form__input:focus, .enroll-form__select:focus, .enroll-form__textarea:focus { border-color: var(--cyan); }
+        .enroll-form__textarea { min-height: 100px; resize: vertical; }
+        .enroll-form__select { appearance: auto; }
+
+        /* FAQ */
+        .faq-list { max-width: 800px; margin: 0 auto; }
+        .faq-item { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; margin-bottom: 16px; overflow: hidden; }
+        .faq-item__question { padding: 20px 24px; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: color 0.3s ease; }
+        .faq-item__question:hover { color: var(--cyan); }
+        .faq-item__icon { font-size: 1.2rem; transition: transform 0.3s ease; color: var(--cyan); }
+        .faq-item__answer { padding: 0 24px 20px; color: var(--text-muted); line-height: 1.7; font-size: 0.95rem; display: none; }
+        .faq-item--active .faq-item__answer { display: block; }
+        .faq-item--active .faq-item__icon { transform: rotate(45deg); }
+
+        /* Testimonials */
+        .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        .testimonial-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 32px; }
+        .testimonial-card__text { color: var(--text-light); font-size: 0.95rem; line-height: 1.7; margin-bottom: 20px; font-style: italic; }
+        .testimonial-card__author { font-weight: 700; font-size: 0.95rem; }
+        .testimonial-card__role { font-size: 0.8rem; color: var(--text-muted); margin-top: 4px; }
+        .testimonial-card__stars { color: #f59e0b; margin-bottom: 16px; letter-spacing: 2px; }
+
+        /* Footer */
+        .footer { background: #060816; padding: 80px 0 0; border-top: 1px solid var(--border-color); }
+        .footer__grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr 1.5fr; gap: 40px; margin-bottom: 60px; }
+        .footer__brand-description { color: var(--text-muted); font-size: 0.9rem; margin-top: 16px; line-height: 1.7; }
+        .footer__aws-badge { display: inline-flex; align-items: center; gap: 6px; margin-top: 16px; padding: 6px 12px; background: rgba(255, 153, 0, 0.1); border: 1px solid rgba(255, 153, 0, 0.2); border-radius: 6px; font-size: 0.8rem; color: var(--aws); }
+        .footer__heading { font-size: 0.95rem; font-weight: 700; margin-bottom: 20px; }
+        .footer__link { display: block; color: var(--text-muted); font-size: 0.9rem; padding: 4px 0; transition: color 0.3s ease; }
+        .footer__link:hover { color: var(--cyan); }
+        .footer__contact-item { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 8px; }
+        .footer__social { display: flex; gap: 12px; margin-top: 16px; }
+        .footer__social-link { width: 36px; height: 36px; border-radius: 8px; background: var(--bg-card); border: 1px solid var(--border-color); display: flex; align-items: center; justify-content: center; font-size: 0.9rem; transition: all 0.3s ease; }
+        .footer__social-link:hover { border-color: var(--cyan); background: rgba(0, 212, 255, 0.1); }
+        .footer__newsletter-form { display: flex; gap: 8px; }
+        .footer__newsletter-input { flex: 1; padding: 10px 14px; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 8px; color: var(--text-white); font-size: 0.85rem; }
+        .footer__newsletter-btn { padding: 10px 16px; background: var(--gradient-primary); border: none; border-radius: 8px; color: var(--text-white); font-weight: 600; font-size: 0.85rem; cursor: pointer; }
+        .footer__bottom { padding: 24px 0; border-top: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+        .footer__copyright { color: var(--text-muted); font-size: 0.85rem; }
+        .footer__legal { display: flex; gap: 24px; }
+        .footer__legal-link { color: var(--text-muted); font-size: 0.85rem; transition: color 0.3s ease; }
+        .footer__legal-link:hover { color: var(--cyan); }
+
+        .whatsapp-float { position: fixed; bottom: 24px; right: 24px; width: 56px; height: 56px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4); z-index: 999; transition: transform 0.3s ease; }
+        .whatsapp-float:hover { transform: scale(1.1); }
+
+        [data-animate] { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
+        [data-animate].animated { opacity: 1; transform: translateY(0); }
+
+        @media (max-width: 768px) {
+            .nav__links { position: fixed; top: 0; right: -100%; width: 280px; height: 100vh; background: var(--bg-primary); flex-direction: column; justify-content: center; padding: 40px; border-left: 1px solid var(--border-color); transition: right 0.3s ease; }
+            .nav__links--active { right: 0; }
+            .nav__hamburger { display: flex; }
+            .page-hero__title { font-size: 2.5rem; }
+            .benefits-grid { grid-template-columns: 1fr 1fr; }
+            .tiers-grid { grid-template-columns: 1fr; }
+            .testimonials-grid { grid-template-columns: 1fr; }
+            .enroll-form__row { grid-template-columns: 1fr; }
+            .footer__grid { grid-template-columns: 1fr 1fr; }
+            .section__title { font-size: 2rem; }
+        }
+        @media (max-width: 480px) {
+            .benefits-grid { grid-template-columns: 1fr; }
+            .footer__grid { grid-template-columns: 1fr; }
+            .page-hero__title { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===================== NAVIGATION ===================== -->
+    <nav class="nav" id="nav" role="navigation" aria-label="Main navigation">
+        <div class="nav__container">
+            <a href="../index.html" class="nav__logo" aria-label="CloudAIP Home">CloudAIP</a>
+            <ul class="nav__links" id="navLinks" role="menubar">
+                <li role="none"><a href="../index.html#services" class="nav__link" role="menuitem">Services</a></li>
+                <li role="none"><a href="training.html" class="nav__link" role="menuitem">Training</a></li>
+                <li role="none"><a href="pricing.html" class="nav__link" role="menuitem">Pricing</a></li>
+                <li role="none"><a href="about.html" class="nav__link" role="menuitem">About</a></li>
+                <li role="none"><a href="blog.html" class="nav__link" role="menuitem">Blog</a></li>
+                <li role="none"><a href="../index.html#contact" class="btn btn--primary nav__cta" role="menuitem">Contact Us</a></li>
+            </ul>
+            <button class="nav__hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span class="nav__hamburger-line"></span>
+                <span class="nav__hamburger-line"></span>
+                <span class="nav__hamburger-line"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ===================== PAGE HERO ===================== -->
+    <section class="page-hero" aria-label="Training hero">
+        <div class="page-hero__glow page-hero__glow--cyan"></div>
+        <div class="page-hero__glow page-hero__glow--purple"></div>
+        <div class="container">
+            <h1 class="page-hero__title" data-animate>Launch Your <span>Cloud Career</span></h1>
+            <p class="page-hero__subtitle" data-animate>Two focused training programs. Two tiers built for where you are today. From skill-building to full career transformation with placement support.</p>
+        </div>
+    </section>
+
+    <!-- ===================== WHY TRAIN WITH US ===================== -->
+    <section class="section" aria-label="Why train with us">
+        <div class="container">
+            <div class="section__header">
+                <span class="section__label">Why CloudAIP</span>
+                <h2 class="section__title">Why Train With Us</h2>
+                <p class="section__subtitle">Our training programs are built by certified practitioners who work with these technologies every day in real enterprise environments.</p>
+            </div>
+            <div class="benefits-grid">
+                <div class="benefit-card" data-animate>
+                    <div class="benefit-card__icon">&#x1F3AF;</div>
+                    <h3 class="benefit-card__title">Expert Instructors</h3>
+                    <p class="benefit-card__text">Learn from certified professionals with 10+ years of real-world cloud architecture and FinOps experience across enterprise environments.</p>
+                </div>
+                <div class="benefit-card" data-animate>
+                    <div class="benefit-card__icon">&#x1F4BB;</div>
+                    <h3 class="benefit-card__title">Hands-on Labs</h3>
+                    <p class="benefit-card__text">Every course includes practical, hands-on lab exercises in real cloud environments. Build actual solutions, not just read about them.</p>
+                </div>
+                <div class="benefit-card" data-animate>
+                    <div class="benefit-card__icon">&#x1F3AC;</div>
+                    <h3 class="benefit-card__title">Video Recordings</h3>
+                    <p class="benefit-card__text">All live sessions are recorded and shared within 24 hours. Review at your own pace with lifetime access to all course content and materials.</p>
+                </div>
+                <div class="benefit-card" data-animate>
+                    <div class="benefit-card__icon">&#x1F680;</div>
+                    <h3 class="benefit-card__title">Career Support</h3>
+                    <p class="benefit-card__text">Transform tier includes mock interviews, resume preparation, LinkedIn optimization, and dedicated support until you land your dream role.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== COURSE 1: FINOPS TRAINING ===================== -->
+    <section class="section" style="background: rgba(15, 20, 65, 0.4);" id="courses" aria-label="Course catalog">
+        <div class="container">
+            <div class="section__header">
+                <span class="section__label">Our Programs</span>
+                <h2 class="section__title">Choose Your Path</h2>
+                <p class="section__subtitle">Two industry-focused programs, each with an Ignite tier for core training and a Transform tier for full career placement support.</p>
+            </div>
+
+            <!-- FinOps Training -->
+            <div class="course-section" data-animate>
+                <div class="course-section__header">
+                    <div class="course-section__badge course-section__badge--finops">&#x1F4CA; FinOps Training</div>
+                    <h3 class="course-section__name">FinOps Certified Practitioner</h3>
+                    <p class="course-section__desc">Master cloud financial management. Learn to optimize cloud costs, implement governance, and drive accountability across AWS, Azure, and GCP.</p>
+                </div>
+                <div class="tiers-grid">
+                    <!-- Ignite Tier -->
+                    <div class="tier-card" data-animate>
+                        <div class="tier-card__top-bar tier-card__top-bar--ignite"></div>
+                        <div class="tier-card__tier-name tier-card__tier-name--ignite">Ignite</div>
+                        <h4 class="tier-card__title">Build Your Skills</h4>
+                        <p class="tier-card__subtitle">Core FinOps training with all the materials you need to get certified and start your journey.</p>
+                        <div class="tier-card__features">
+                            <div class="tier-card__feature">
+                                <span class="tier-card__feature-icon tier-card__feature-icon--check">&#x2713;</span>
+                                Live instructor-led training sessions
+                            </div>
+                            <div class="tier-card__feature">
+                                <span class="tier-card__feature-icon tier-card__feature-icon--check">&#x2713;</span>
+                                Complete training materials and study guides
+                            </div>
+                            <div class="tier-card__feature">
+                                <span class="tier-card__feature-icon tier-card__feature-icon--check">&#x2713;</span>
+                                Video recordings of all sessions (lifetime access)
+                            </div>
+                            <div class="tier-card__feature">
+                                <span class="tier-card__feature-icon tier-card__feature-icon--check">&#x2713;</span>
+                                Hands-on labs and practice exercises
+                            </div>
+                            <div class="tier-card__feature">
+                                <span class="tier-card__feature-icon tier-card__feature-icon--check">&#x2713;</span>
+                                Exam preparation and practice tests
+                            </div>
+                            <div class="tier-card__feature tier-card__feature--disabled">
+                                <span class="tier-card__feature-icon tier-card__feature-icon--x">&#x2717;</span>
+                                Mock interviews
+                            </div>
+                            <div class="tier-card__feature tier-card__feature--disabled">
+                                <span class="tier-card__feature-icon tier-card__feature-icon--x">&#x2717;</span>
+                                Resume preparation
+                            </div>
+                            <div class="tier-card__feature tier-card__feature--disabled">
+                                <span class="tier-card__feature-icon tier-card__feature-icon--x">&#x2717;</span>
+                                LinkedIn profile optimization
+                            </div>
+                            <div class="tier-card__feature tier-card__feature--disabled">
+                                <span class="tier-card__feature-icon tier-card__feature-icon--x">&#x2717;</span>
+                                Support until placement
+                            </div>
+                        </div>
+                        <a href="#enroll" class="btn btn--outline btn--full">Enroll in Ignite</a>
+                    </div>
+
+                    <!-- Transform Tier -->
+                    <div class="tier-card tier-card--transform" data-animate>
+                        <div class="tier-card__top-bar tier-card__top-bar--transform"></div>
+                        <span class="tier-card__popular">Recommended</span>
+                        <div class="tier-card__tier-name tier-card__tier-name--transform">Transform</div>
+                        <h4 class="tier-card__title">Land Your Dream Role</h4>
+                        <p class="tier-card__subtitle">Everything in Ignite plus full career support — mock interviews, resume prep, LinkedIn optimization, and guidance until placement.</p>
+                        <div class="tier-card__features">
+                            <div class="tier-card__feature">
+                                <span class="tier-card__feature-icon tier-card__feature-icon--check">&#x2713;</span>
+                                Live instructor-led training sessions
+                            </div>
+                            <div class="tier-card__feature">
+                                <span class="tier-card__feature-icon tier-card__feature-icon--check">&#x2713;</span>
+                                Complete training materials and study guides
+                            </div>
+                            <div class="tier-card__feature">
+                                <span class="tier-card__feature-icon tier-card__feature-icon--check">&#x2713;</span>
+                                Video recordings of all sessions (lifetime access)
+                            </div>
+                            <div class="tier-card__feature">
+                                <span class="tier-card__feature-icon tier-card__feature-icon--check">&#x2713;</span>
+                                Hands-on labs and practice exercises
+                            </div>
+                            <div class="tier-card__feature">
+                                <span class="tier-card__feature-icon tier-card__feature-icon--check">&#x2713;</span>
+                                Exam preparation and practice tests
+                            </div>
+                            <div class="tier-card__feature">
+                                <span class="tier-card__feature-icon tier-card__feature-icon--check">&#x2713;</span>
+                                Mock interviews with industry experts
+                            </div>
+                            <div class="tier-card__feature">
+                                <span class="tier-card__feature-icon tier-card__feature-icon--check">&#x2713;</span>
+                                Professional resume preparation
+                            </div>
+                            <div class="tier-card__feature">
+                                <span class="tier-card__feature-icon tier-card__feature-icon--check">&#x2713;</span>
+                                LinkedIn profile optimization
+                            </div>
+                            <div class="tier-card__feature">
+                                <span class="tier-card__feature-icon tier-card__feature-icon--check">&#x2713;</span>
+                                Dedicated support until placement
+                            </div>
+                        </div>
+                        <a href="#enroll" class="btn btn--primary btn--full">Enroll in Transform</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AWS AI Training -->
+            <div class="course-section" data-animate>
+                <div class="course-section__header">
+                    <div class="course-section__badge course-section__badge--aws">&#x2601;&#xFE0F; AWS AI Training</div>
+                    <h3 class="course-section__name">AWS AI Practitioner</h3>
+                    <p class="course-section__desc">Master AI and machine learning on AWS. Learn to build, deploy, and manage AI solutions using Amazon SageMaker, Bedrock, and the full AWS AI/ML stack.</p>
+                </div>
+                <div class="tiers-grid">
+                    <!-- Ignite Tier -->
+                    <div class="tier-card" data-animate>
+                        <div class="tier-card__top-bar tier-card__top-bar--ignite"></div>
+                        <div class="tier-card__tier-name tier-card__tier-name--ignite">Ignite</div>
+                        <h4 class="tier-card__title">Build Your Skills</h4>
+                        <p class="tier-card__subtitle">Core AWS AI training with all the materials you need to get certified and build real AI solutions.</p>
+                        <div class="tier-card__features">
+                            <div class="tier-card__feature">
+                                <span class="tier-card__feature-icon tier-card__feature-icon--check">&#x2713;</span>
+                                Live instructor-led training sessions
+                            </div>
+                            <div class="tier-card__feature">
+                                <span class="tier-card__feature-icon tier-card__feature-icon--check">&#x2713;</span>
+                                Complete training materials and study guides
+                            </div>
+                            <div class="tier-card__feature">
+                                <span class="tier-card__feature-icon tier-card__feature-icon--check">&#x2713;</span>
+                                Video recordings of all sessions (lifetime access)
+                            </div>
+                            <div class="tier-card__feature">
+                                <span class="tier-card__feature-icon tier-card__feature-icon--check">&#x2713;</span>
+                                Hands-on labs with SageMaker and Bedrock
+                            </div>
+                            <div class="tier-card__feature">
+                                <span class="tier-card__feature-icon tier-card__feature-icon--check">&#x2713;</span>
+                                Exam preparation and practice tests
+                            </div>
+                            <div class="tier-card__feature tier-card__feature--disabled">
+                                <span class="tier-card__feature-icon tier-card__feature-icon--x">&#x2717;</span>
+                                Mock interviews
+                            </div>
+                            <div class="tier-card__feature tier-card__feature--disabled">
+                                <span class="tier-card__feature-icon tier-card__feature-icon--x">&#x2717;</span>
+                                Resume preparation
+                            </div>
+                            <div class="tier-card__feature tier-card__feature--disabled">
+                                <span class="tier-card__feature-icon tier-card__feature-icon--x">&#x2717;</span>
+                                LinkedIn profile optimization
+                            </div>
+                            <div class="tier-card__feature tier-card__feature--disabled">
+                                <span class="tier-card__feature-icon tier-card__feature-icon--x">&#x2717;</span>
+                                Support until placement
+                            </div>
+                        </div>
+                        <a href="#enroll" class="btn btn--outline btn--full">Enroll in Ignite</a>
+                    </div>
+
+                    <!-- Transform Tier -->
+                    <div class="tier-card tier-card--transform" data-animate>
+                        <div class="tier-card__top-bar tier-card__top-bar--transform"></div>
+                        <span class="tier-card__popular">Recommended</span>
+                        <div class="tier-card__tier-name tier-card__tier-name--transform">Transform</div>
+                        <h4 class="tier-card__title">Land Your Dream Role</h4>
+                        <p class="tier-card__subtitle">Everything in Ignite plus full career support — mock interviews, resume prep, LinkedIn optimization, and guidance until placement.</p>
+                        <div class="tier-card__features">
+                            <div class="tier-card__feature">
+                                <span class="tier-card__feature-icon tier-card__feature-icon--check">&#x2713;</span>
+                                Live instructor-led training sessions
+                            </div>
+                            <div class="tier-card__feature">
+                                <span class="tier-card__feature-icon tier-card__feature-icon--check">&#x2713;</span>
+                                Complete training materials and study guides
+                            </div>
+                            <div class="tier-card__feature">
+                                <span class="tier-card__feature-icon tier-card__feature-icon--check">&#x2713;</span>
+                                Video recordings of all sessions (lifetime access)
+                            </div>
+                            <div class="tier-card__feature">
+                                <span class="tier-card__feature-icon tier-card__feature-icon--check">&#x2713;</span>
+                                Hands-on labs with SageMaker and Bedrock
+                            </div>
+                            <div class="tier-card__feature">
+                                <span class="tier-card__feature-icon tier-card__feature-icon--check">&#x2713;</span>
+                                Exam preparation and practice tests
+                            </div>
+                            <div class="tier-card__feature">
+                                <span class="tier-card__feature-icon tier-card__feature-icon--check">&#x2713;</span>
+                                Mock interviews with industry experts
+                            </div>
+                            <div class="tier-card__feature">
+                                <span class="tier-card__feature-icon tier-card__feature-icon--check">&#x2713;</span>
+                                Professional resume preparation
+                            </div>
+                            <div class="tier-card__feature">
+                                <span class="tier-card__feature-icon tier-card__feature-icon--check">&#x2713;</span>
+                                LinkedIn profile optimization
+                            </div>
+                            <div class="tier-card__feature">
+                                <span class="tier-card__feature-icon tier-card__feature-icon--check">&#x2713;</span>
+                                Dedicated support until placement
+                            </div>
+                        </div>
+                        <a href="#enroll" class="btn btn--primary btn--full">Enroll in Transform</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== ENROLLMENT FORM ===================== -->
+    <section class="section" id="enroll" aria-label="Enrollment form">
+        <div class="container">
+            <div class="section__header">
+                <span class="section__label">Get Started</span>
+                <h2 class="section__title">Enroll Today</h2>
+                <p class="section__subtitle">Fill out the form below and we will get back to you within 24 hours with batch details and payment information.</p>
+            </div>
+            <div class="enroll-form" data-animate>
+                <form id="enrollForm" aria-label="Course enrollment form">
+                    <div class="enroll-form__row">
+                        <div>
+                            <label class="enroll-form__label" for="enrollName">Full Name *</label>
+                            <input type="text" id="enrollName" class="enroll-form__input" placeholder="Your full name" required>
+                        </div>
+                        <div>
+                            <label class="enroll-form__label" for="enrollEmail">Email Address *</label>
+                            <input type="email" id="enrollEmail" class="enroll-form__input" placeholder="your@email.com" required>
+                        </div>
+                    </div>
+                    <div class="enroll-form__row">
+                        <div>
+                            <label class="enroll-form__label" for="enrollPhone">Phone Number</label>
+                            <input type="tel" id="enrollPhone" class="enroll-form__input" placeholder="+1 (555) 000-0000">
+                        </div>
+                        <div>
+                            <label class="enroll-form__label" for="enrollCourse">Select Program *</label>
+                            <select id="enrollCourse" class="enroll-form__select" required>
+                                <option value="">Choose a program...</option>
+                                <option value="finops-ignite">FinOps Training — Ignite</option>
+                                <option value="finops-transform">FinOps Training — Transform</option>
+                                <option value="aws-ai-ignite">AWS AI Training — Ignite</option>
+                                <option value="aws-ai-transform">AWS AI Training — Transform</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="enroll-form__group">
+                        <label class="enroll-form__label" for="enrollMessage">Message (Optional)</label>
+                        <textarea id="enrollMessage" class="enroll-form__textarea" placeholder="Any questions or specific requirements?"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn--primary btn--full">Submit Enrollment Request</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== TESTIMONIALS ===================== -->
+    <section class="section" style="background: rgba(15, 20, 65, 0.4);" aria-label="Student testimonials">
+        <div class="container">
+            <div class="section__header">
+                <span class="section__label">Student Success</span>
+                <h2 class="section__title">What Our Students Say</h2>
+                <p class="section__subtitle">Real feedback from professionals who have advanced their careers with our training programs.</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card" data-animate>
+                    <div class="testimonial-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <p class="testimonial-card__text">"The FinOps Transform program changed my career. Not only did I pass the certification on my first attempt, but the mock interviews and resume prep helped me land a Cloud Financial Analyst role within 6 weeks of completing the course."</p>
+                    <p class="testimonial-card__author">Priya Sharma</p>
+                    <p class="testimonial-card__role">Cloud Financial Analyst, Deloitte</p>
+                </div>
+                <div class="testimonial-card" data-animate>
+                    <div class="testimonial-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <p class="testimonial-card__text">"I enrolled in the AWS AI Transform tier and the support was incredible. The LinkedIn optimization alone got me 3x more recruiter messages. The team stuck with me until I got placed as an ML Engineer. Truly worth every penny."</p>
+                    <p class="testimonial-card__author">Michael Torres</p>
+                    <p class="testimonial-card__role">ML Engineer, Accenture</p>
+                </div>
+                <div class="testimonial-card" data-animate>
+                    <div class="testimonial-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <p class="testimonial-card__text">"The Ignite tier gave me exactly what I needed — solid training, great materials, and video recordings I still reference today. The hands-on labs made complex AWS AI concepts click. Passed my certification with flying colors."</p>
+                    <p class="testimonial-card__author">Sarah Kim</p>
+                    <p class="testimonial-card__role">Cloud Engineer, TCS</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== FAQ ===================== -->
+    <section class="section" id="faq" aria-label="Frequently asked questions">
+        <div class="container">
+            <div class="section__header">
+                <span class="section__label">FAQ</span>
+                <h2 class="section__title">Frequently Asked Questions</h2>
+                <p class="section__subtitle">Everything you need to know about our training programs, tiers, and policies.</p>
+            </div>
+            <div class="faq-list">
+                <div class="faq-item" data-animate>
+                    <div class="faq-item__question" onclick="this.parentElement.classList.toggle('faq-item--active')">
+                        What is the difference between Ignite and Transform tiers?
+                        <span class="faq-item__icon">+</span>
+                    </div>
+                    <div class="faq-item__answer">The Ignite tier focuses on core training — you get live instructor-led sessions, complete training materials, video recordings with lifetime access, hands-on labs, and exam preparation. The Transform tier includes everything in Ignite plus full career support: mock interviews with industry experts, professional resume preparation, LinkedIn profile optimization, and dedicated support until you are placed in a role. Choose Ignite if you want to upskill, choose Transform if you want a career change.</div>
+                </div>
+                <div class="faq-item" data-animate>
+                    <div class="faq-item__question" onclick="this.parentElement.classList.toggle('faq-item--active')">
+                        What is the training format? Are classes live or recorded?
+                        <span class="faq-item__icon">+</span>
+                    </div>
+                    <div class="faq-item__answer">All courses are delivered as live, instructor-led sessions via Zoom. Classes are held on weekends (Saturday and Sunday) for 3-4 hours per session, making it convenient for working professionals. All sessions are recorded and shared within 24 hours, so you can review them anytime. You get lifetime access to the recorded content and course materials in both Ignite and Transform tiers.</div>
+                </div>
+                <div class="faq-item" data-animate>
+                    <div class="faq-item__question" onclick="this.parentElement.classList.toggle('faq-item--active')">
+                        How does the placement support work in the Transform tier?
+                        <span class="faq-item__icon">+</span>
+                    </div>
+                    <div class="faq-item__answer">The Transform tier includes end-to-end career support. After completing your training, our career team will help you build a professional resume tailored to cloud roles, optimize your LinkedIn profile for recruiter visibility, and conduct multiple rounds of mock interviews simulating real hiring processes. We continue to provide active support — including job referrals, application guidance, and interview coaching — until you land a role. There is no time limit on this support.</div>
+                </div>
+                <div class="faq-item" data-animate>
+                    <div class="faq-item__question" onclick="this.parentElement.classList.toggle('faq-item--active')">
+                        What are the prerequisites for enrolling?
+                        <span class="faq-item__icon">+</span>
+                    </div>
+                    <div class="faq-item__answer">For the FinOps Training, basic cloud knowledge is recommended but not required — we cover the fundamentals before diving deeper. For the AWS AI Training, we recommend having basic familiarity with AWS services or general programming concepts. Both programs are designed to take you from foundational knowledge to certification-ready, regardless of your starting point.</div>
+                </div>
+                <div class="faq-item" data-animate>
+                    <div class="faq-item__question" onclick="this.parentElement.classList.toggle('faq-item--active')">
+                        What is your refund policy?
+                        <span class="faq-item__icon">+</span>
+                    </div>
+                    <div class="faq-item__answer">We offer a full refund if you cancel within 7 days of enrollment and before the second class session. After the second session, we offer a 50% refund or the option to defer to the next batch at no additional cost. If you are not satisfied with the training quality after the first session, we will issue a complete refund — no questions asked.</div>
+                </div>
+                <div class="faq-item" data-animate>
+                    <div class="faq-item__question" onclick="this.parentElement.classList.toggle('faq-item--active')">
+                        Can I upgrade from Ignite to Transform later?
+                        <span class="faq-item__icon">+</span>
+                    </div>
+                    <div class="faq-item__answer">Yes, you can upgrade from Ignite to Transform at any point during or after your training. You will only pay the difference between the two tiers. All your existing progress, recordings, and materials carry over seamlessly. Many students start with Ignite and upgrade to Transform once they decide they want full career support.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== FOOTER ===================== -->
+    <footer class="footer" id="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer__grid">
+                <div>
+                    <a href="../index.html" class="nav__logo" aria-label="CloudAIP Home">CloudAIP</a>
+                    <p class="footer__brand-description">Expert FinOps consulting and cloud training. Helping professionals launch and accelerate their cloud careers through focused training programs with career placement support.</p>
+                    <div class="footer__aws-badge">&#x2601;&#xFE0F; Built on AWS</div>
+                </div>
+                <div>
+                    <h4 class="footer__heading">Quick Links</h4>
+                    <nav aria-label="Footer quick links">
+                        <a href="../index.html" class="footer__link">Home</a>
+                        <a href="../index.html#services" class="footer__link">Services</a>
+                        <a href="../index.html#calculator" class="footer__link">ROI Calculator</a>
+                        <a href="pricing.html" class="footer__link">Pricing</a>
+                        <a href="about.html" class="footer__link">About Us</a>
+                        <a href="../index.html#contact" class="footer__link">Contact</a>
+                    </nav>
+                </div>
+                <div>
+                    <h4 class="footer__heading">Services</h4>
+                    <nav aria-label="Footer services links">
+                        <a href="services/finops-assessment.html" class="footer__link">FinOps Assessment</a>
+                        <a href="services/finops-visualizer.html" class="footer__link">Cost Visualization</a>
+                        <a href="services/finops-optimizer.html" class="footer__link">Cloud Optimization</a>
+                        <a href="services/finops-enforcer.html" class="footer__link">Governance</a>
+                        <a href="services/finops-smart-saver.html" class="footer__link">Smart Saver</a>
+                        <a href="services/finops-faas.html" class="footer__link">Managed FinOps</a>
+                    </nav>
+                </div>
+                <div>
+                    <h4 class="footer__heading">Training</h4>
+                    <nav aria-label="Footer training links">
+                        <a href="training.html#courses" class="footer__link">FinOps Training</a>
+                        <a href="training.html#courses" class="footer__link">AWS AI Training</a>
+                        <a href="training.html#enroll" class="footer__link">Enroll Now</a>
+                        <a href="training.html#faq" class="footer__link">Training FAQ</a>
+                    </nav>
+                </div>
+                <div>
+                    <h4 class="footer__heading">Contact</h4>
+                    <div class="footer__contact-item">&#x2709;&#xFE0F; hello@cloudaip.com</div>
+                    <div class="footer__contact-item">&#x1F4DE; +1 (555) 123-4567</div>
+                    <div class="footer__social">
+                        <a href="https://linkedin.com/company/cloudaip" class="footer__social-link" aria-label="Follow CloudAIP on LinkedIn" target="_blank" rel="noopener noreferrer">in</a>
+                        <a href="https://twitter.com/cloudaip" class="footer__social-link" aria-label="Follow CloudAIP on Twitter" target="_blank" rel="noopener noreferrer">&#x1D54F;</a>
+                        <a href="https://youtube.com/@cloudaip" class="footer__social-link" aria-label="Subscribe to CloudAIP on YouTube" target="_blank" rel="noopener noreferrer">&#x25B6;</a>
+                    </div>
+                    <div class="footer__newsletter">
+                        <h4 class="footer__heading" style="margin-top: 24px;">Newsletter</h4>
+                        <form class="footer__newsletter-form" aria-label="Newsletter signup">
+                            <input type="email" class="footer__newsletter-input" placeholder="Your email" aria-label="Email for newsletter">
+                            <button type="submit" class="footer__newsletter-btn" aria-label="Subscribe to newsletter">Subscribe</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <p class="footer__copyright">&copy; 2025 CloudAIP. All rights reserved.</p>
+                <div class="footer__legal">
+                    <a href="#" class="footer__legal-link">Privacy Policy</a>
+                    <a href="#" class="footer__legal-link">Terms of Service</a>
+                    <a href="#" class="footer__legal-link">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/919876543210" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat with us on WhatsApp">&#x1F4AC;</a>
+
+    <script src="../js/main.js"></script>
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        hamburger.addEventListener('click', function() {
+            this.classList.toggle('nav__hamburger--active');
+            navLinks.classList.toggle('nav__links--active');
+            const expanded = this.getAttribute('aria-expanded') === 'true';
+            this.setAttribute('aria-expanded', !expanded);
+        });
+        navLinks.querySelectorAll('.nav__link').forEach(function(link) {
+            link.addEventListener('click', function() {
+                hamburger.classList.remove('nav__hamburger--active');
+                navLinks.classList.remove('nav__links--active');
+                hamburger.setAttribute('aria-expanded', 'false');
+            });
+        });
+        var nav = document.getElementById('nav');
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 50) { nav.classList.add('nav--scrolled'); } else { nav.classList.remove('nav--scrolled'); }
+        });
+        var animateElements = document.querySelectorAll('[data-animate]');
+        function handleScrollAnimation() {
+            animateElements.forEach(function(el) {
+                var rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight * 0.85) { el.classList.add('animated'); }
+            });
+        }
+        window.addEventListener('scroll', handleScrollAnimation);
+        window.addEventListener('load', handleScrollAnimation);
+
+        /* Enrollment form */
+        var enrollForm = document.getElementById('enrollForm');
+        if (enrollForm) {
+            enrollForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Thank you for your enrollment request! We will contact you within 24 hours with batch details and payment information.');
+                this.reset();
+            });
+        }
+    </script>
+</body>
+</html>

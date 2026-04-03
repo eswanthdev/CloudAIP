@@ -1,0 +1,1851 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Admin Dashboard | CloudAIP</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* ============================================================
+           Admin Dashboard — Inline Styles
+           ============================================================ */
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0e27;
+            color: #cbd5e1;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        /* ---- Login Screen ---- */
+        .admin-login-overlay {
+            position: fixed;
+            inset: 0;
+            background: #0a0e27;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.4s ease, visibility 0.4s ease;
+        }
+
+        .admin-login-overlay.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .admin-login-card {
+            background: #111638;
+            border: 1px solid #1e2a5a;
+            border-radius: 16px;
+            padding: 48px 40px;
+            width: 100%;
+            max-width: 420px;
+            text-align: center;
+            box-shadow: 0 4px 40px rgba(0, 212, 255, 0.08);
+        }
+
+        .admin-login-card .login-logo {
+            font-size: 28px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #00d4ff, #0891b2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 8px;
+        }
+
+        .admin-login-card h1 {
+            color: #fff;
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 32px;
+        }
+
+        .login-input-group {
+            position: relative;
+            margin-bottom: 24px;
+        }
+
+        .login-input-group input {
+            width: 100%;
+            padding: 14px 18px;
+            background: #0a0e27;
+            border: 1px solid #1e2a5a;
+            border-radius: 8px;
+            color: #fff;
+            font-size: 15px;
+            font-family: inherit;
+            outline: none;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .login-input-group input:focus {
+            border-color: #00d4ff;
+            box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.15);
+        }
+
+        .login-input-group input::placeholder {
+            color: #94a3b8;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #00d4ff, #0891b2);
+            border: none;
+            border-radius: 8px;
+            color: #0a0e27;
+            font-size: 15px;
+            font-weight: 600;
+            font-family: inherit;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 20px rgba(0, 212, 255, 0.3);
+        }
+
+        .login-btn:active {
+            transform: translateY(0);
+        }
+
+        .login-error {
+            color: #ef4444;
+            font-size: 13px;
+            margin-top: 16px;
+            display: none;
+        }
+
+        /* ---- Dashboard Layout ---- */
+        .admin-dashboard {
+            display: none;
+            min-height: 100vh;
+        }
+
+        .admin-dashboard.active {
+            display: block;
+        }
+
+        /* ---- Demo Banner ---- */
+        .demo-banner {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), rgba(245, 158, 11, 0.05));
+            border-bottom: 1px solid rgba(245, 158, 11, 0.3);
+            padding: 10px 24px;
+            text-align: center;
+            font-size: 13px;
+            color: #f59e0b;
+            display: none;
+        }
+
+        .demo-banner.visible {
+            display: block;
+        }
+
+        /* ---- Dashboard Header ---- */
+        .admin-header {
+            background: #111638;
+            border-bottom: 1px solid #1e2a5a;
+            padding: 20px 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .admin-header h1 {
+            color: #fff;
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        .admin-header-actions {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .btn-icon {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 10px 18px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 500;
+            font-family: inherit;
+            cursor: pointer;
+            border: 1px solid #1e2a5a;
+            background: #0a0e27;
+            color: #cbd5e1;
+            transition: all 0.2s ease;
+        }
+
+        .btn-icon:hover {
+            border-color: #00d4ff;
+            color: #00d4ff;
+        }
+
+        .btn-icon.btn-logout {
+            border-color: rgba(239, 68, 68, 0.4);
+            color: #ef4444;
+        }
+
+        .btn-icon.btn-logout:hover {
+            background: rgba(239, 68, 68, 0.1);
+            border-color: #ef4444;
+        }
+
+        /* ---- Stats Bar ---- */
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 16px;
+            padding: 24px 32px;
+        }
+
+        .stat-card {
+            background: #111638;
+            border: 1px solid #1e2a5a;
+            border-radius: 12px;
+            padding: 20px 24px;
+            text-align: center;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .stat-card:hover {
+            border-color: rgba(0, 212, 255, 0.3);
+            box-shadow: 0 4px 20px rgba(0, 212, 255, 0.06);
+        }
+
+        .stat-card .stat-value {
+            font-size: 32px;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+
+        .stat-card .stat-label {
+            font-size: 13px;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .stat-card.stat-total .stat-value { color: #00d4ff; }
+        .stat-card.stat-new .stat-value { color: #3b82f6; }
+        .stat-card.stat-contacted .stat-value { color: #f59e0b; }
+        .stat-card.stat-qualified .stat-value { color: #a855f7; }
+        .stat-card.stat-converted .stat-value { color: #10b981; }
+
+        /* ---- Filters Bar ---- */
+        .filters-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            padding: 0 32px 24px;
+            align-items: center;
+        }
+
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .filter-group label {
+            font-size: 12px;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+        }
+
+        .filter-select,
+        .filter-input,
+        .filter-date {
+            padding: 9px 14px;
+            background: #111638;
+            border: 1px solid #1e2a5a;
+            border-radius: 8px;
+            color: #cbd5e1;
+            font-size: 13px;
+            font-family: inherit;
+            outline: none;
+            transition: border-color 0.2s ease;
+        }
+
+        .filter-select:focus,
+        .filter-input:focus,
+        .filter-date:focus {
+            border-color: #00d4ff;
+        }
+
+        .filter-input {
+            min-width: 220px;
+        }
+
+        .filter-date {
+            width: 150px;
+        }
+
+        .filter-date::-webkit-calendar-picker-indicator {
+            filter: invert(0.6);
+        }
+
+        .btn-export {
+            margin-left: auto;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 9px 18px;
+            background: linear-gradient(135deg, #00d4ff, #0891b2);
+            border: none;
+            border-radius: 8px;
+            color: #0a0e27;
+            font-size: 13px;
+            font-weight: 600;
+            font-family: inherit;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .btn-export:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 20px rgba(0, 212, 255, 0.3);
+        }
+
+        /* ---- Table Container ---- */
+        .table-container {
+            padding: 0 32px 32px;
+            overflow-x: auto;
+        }
+
+        .leads-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            background: #111638;
+            border: 1px solid #1e2a5a;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .leads-table thead {
+            background: #0d1130;
+        }
+
+        .leads-table th {
+            padding: 14px 18px;
+            text-align: left;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #94a3b8;
+            border-bottom: 1px solid #1e2a5a;
+            cursor: pointer;
+            user-select: none;
+            white-space: nowrap;
+            transition: color 0.2s ease;
+        }
+
+        .leads-table th:hover {
+            color: #00d4ff;
+        }
+
+        .leads-table th .sort-arrow {
+            display: inline-block;
+            margin-left: 4px;
+            font-size: 10px;
+            opacity: 0.4;
+        }
+
+        .leads-table th.sort-active .sort-arrow {
+            opacity: 1;
+            color: #00d4ff;
+        }
+
+        .leads-table td {
+            padding: 14px 18px;
+            font-size: 14px;
+            border-bottom: 1px solid rgba(30, 42, 90, 0.5);
+            vertical-align: top;
+        }
+
+        .leads-table tbody tr {
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .leads-table tbody tr:hover {
+            background: rgba(0, 212, 255, 0.03);
+        }
+
+        .leads-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .lead-name {
+            color: #fff;
+            font-weight: 500;
+        }
+
+        .lead-email {
+            color: #94a3b8;
+            font-size: 13px;
+        }
+
+        /* ---- Status Badges ---- */
+        .status-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .status-badge.status-new {
+            background: rgba(59, 130, 246, 0.15);
+            color: #3b82f6;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+
+        .status-badge.status-contacted {
+            background: rgba(245, 158, 11, 0.15);
+            color: #f59e0b;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+        }
+
+        .status-badge.status-qualified {
+            background: rgba(168, 85, 247, 0.15);
+            color: #a855f7;
+            border: 1px solid rgba(168, 85, 247, 0.3);
+        }
+
+        .status-badge.status-converted {
+            background: rgba(16, 185, 129, 0.15);
+            color: #10b981;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+
+        .status-badge.status-lost {
+            background: rgba(239, 68, 68, 0.15);
+            color: #ef4444;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+
+        /* ---- Expanded Row ---- */
+        .lead-expanded {
+            display: none;
+            background: #0d1130;
+        }
+
+        .lead-expanded.visible {
+            display: table-row;
+        }
+
+        .lead-expanded td {
+            padding: 20px 24px;
+        }
+
+        .expanded-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .expanded-field {
+            margin-bottom: 12px;
+        }
+
+        .expanded-field label {
+            display: block;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #94a3b8;
+            margin-bottom: 4px;
+        }
+
+        .expanded-field .field-value {
+            color: #e2e8f0;
+            font-size: 14px;
+        }
+
+        .expanded-actions {
+            display: flex;
+            gap: 12px;
+            align-items: flex-end;
+            margin-top: 16px;
+        }
+
+        .inline-status-select {
+            padding: 8px 14px;
+            background: #111638;
+            border: 1px solid #1e2a5a;
+            border-radius: 8px;
+            color: #cbd5e1;
+            font-size: 13px;
+            font-family: inherit;
+            outline: none;
+        }
+
+        .inline-notes {
+            width: 100%;
+            min-height: 60px;
+            padding: 10px 14px;
+            background: #111638;
+            border: 1px solid #1e2a5a;
+            border-radius: 8px;
+            color: #cbd5e1;
+            font-size: 13px;
+            font-family: inherit;
+            outline: none;
+            resize: vertical;
+            transition: border-color 0.2s ease;
+        }
+
+        .inline-notes:focus {
+            border-color: #00d4ff;
+        }
+
+        .btn-save-inline {
+            padding: 8px 20px;
+            background: linear-gradient(135deg, #00d4ff, #0891b2);
+            border: none;
+            border-radius: 8px;
+            color: #0a0e27;
+            font-size: 13px;
+            font-weight: 600;
+            font-family: inherit;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: transform 0.2s ease;
+        }
+
+        .btn-save-inline:hover {
+            transform: translateY(-1px);
+        }
+
+        /* ---- Pagination ---- */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            padding: 24px 32px;
+        }
+
+        .pagination button {
+            padding: 8px 14px;
+            background: #111638;
+            border: 1px solid #1e2a5a;
+            border-radius: 8px;
+            color: #cbd5e1;
+            font-size: 13px;
+            font-family: inherit;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .pagination button:hover:not(:disabled) {
+            border-color: #00d4ff;
+            color: #00d4ff;
+        }
+
+        .pagination button.active {
+            background: linear-gradient(135deg, #00d4ff, #0891b2);
+            color: #0a0e27;
+            border-color: transparent;
+            font-weight: 600;
+        }
+
+        .pagination button:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        .pagination .page-info {
+            font-size: 13px;
+            color: #94a3b8;
+            margin: 0 8px;
+        }
+
+        /* ---- Modal ---- */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(6, 8, 22, 0.85);
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal {
+            background: #111638;
+            border: 1px solid #1e2a5a;
+            border-radius: 16px;
+            width: 100%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 8px 60px rgba(0, 212, 255, 0.1);
+            transform: scale(0.95) translateY(20px);
+            transition: transform 0.3s ease;
+        }
+
+        .modal-overlay.active .modal {
+            transform: scale(1) translateY(0);
+        }
+
+        .modal-header {
+            padding: 24px 28px;
+            border-bottom: 1px solid #1e2a5a;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .modal-header h2 {
+            color: #fff;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .modal-close {
+            width: 36px;
+            height: 36px;
+            background: #0a0e27;
+            border: 1px solid #1e2a5a;
+            border-radius: 8px;
+            color: #94a3b8;
+            font-size: 18px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        .modal-close:hover {
+            border-color: #ef4444;
+            color: #ef4444;
+        }
+
+        .modal-body {
+            padding: 28px;
+        }
+
+        .modal-field {
+            margin-bottom: 20px;
+        }
+
+        .modal-field label {
+            display: block;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #94a3b8;
+            margin-bottom: 6px;
+        }
+
+        .modal-field .field-value {
+            color: #e2e8f0;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .modal-field select,
+        .modal-field textarea {
+            width: 100%;
+            padding: 10px 14px;
+            background: #0a0e27;
+            border: 1px solid #1e2a5a;
+            border-radius: 8px;
+            color: #cbd5e1;
+            font-size: 14px;
+            font-family: inherit;
+            outline: none;
+            transition: border-color 0.2s ease;
+        }
+
+        .modal-field select:focus,
+        .modal-field textarea:focus {
+            border-color: #00d4ff;
+        }
+
+        .modal-field textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        .modal-footer {
+            padding: 20px 28px;
+            border-top: 1px solid #1e2a5a;
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+        }
+
+        .btn-modal-close {
+            padding: 10px 22px;
+            background: #0a0e27;
+            border: 1px solid #1e2a5a;
+            border-radius: 8px;
+            color: #cbd5e1;
+            font-size: 14px;
+            font-family: inherit;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-modal-close:hover {
+            border-color: #94a3b8;
+        }
+
+        .btn-modal-save {
+            padding: 10px 22px;
+            background: linear-gradient(135deg, #00d4ff, #0891b2);
+            border: none;
+            border-radius: 8px;
+            color: #0a0e27;
+            font-size: 14px;
+            font-weight: 600;
+            font-family: inherit;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .btn-modal-save:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 20px rgba(0, 212, 255, 0.3);
+        }
+
+        /* ---- Loading Spinner ---- */
+        .spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(0, 212, 255, 0.2);
+            border-top-color: #00d4ff;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .loading-overlay {
+            display: none;
+            position: absolute;
+            inset: 0;
+            background: rgba(10, 14, 39, 0.7);
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            border-radius: 12px;
+        }
+
+        .loading-overlay.active {
+            display: flex;
+        }
+
+        .table-wrapper {
+            position: relative;
+        }
+
+        /* ---- Toast / Notification ---- */
+        .toast {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            padding: 14px 24px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 500;
+            z-index: 20000;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .toast.visible {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .toast.toast-success {
+            background: rgba(16, 185, 129, 0.15);
+            border: 1px solid rgba(16, 185, 129, 0.4);
+            color: #10b981;
+        }
+
+        .toast.toast-error {
+            background: rgba(239, 68, 68, 0.15);
+            border: 1px solid rgba(239, 68, 68, 0.4);
+            color: #ef4444;
+        }
+
+        .toast.toast-info {
+            background: rgba(0, 212, 255, 0.15);
+            border: 1px solid rgba(0, 212, 255, 0.4);
+            color: #00d4ff;
+        }
+
+        /* ---- Empty State ---- */
+        .empty-state {
+            text-align: center;
+            padding: 60px 24px;
+            color: #94a3b8;
+        }
+
+        .empty-state svg {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 16px;
+            opacity: 0.4;
+        }
+
+        .empty-state p {
+            font-size: 15px;
+        }
+
+        /* ---- Scrollbar ---- */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0a0e27;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #1e2a5a;
+            border-radius: 3px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #2d3f7a;
+        }
+
+        /* ---- Responsive ---- */
+        @media (max-width: 768px) {
+            .admin-header {
+                padding: 16px 20px;
+            }
+
+            .admin-header h1 {
+                font-size: 18px;
+            }
+
+            .stats-bar {
+                padding: 16px 20px;
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .filters-bar {
+                padding: 0 20px 20px;
+            }
+
+            .filter-input {
+                min-width: 160px;
+            }
+
+            .table-container {
+                padding: 0 20px 20px;
+            }
+
+            .leads-table th,
+            .leads-table td {
+                padding: 10px 12px;
+                font-size: 13px;
+            }
+
+            .expanded-content {
+                grid-template-columns: 1fr;
+            }
+
+            .modal {
+                margin: 16px;
+                max-height: calc(100vh - 32px);
+            }
+
+            .admin-login-card {
+                margin: 20px;
+                padding: 36px 28px;
+            }
+
+            .btn-export {
+                margin-left: 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stats-bar {
+                grid-template-columns: 1fr;
+            }
+
+            .admin-header-actions {
+                width: 100%;
+                justify-content: flex-end;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================
+         LOGIN SCREEN
+         ============================================================ -->
+    <div class="admin-login-overlay" id="loginOverlay">
+        <div class="admin-login-card">
+            <div class="login-logo">CloudAIP</div>
+            <h1>Admin Login</h1>
+            <form id="loginForm" autocomplete="off">
+                <div class="login-input-group">
+                    <input type="password" id="loginPassword" placeholder="Enter admin password" autocomplete="current-password" required>
+                </div>
+                <button type="submit" class="login-btn">Sign In</button>
+                <p class="login-error" id="loginError">Invalid password. Please try again.</p>
+            </form>
+        </div>
+    </div>
+
+    <!-- ============================================================
+         DASHBOARD
+         ============================================================ -->
+    <div class="admin-dashboard" id="adminDashboard">
+
+        <!-- Demo Banner -->
+        <div class="demo-banner" id="demoBanner">
+            <strong>Demo Mode</strong> &mdash; Using sample data. Connect to the API for live leads.
+        </div>
+
+        <!-- Header -->
+        <header class="admin-header">
+            <h1>Lead Management Dashboard</h1>
+            <div class="admin-header-actions">
+                <button class="btn-icon" id="btnRefresh" title="Refresh leads">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M23 4v6h-6M1 20v-6h6"/><path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></svg>
+                    Refresh
+                </button>
+                <button class="btn-icon btn-logout" id="btnLogout" title="Logout">
+                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M21 12H9"/></svg>
+                    Logout
+                </button>
+            </div>
+        </header>
+
+        <!-- Stats -->
+        <div class="stats-bar" id="statsBar">
+            <div class="stat-card stat-total">
+                <div class="stat-value" id="statTotal">0</div>
+                <div class="stat-label">Total Leads</div>
+            </div>
+            <div class="stat-card stat-new">
+                <div class="stat-value" id="statNew">0</div>
+                <div class="stat-label">New</div>
+            </div>
+            <div class="stat-card stat-contacted">
+                <div class="stat-value" id="statContacted">0</div>
+                <div class="stat-label">Contacted</div>
+            </div>
+            <div class="stat-card stat-qualified">
+                <div class="stat-value" id="statQualified">0</div>
+                <div class="stat-label">Qualified</div>
+            </div>
+            <div class="stat-card stat-converted">
+                <div class="stat-value" id="statConverted">0</div>
+                <div class="stat-label">Converted</div>
+            </div>
+        </div>
+
+        <!-- Filters -->
+        <div class="filters-bar">
+            <div class="filter-group">
+                <label for="filterStatus">Status</label>
+                <select class="filter-select" id="filterStatus">
+                    <option value="all">All</option>
+                    <option value="New">New</option>
+                    <option value="Contacted">Contacted</option>
+                    <option value="Qualified">Qualified</option>
+                    <option value="Converted">Converted</option>
+                    <option value="Lost">Lost</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="filterFrom">From</label>
+                <input type="date" class="filter-date" id="filterFrom">
+            </div>
+            <div class="filter-group">
+                <label for="filterTo">To</label>
+                <input type="date" class="filter-date" id="filterTo">
+            </div>
+            <div class="filter-group">
+                <input type="text" class="filter-input" id="filterSearch" placeholder="Search name, email, company...">
+            </div>
+            <button class="btn-export" id="btnExport" title="Export filtered leads to CSV">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+                Export CSV
+            </button>
+        </div>
+
+        <!-- Table -->
+        <div class="table-container">
+            <div class="table-wrapper">
+                <div class="loading-overlay" id="tableLoading">
+                    <div class="spinner"></div>
+                </div>
+                <table class="leads-table" id="leadsTable">
+                    <thead>
+                        <tr>
+                            <th data-sort="name">Name <span class="sort-arrow">&#9650;</span></th>
+                            <th data-sort="email">Email <span class="sort-arrow">&#9650;</span></th>
+                            <th data-sort="company">Company <span class="sort-arrow">&#9650;</span></th>
+                            <th data-sort="spend">Cloud Spend <span class="sort-arrow">&#9650;</span></th>
+                            <th data-sort="status">Status <span class="sort-arrow">&#9650;</span></th>
+                            <th data-sort="date">Date <span class="sort-arrow">&#9650;</span></th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="leadsTableBody">
+                        <!-- Rows injected by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination" id="pagination"></div>
+    </div>
+
+    <!-- ============================================================
+         LEAD DETAIL MODAL
+         ============================================================ -->
+    <div class="modal-overlay" id="leadModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 id="modalTitle">Lead Details</h2>
+                <button class="modal-close" id="modalClose" title="Close">&times;</button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Populated dynamically -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn-modal-close" id="modalBtnClose">Close</button>
+                <button class="btn-modal-save" id="modalBtnSave">Save Changes</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast notification -->
+    <div class="toast" id="toast"></div>
+
+    <!-- Shared JS (for any shared utilities) -->
+    <script src="../js/main.js"></script>
+
+    <script>
+    (function () {
+        'use strict';
+
+        // =================================================================
+        // CONFIGURATION
+        // =================================================================
+
+        var API_BASE = 'https://k0gms5uqw0.execute-api.ap-south-1.amazonaws.com';
+        var LEADS_PER_PAGE = 10;
+
+        // SHA-256 hash of "CloudAIP2024!"
+        // TODO: Replace this client-side password check with proper authentication
+        // such as AWS Cognito, Auth0, or server-side session management.
+        // Client-side auth is NOT secure and is only used here as an MVP placeholder.
+        var PASSWORD_HASH = 'ec42e3e4bd994002e96dc5fc51a895402cb9a3674fe0ae1d754fc83a24fe19db';
+
+        // =================================================================
+        // STATE
+        // =================================================================
+
+        var allLeads = [];
+        var filteredLeads = [];
+        var currentPage = 1;
+        var sortField = 'date';
+        var sortDirection = 'desc';
+        var isDemoMode = false;
+        var currentModalLeadId = null;
+
+        // =================================================================
+        // DOM REFERENCES
+        // =================================================================
+
+        var loginOverlay = document.getElementById('loginOverlay');
+        var loginForm = document.getElementById('loginForm');
+        var loginPassword = document.getElementById('loginPassword');
+        var loginError = document.getElementById('loginError');
+        var dashboard = document.getElementById('adminDashboard');
+        var demoBanner = document.getElementById('demoBanner');
+        var tableBody = document.getElementById('leadsTableBody');
+        var tableLoading = document.getElementById('tableLoading');
+        var paginationEl = document.getElementById('pagination');
+        var filterStatus = document.getElementById('filterStatus');
+        var filterFrom = document.getElementById('filterFrom');
+        var filterTo = document.getElementById('filterTo');
+        var filterSearch = document.getElementById('filterSearch');
+        var btnRefresh = document.getElementById('btnRefresh');
+        var btnLogout = document.getElementById('btnLogout');
+        var btnExport = document.getElementById('btnExport');
+        var modalOverlay = document.getElementById('leadModal');
+        var modalClose = document.getElementById('modalClose');
+        var modalBtnClose = document.getElementById('modalBtnClose');
+        var modalBtnSave = document.getElementById('modalBtnSave');
+        var modalBody = document.getElementById('modalBody');
+        var modalTitle = document.getElementById('modalTitle');
+        var toastEl = document.getElementById('toast');
+
+        // =================================================================
+        // UTILITIES
+        // =================================================================
+
+        /**
+         * Compute SHA-256 hash of a string (returns a Promise).
+         */
+        function sha256(str) {
+            var buffer = new TextEncoder().encode(str);
+            return crypto.subtle.digest('SHA-256', buffer).then(function (hashBuffer) {
+                var hashArray = Array.from(new Uint8Array(hashBuffer));
+                return hashArray.map(function (b) { return b.toString(16).padStart(2, '0'); }).join('');
+            });
+        }
+
+        function showToast(message, type) {
+            type = type || 'info';
+            toastEl.textContent = message;
+            toastEl.className = 'toast toast-' + type + ' visible';
+            clearTimeout(toastEl._timer);
+            toastEl._timer = setTimeout(function () {
+                toastEl.classList.remove('visible');
+            }, 3500);
+        }
+
+        function formatDate(dateStr) {
+            if (!dateStr) return '—';
+            var d = new Date(dateStr);
+            if (isNaN(d.getTime())) return dateStr;
+            return d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+        }
+
+        function formatDateISO(dateStr) {
+            if (!dateStr) return '';
+            var d = new Date(dateStr);
+            if (isNaN(d.getTime())) return '';
+            return d.toISOString().split('T')[0];
+        }
+
+        function escapeHtml(str) {
+            if (!str) return '';
+            var div = document.createElement('div');
+            div.textContent = str;
+            return div.innerHTML;
+        }
+
+        function debounce(fn, delay) {
+            var timer;
+            return function () {
+                var ctx = this, args = arguments;
+                clearTimeout(timer);
+                timer = setTimeout(function () { fn.apply(ctx, args); }, delay);
+            };
+        }
+
+        // =================================================================
+        // MOCK DATA
+        // =================================================================
+
+        function getMockLeads() {
+            return [
+                {
+                    id: 'lead-001',
+                    name: 'Sarah Chen',
+                    email: 'sarah.chen@techvault.io',
+                    company: 'TechVault Inc.',
+                    spendRange: '$50,000 - $100,000',
+                    message: 'We are currently spending about $75K/month across AWS and GCP. Looking for help with reserved instance optimization and cost allocation tagging. Our team lacks FinOps expertise.',
+                    status: 'New',
+                    contactMethod: 'Email',
+                    notes: '',
+                    createdAt: '2026-03-13T14:30:00Z'
+                },
+                {
+                    id: 'lead-002',
+                    name: 'Marcus Johnson',
+                    email: 'marcus.j@retailcloud.com',
+                    company: 'RetailCloud Solutions',
+                    spendRange: '$100,000 - $250,000',
+                    message: 'Multi-cloud environment with AWS, Azure, and some GCP workloads. Need help consolidating billing and implementing showback/chargeback models across business units.',
+                    status: 'Contacted',
+                    contactMethod: 'Phone',
+                    notes: 'Scheduled initial call for next Tuesday. Very interested in FinOps Complete package.',
+                    createdAt: '2026-03-11T09:15:00Z'
+                },
+                {
+                    id: 'lead-003',
+                    name: 'Emily Rodriguez',
+                    email: 'emily.r@datastream.dev',
+                    company: 'DataStream Analytics',
+                    spendRange: '$25,000 - $50,000',
+                    message: 'Startup growing fast, cloud costs are scaling faster than revenue. Need immediate cost optimization on our AWS infrastructure, primarily EC2 and RDS.',
+                    status: 'Qualified',
+                    contactMethod: 'Email',
+                    notes: 'Great fit for FinOps Accelerator. Sent proposal on March 8.',
+                    createdAt: '2026-03-07T16:45:00Z'
+                },
+                {
+                    id: 'lead-004',
+                    name: 'James Park',
+                    email: 'jpark@enterprise-global.com',
+                    company: 'Enterprise Global Ltd',
+                    spendRange: '$250,000+',
+                    message: 'Enterprise-level cloud governance needed. We have 15 AWS accounts and 8 Azure subscriptions. Looking for a comprehensive FinOps strategy and tooling recommendations.',
+                    status: 'Converted',
+                    contactMethod: 'WhatsApp',
+                    notes: 'Signed FinOps Enterprise contract. Onboarding starts March 20.',
+                    createdAt: '2026-02-28T11:00:00Z'
+                },
+                {
+                    id: 'lead-005',
+                    name: 'Aisha Patel',
+                    email: 'aisha@nimbleops.co',
+                    company: 'NimbleOps',
+                    spendRange: '$10,000 - $25,000',
+                    message: 'Small team using AWS. Our bill jumped 40% last month and we do not know why. Need someone to audit our infrastructure and find savings.',
+                    status: 'New',
+                    contactMethod: 'Email',
+                    notes: '',
+                    createdAt: '2026-03-12T20:10:00Z'
+                },
+                {
+                    id: 'lead-006',
+                    name: 'Robert Kim',
+                    email: 'robert.kim@finserve.bank',
+                    company: 'FinServe Banking',
+                    spendRange: '$100,000 - $250,000',
+                    message: 'Financial services company migrating from on-prem to Azure. Need guidance on cost modeling for the migration and ongoing optimization post-migration.',
+                    status: 'Contacted',
+                    contactMethod: 'Phone',
+                    notes: 'Left voicemail. Will follow up via email.',
+                    createdAt: '2026-03-09T08:30:00Z'
+                },
+                {
+                    id: 'lead-007',
+                    name: 'Lisa Thompson',
+                    email: 'lisa.t@healthtech.care',
+                    company: 'HealthTech Solutions',
+                    spendRange: '$50,000 - $100,000',
+                    message: 'Healthcare SaaS platform on GCP. HIPAA compliance adds complexity to our cloud architecture. Need help optimizing without compromising compliance.',
+                    status: 'Qualified',
+                    contactMethod: 'Email',
+                    notes: 'Requires HIPAA-aware recommendations. Sent specialized proposal.',
+                    createdAt: '2026-03-05T13:20:00Z'
+                },
+                {
+                    id: 'lead-008',
+                    name: 'David Okonkwo',
+                    email: 'david.o@edusync.io',
+                    company: 'EduSync',
+                    spendRange: '$10,000 - $25,000',
+                    message: 'EdTech startup. Our AWS costs are unpredictable month to month. Interested in learning about reserved instances and savings plans.',
+                    status: 'Lost',
+                    contactMethod: 'Email',
+                    notes: 'Budget constraints. Will revisit in Q3.',
+                    createdAt: '2026-03-01T17:55:00Z'
+                },
+                {
+                    id: 'lead-009',
+                    name: 'Natasha Volkov',
+                    email: 'natasha@cloudnine.dev',
+                    company: 'CloudNine Development',
+                    spendRange: '$25,000 - $50,000',
+                    message: 'DevOps consultancy looking to partner with a FinOps provider. We want to offer cloud cost optimization as an add-on service to our clients.',
+                    status: 'Contacted',
+                    contactMethod: 'WhatsApp',
+                    notes: 'Potential partnership opportunity. Set up meeting for next week.',
+                    createdAt: '2026-03-10T10:40:00Z'
+                },
+                {
+                    id: 'lead-010',
+                    name: 'Carlos Mendez',
+                    email: 'cmendez@logistix.co',
+                    company: 'Logistix International',
+                    spendRange: '$50,000 - $100,000',
+                    message: 'Logistics company running Kubernetes on AWS EKS. Container costs are hard to track and allocate to teams. Need container-level cost visibility.',
+                    status: 'New',
+                    contactMethod: 'Phone',
+                    notes: '',
+                    createdAt: '2026-03-14T07:25:00Z'
+                }
+            ];
+        }
+
+        // =================================================================
+        // AUTHENTICATION
+        // =================================================================
+
+        function checkAuth() {
+            if (sessionStorage.getItem('cloudaip_admin_auth') === 'true') {
+                showDashboard();
+            }
+        }
+
+        function showDashboard() {
+            loginOverlay.classList.add('hidden');
+            dashboard.classList.add('active');
+            loadLeads();
+        }
+
+        function logout() {
+            sessionStorage.removeItem('cloudaip_admin_auth');
+            dashboard.classList.remove('active');
+            loginOverlay.classList.remove('hidden');
+            loginPassword.value = '';
+            allLeads = [];
+            filteredLeads = [];
+            tableBody.innerHTML = '';
+        }
+
+        loginForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+            var password = loginPassword.value;
+
+            sha256(password).then(function (hash) {
+                if (hash === PASSWORD_HASH) {
+                    sessionStorage.setItem('cloudaip_admin_auth', 'true');
+                    loginError.style.display = 'none';
+                    showDashboard();
+                } else {
+                    loginError.style.display = 'block';
+                    loginPassword.value = '';
+                    loginPassword.focus();
+                }
+            });
+        });
+
+        btnLogout.addEventListener('click', logout);
+
+        // =================================================================
+        // API / DATA LOADING
+        // =================================================================
+
+        function showTableLoading(show) {
+            if (show) {
+                tableLoading.classList.add('active');
+            } else {
+                tableLoading.classList.remove('active');
+            }
+        }
+
+        function loadLeads() {
+            showTableLoading(true);
+
+            fetch(API_BASE + '/api/leads', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(function (response) {
+                if (!response.ok) throw new Error('API error: ' + response.status);
+                return response.json();
+            })
+            .then(function (data) {
+                isDemoMode = false;
+                demoBanner.classList.remove('visible');
+                allLeads = Array.isArray(data) ? data : (data.leads || []);
+                applyFiltersAndRender();
+                showToast('Leads loaded successfully', 'success');
+            })
+            .catch(function () {
+                isDemoMode = true;
+                demoBanner.classList.add('visible');
+                allLeads = getMockLeads();
+                applyFiltersAndRender();
+                showToast('API unreachable — loaded demo data', 'info');
+            })
+            .finally(function () {
+                showTableLoading(false);
+            });
+        }
+
+        function updateLeadOnServer(leadId, updates) {
+            if (isDemoMode) {
+                // In demo mode, just update locally
+                var lead = allLeads.find(function (l) { return l.id === leadId; });
+                if (lead) {
+                    Object.assign(lead, updates);
+                }
+                applyFiltersAndRender();
+                showToast('Lead updated (demo mode)', 'success');
+                return Promise.resolve();
+            }
+
+            return fetch(API_BASE + '/api/leads/' + leadId, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(updates)
+            })
+            .then(function (response) {
+                if (!response.ok) throw new Error('Update failed');
+                return response.json();
+            })
+            .then(function () {
+                var lead = allLeads.find(function (l) { return l.id === leadId; });
+                if (lead) {
+                    Object.assign(lead, updates);
+                }
+                applyFiltersAndRender();
+                showToast('Lead updated successfully', 'success');
+            })
+            .catch(function () {
+                showToast('Failed to update lead. Please try again.', 'error');
+            });
+        }
+
+        // =================================================================
+        // FILTERING & SORTING
+        // =================================================================
+
+        function applyFiltersAndRender() {
+            var statusVal = filterStatus.value;
+            var fromVal = filterFrom.value;
+            var toVal = filterTo.value;
+            var searchVal = filterSearch.value.toLowerCase().trim();
+
+            filteredLeads = allLeads.filter(function (lead) {
+                // Status filter
+                if (statusVal !== 'all' && lead.status !== statusVal) return false;
+
+                // Date range
+                if (fromVal) {
+                    var leadDate = new Date(lead.createdAt);
+                    var fromDate = new Date(fromVal);
+                    if (leadDate < fromDate) return false;
+                }
+                if (toVal) {
+                    var leadDate2 = new Date(lead.createdAt);
+                    var toDate = new Date(toVal + 'T23:59:59');
+                    if (leadDate2 > toDate) return false;
+                }
+
+                // Search
+                if (searchVal) {
+                    var haystack = [
+                        lead.name || '',
+                        lead.email || '',
+                        lead.company || ''
+                    ].join(' ').toLowerCase();
+                    if (haystack.indexOf(searchVal) === -1) return false;
+                }
+
+                return true;
+            });
+
+            // Sort
+            filteredLeads.sort(function (a, b) {
+                var aVal, bVal;
+
+                switch (sortField) {
+                    case 'name':
+                        aVal = (a.name || '').toLowerCase();
+                        bVal = (b.name || '').toLowerCase();
+                        break;
+                    case 'email':
+                        aVal = (a.email || '').toLowerCase();
+                        bVal = (b.email || '').toLowerCase();
+                        break;
+                    case 'company':
+                        aVal = (a.company || '').toLowerCase();
+                        bVal = (b.company || '').toLowerCase();
+                        break;
+                    case 'spend':
+                        aVal = (a.spendRange || '').toLowerCase();
+                        bVal = (b.spendRange || '').toLowerCase();
+                        break;
+                    case 'status':
+                        aVal = (a.status || '').toLowerCase();
+                        bVal = (b.status || '').toLowerCase();
+                        break;
+                    case 'date':
+                    default:
+                        aVal = new Date(a.createdAt || 0).getTime();
+                        bVal = new Date(b.createdAt || 0).getTime();
+                        break;
+                }
+
+                if (aVal < bVal) return sortDirection === 'asc' ? -1 : 1;
+                if (aVal > bVal) return sortDirection === 'asc' ? 1 : -1;
+                return 0;
+            });
+
+            updateStats();
+            currentPage = 1;
+            renderTable();
+            renderPagination();
+        }
+
+        // =================================================================
+        // STATS
+        // =================================================================
+
+        function updateStats() {
+            var counts = { total: allLeads.length, New: 0, Contacted: 0, Qualified: 0, Converted: 0 };
+            allLeads.forEach(function (lead) {
+                if (counts.hasOwnProperty(lead.status)) {
+                    counts[lead.status]++;
+                }
+            });
+
+            document.getElementById('statTotal').textContent = counts.total;
+            document.getElementById('statNew').textContent = counts.New;
+            document.getElementById('statContacted').textContent = counts.Contacted;
+            document.getElementById('statQualified').textContent = counts.Qualified;
+            document.getElementById('statConverted').textContent = counts.Converted;
+        }
+
+        // =================================================================
+        // TABLE RENDERING
+        // =================================================================
+
+        function renderTable() {
+            var start = (currentPage - 1) * LEADS_PER_PAGE;
+            var end = start + LEADS_PER_PAGE;
+            var pageLeads = filteredLeads.slice(start, end);
+
+            if (pageLeads.length === 0) {
+                tableBody.innerHTML =
+                    '<tr><td colspan="7">' +
+                    '<div class="empty-state">' +
+                    '<svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m5.231 13.481L15 17.25m-4.5-15H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"/></svg>' +
+                    '<p>No leads found matching your filters.</p>' +
+                    '</div>' +
+                    '</td></tr>';
+                return;
+            }
+
+            var html = '';
+            pageLeads.forEach(function (lead) {
+                var statusClass = 'status-' + (lead.status || 'new').toLowerCase();
+
+                html +=
+                    '<tr class="lead-row" data-id="' + escapeHtml(lead.id) + '">' +
+                    '<td><span class="lead-name">' + escapeHtml(lead.name) + '</span></td>' +
+                    '<td><span class="lead-email">' + escapeHtml(lead.email) + '</span></td>' +
+                    '<td>' + escapeHtml(lead.company) + '</td>' +
+                    '<td>' + escapeHtml(lead.spendRange) + '</td>' +
+                    '<td><span class="status-badge ' + statusClass + '">' + escapeHtml(lead.status) + '</span></td>' +
+                    '<td>' + formatDate(lead.createdAt) + '</td>' +
+                    '<td><button class="btn-icon btn-expand" data-id="' + escapeHtml(lead.id) + '" title="Expand details" onclick="event.stopPropagation()">&#9660;</button></td>' +
+                    '</tr>';
+
+                // Expanded row
+                html +=
+                    '<tr class="lead-expanded" id="expanded-' + escapeHtml(lead.id) + '">' +
+                    '<td colspan="7">' +
+                    '<div class="expanded-content">' +
+                    '<div>' +
+                    '<div class="expanded-field"><label>Full Message</label><div class="field-value">' + escapeHtml(lead.message || 'No message provided.') + '</div></div>' +
+                    '<div class="expanded-field"><label>Contact Method</label><div class="field-value">' + escapeHtml(lead.contactMethod || '—') + '</div></div>' +
+                    '</div>' +
+                    '<div>' +
+                    '<div class="expanded-field"><label>Update Status</label>' +
+                    '<select class="inline-status-select" data-id="' + escapeHtml(lead.id) + '">' +
+                    '<option value="New"' + (lead.status === 'New' ? ' selected' : '') + '>New</option>' +
+                    '<option value="Contacted"' + (lead.status === 'Contacted' ? ' selected' : '') + '>Contacted</option>' +
+                    '<option value="Qualified"' + (lead.status === 'Qualified' ? ' selected' : '') + '>Qualified</option>' +
+                    '<option value="Converted"' + (lead.status === 'Converted' ? ' selected' : '') + '>Converted</option>' +
+                    '<option value="Lost"' + (lead.status === 'Lost' ? ' selected' : '') + '>Lost</option>' +
+                    '</select>' +
+                    '</div>' +
+                    '<div class="expanded-field"><label>Notes</label>' +
+                    '<textarea class="inline-notes" data-id="' + escapeHtml(lead.id) + '" placeholder="Add notes...">' + escapeHtml(lead.notes || '') + '</textarea>' +
+                    '</div>' +
+                    '<div class="expanded-actions">' +
+                    '<button class="btn-save-inline" data-id="' + escapeHtml(lead.id) + '">Save Changes</button>' +
+                    '</div>' +
+                    '</div>' +
+                    '</div>' +
+                    '</td>' +
+                    '</tr>';
+            });
+
+            tableBody.innerHTML = html;
+        }
+
+        // =================================================================
+        // PAGINATION
+        // =================================================================
+
+        function renderPagination() {
+            var totalPages = Math.ceil(filteredLeads.length / LEADS_PER_PAGE);
+            if (totalPages <= 1) {
+                paginationEl.innerHTML = '';
+                return;
+            }
+
+            var html = '';
+            html += '<button class="page-prev"' + (currentPage === 1 ? ' disabled' : '') + '>&laquo; Prev</button>';
+
+            for (var i = 1; i <= totalPages; i++) {
+                html += '<button class="page-num' + (i === currentPage ? ' active' : '') + '" data-page="' + i + '">' + i + '</button>';
+            }
+
+            html += '<span class="page-info">' + currentPage + ' / ' + totalPages + '</span>';
+            html += '<button class="page-next"' + (currentPage === totalPages ? ' disabled' : '') + '>Next &raquo;</button>';
+
+            paginationEl.innerHTML = html;
+        }
+
+        // =================================================================
+        // MODAL
+        // =================================================================
+
+        function openModal(leadId) {
+            var lead = allLeads.find(function (l) { return l.id === leadId; });
+            if (!lead) return;
+
+            currentModalLeadId = leadId;
+            modalTitle.textContent = escapeHtml(lead.name);
+
+            modalBody.innerHTML =
+                '<div class="modal-field"><label>Name</label><div class="field-value">' + escapeHtml(lead.name) + '</div></div>' +
+                '<div class="modal-field"><label>Email</label><div class="field-value">' + escapeHtml(lead.email) + '</div></div>' +
+                '<div class="modal-field"><label>Company</label><div class="field-value">' + escapeHtml(lead.company) + '</div></div>' +
+                '<div class="modal-field"><label>Cloud Spend Range</label><div class="field-value">' + escapeHtml(lead.spendRange) + '</div></div>' +
+                '<div class="modal-field"><label>Contact Method</label><div class="field-value">' + escapeHtml(lead.contactMethod || '—') + '</div></div>' +
+                '<div class="modal-field"><label>Date Submitted</label><div class="field-value">' + formatDate(lead.createdAt) + '</div></div>' +
+                '<div class="modal-field"><label>Message</label><div class="field-value">' + escapeHtml(lead.message || 'No message provided.') + '</div></div>' +
+                '<div class="modal-field"><label>Status</label>' +
+                '<select id="modalStatus">' +
+                '<option value="New"' + (lead.status === 'New' ? ' selected' : '') + '>New</option>' +
+                '<option value="Contacted"' + (lead.status === 'Contacted' ? ' selected' : '') + '>Contacted</option>' +
+                '<option value="Qualified"' + (lead.status === 'Qualified' ? ' selected' : '') + '>Qualified</option>' +
+                '<option value="Converted"' + (lead.status === 'Converted' ? ' selected' : '') + '>Converted</option>' +
+                '<option value="Lost"' + (lead.status === 'Lost' ? ' selected' : '') + '>Lost</option>' +
+                '</select></div>' +
+                '<div class="modal-field"><label>Notes</label>' +
+                '<textarea id="modalNotes" placeholder="Add notes...">' + escapeHtml(lead.notes || '') + '</textarea></div>';
+
+            modalOverlay.classList.add('active');
+        }
+
+        function closeModal() {
+            modalOverlay.classList.remove('active');
+            currentModalLeadId = null;
+        }
+
+        // =================================================================
+        // CSV EXPORT
+        // =================================================================
+
+        function exportToCSV() {
+            if (filteredLeads.length === 0) {
+                showToast('No leads to export.', 'error');
+                return;
+            }
+
+            var headers = ['Name', 'Email', 'Company', 'Spend Range', 'Message', 'Status', 'Contact Method', 'Created Date'];
+            var rows = filteredLeads.map(function (lead) {
+                return [
+                    lead.name || '',
+                    lead.email || '',
+                    lead.company || '',
+                    lead.spendRange || '',
+                    (lead.message || '').replace(/"/g, '""'),
+                    lead.status || '',
+                    lead.contactMethod || '',
+                    formatDateISO(lead.createdAt)
+                ].map(function (field) {
+                    return '"' + field + '"';
+                }).join(',');
+            });
+
+            var csvContent = headers.join(',') + '\n' + rows.join('\n');
+            var blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            var url = URL.createObjectURL(blob);
+
+            var link = document.createElement('a');
+            link.href = url;
+            link.download = 'cloudaip-leads-' + new Date().toISOString().split('T')[0] + '.csv';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+
+            showToast('Exported ' + filteredLeads.length + ' leads to CSV', 'success');
+        }
+
+        // =================================================================
+        // EVENT LISTENERS
+        // =================================================================
+
+        // Filters
+        filterStatus.addEventListener('change', function () { applyFiltersAndRender(); });
+        filterFrom.addEventListener('change', function () { applyFiltersAndRender(); });
+        filterTo.addEventListener('change', function () { applyFiltersAndRender(); });
+        filterSearch.addEventListener('input', debounce(function () { applyFiltersAndRender(); }, 300));
+
+        // Refresh
+        btnRefresh.addEventListener('click', function () { loadLeads(); });
+
+        // Export
+        btnExport.addEventListener('click', exportToCSV);
+
+        // Sort headers
+        document.querySelectorAll('.leads-table th[data-sort]').forEach(function (th) {
+            th.addEventListener('click', function () {
+                var field = this.getAttribute('data-sort');
+
+                // Remove active from all
+                document.querySelectorAll('.leads-table th').forEach(function (h) {
+                    h.classList.remove('sort-active');
+                });
+
+                if (sortField === field) {
+                    sortDirection = sortDirection === 'asc' ? 'desc' : 'asc';
+                } else {
+                    sortField = field;
+                    sortDirection = 'asc';
+                }
+
+                this.classList.add('sort-active');
+                this.querySelector('.sort-arrow').innerHTML = sortDirection === 'asc' ? '&#9650;' : '&#9660;';
+
+                applyFiltersAndRender();
+            });
+        });
+
+        // Table clicks (delegation)
+        tableBody.addEventListener('click', function (e) {
+            // Expand button
+            var expandBtn = e.target.closest('.btn-expand');
+            if (expandBtn) {
+                var id = expandBtn.getAttribute('data-id');
+                var expandedRow = document.getElementById('expanded-' + id);
+                if (expandedRow) {
+                    expandedRow.classList.toggle('visible');
+                    expandBtn.innerHTML = expandedRow.classList.contains('visible') ? '&#9650;' : '&#9660;';
+                }
+                return;
+            }
+
+            // Save inline
+            var saveBtn = e.target.closest('.btn-save-inline');
+            if (saveBtn) {
+                var leadId = saveBtn.getAttribute('data-id');
+                var row = document.getElementById('expanded-' + leadId);
+                if (row) {
+                    var statusSelect = row.querySelector('.inline-status-select');
+                    var notesArea = row.querySelector('.inline-notes');
+                    updateLeadOnServer(leadId, {
+                        status: statusSelect ? statusSelect.value : undefined,
+                        notes: notesArea ? notesArea.value : undefined
+                    });
+                }
+                return;
+            }
+
+            // Don't open modal if clicking inside expanded row or on form elements
+            if (e.target.closest('.lead-expanded') || e.target.closest('select') || e.target.closest('textarea') || e.target.closest('button')) {
+                return;
+            }
+
+            // Click on lead row to open modal
+            var leadRow = e.target.closest('.lead-row');
+            if (leadRow) {
+                var rowId = leadRow.getAttribute('data-id');
+                openModal(rowId);
+            }
+        });
+
+        // Pagination (delegation)
+        paginationEl.addEventListener('click', function (e) {
+            var btn = e.target.closest('button');
+            if (!btn || btn.disabled) return;
+
+            if (btn.classList.contains('page-prev')) {
+                currentPage = Math.max(1, currentPage - 1);
+            } else if (btn.classList.contains('page-next')) {
+                var totalPages = Math.ceil(filteredLeads.length / LEADS_PER_PAGE);
+                currentPage = Math.min(totalPages, currentPage + 1);
+            } else if (btn.classList.contains('page-num')) {
+                currentPage = parseInt(btn.getAttribute('data-page'), 10);
+            }
+
+            renderTable();
+            renderPagination();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Modal
+        modalClose.addEventListener('click', closeModal);
+        modalBtnClose.addEventListener('click', closeModal);
+
+        modalOverlay.addEventListener('click', function (e) {
+            if (e.target === modalOverlay) closeModal();
+        });
+
+        modalBtnSave.addEventListener('click', function () {
+            if (!currentModalLeadId) return;
+            var statusEl = document.getElementById('modalStatus');
+            var notesEl = document.getElementById('modalNotes');
+
+            updateLeadOnServer(currentModalLeadId, {
+                status: statusEl ? statusEl.value : undefined,
+                notes: notesEl ? notesEl.value : undefined
+            });
+
+            closeModal();
+        });
+
+        // Close modal on Escape
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape' && modalOverlay.classList.contains('active')) {
+                closeModal();
+            }
+        });
+
+        // =================================================================
+        // INIT
+        // =================================================================
+
+        checkAuth();
+
+    })();
+    </script>
+</body>
+</html>

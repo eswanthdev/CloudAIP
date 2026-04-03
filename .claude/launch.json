@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "cloudaip",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "8080", "--directory", "C:/Users/eswan/OneDrive/Desktop/CloudAIP"],
+      "port": 8080
+    }
+  ]
+}

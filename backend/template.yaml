@@ -1,0 +1,153 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: CloudAIP Serverless Backend - Contact Form & Lead Management API
+
+Parameters:
+  SESFromEmail:
+    Type: String
+    Default: hello@cloudaip.com
+    Description: Verified SES sender email address
+  AdminEmail:
+    Type: String
+    Default: admin@cloudaip.com
+    Description: Admin email address for lead notifications
+
+Globals:
+  Function:
+    Runtime: nodejs20.x
+    MemorySize: 256
+    Timeout: 10
+    Architectures:
+      - x86_64
+
+Resources:
+  # ---------------------------------------------------------------------------
+  # API Gateway (HTTP API with CORS)
+  # ---------------------------------------------------------------------------
+  CloudAIPApi:
+    Type: AWS::Serverless::HttpApi
+    Properties:
+      StageName: prod
+      CorsConfiguration:
+        AllowOrigins:
+          - '*'
+        AllowMethods:
+          - POST
+          - GET
+          - OPTIONS
+        AllowHeaders:
+          - Content-Type
+          - Authorization
+        MaxAge: 3600
+
+  # ---------------------------------------------------------------------------
+  # DynamoDB Table
+  # ---------------------------------------------------------------------------
+  LeadsTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: CloudAIP-Leads
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - AttributeName: leadId
+          AttributeType: S
+        - AttributeName: createdAt
+          AttributeType: S
+        - AttributeName: status
+          AttributeType: S
+        - AttributeName: email
+          AttributeType: S
+      KeySchema:
+        - AttributeName: leadId
+          KeyType: HASH
+        - AttributeName: createdAt
+          KeyType: RANGE
+      GlobalSecondaryIndexes:
+        - IndexName: StatusIndex
+          KeySchema:
+            - AttributeName: status
+              KeyType: HASH
+            - AttributeName: createdAt
+              KeyType: RANGE
+          Projection:
+            ProjectionType: ALL
+        - IndexName: EmailIndex
+          KeySchema:
+            - AttributeName: email
+              KeyType: HASH
+          Projection:
+            ProjectionType: ALL
+      TimeToLiveSpecification:
+        AttributeName: ttl
+        Enabled: true
+
+  # ---------------------------------------------------------------------------
+  # Lambda: Contact Form Handler
+  # ---------------------------------------------------------------------------
+  ContactFormFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: CloudAIP-ContactForm
+      CodeUri: lambda/contact-form/
+      Handler: index.handler
+      Environment:
+        Variables:
+          TABLE_NAME: !Ref LeadsTable
+          SES_FROM_EMAIL: !Ref SESFromEmail
+          ADMIN_EMAIL: !Ref AdminEmail
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref LeadsTable
+        - SESCrudPolicy:
+            IdentityName: !Ref SESFromEmail
+      Events:
+        PostContact:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref CloudAIPApi
+            Path: /api/contact
+            Method: POST
+
+  # ---------------------------------------------------------------------------
+  # Lambda: Admin API Handler
+  # ---------------------------------------------------------------------------
+  AdminApiFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: CloudAIP-AdminApi
+      CodeUri: lambda/admin-api/
+      Handler: index.handler
+      Environment:
+        Variables:
+          TABLE_NAME: !Ref LeadsTable
+      Policies:
+        - DynamoDBReadPolicy:
+            TableName: !Ref LeadsTable
+        - Statement:
+            - Effect: Allow
+              Action:
+                - dynamodb:UpdateItem
+              Resource:
+                - !GetAtt LeadsTable.Arn
+                - !Sub '${LeadsTable.Arn}/index/*'
+      Events:
+        GetLeads:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref CloudAIPApi
+            Path: /api/leads
+            Method: GET
+        UpdateLead:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref CloudAIPApi
+            Path: /api/leads/{leadId}
+            Method: PUT
+
+Outputs:
+  ApiUrl:
+    Description: CloudAIP API Gateway endpoint URL
+    Value: !Sub 'https://${CloudAIPApi}.execute-api.${AWS::Region}.amazonaws.com/prod'
+  TableName:
+    Description: DynamoDB Leads table name
+    Value: !Ref LeadsTable

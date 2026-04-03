@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- SEO Meta Tags -->
+    <title>FinOps Smart Saver — Dedicated FinOps Retainer & Consulting | CloudAIP</title>
+    <meta name="description" content="10 hours per month of dedicated FinOps consulting. Monthly cost reviews, RI management, vendor negotiation support, and team training. Starting at $750/month.">
+    <meta name="keywords" content="FinOps retainer, cloud cost consulting, reserved instance management, vendor negotiation, FinOps consulting, fractional FinOps, cloud optimization monthly, cost review">
+    <meta name="author" content="CloudAIP">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://cloudaip.com/pages/services/finops-smart-saver.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="FinOps Smart Saver — Dedicated FinOps Retainer | CloudAIP">
+    <meta property="og:description" content="Your dedicated FinOps expert, on retainer. 10 hours per month of consulting starting at $750/month.">
+    <meta property="og:url" content="https://cloudaip.com/pages/services/finops-smart-saver.html">
+    <meta property="og:image" content="https://cloudaip.com/assets/og-image.jpg">
+    <meta property="og:site_name" content="CloudAIP">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="FinOps Smart Saver — Dedicated FinOps Retainer | CloudAIP">
+    <meta name="twitter:description" content="Your dedicated FinOps expert, on retainer. 10 hours per month of consulting starting at $750/month.">
+    <meta name="twitter:image" content="https://cloudaip.com/assets/og-image.jpg">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../../assets/favicon.ico">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="../../css/styles.css">
+
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg-primary: #0a0e27; --bg-card: #111638; --border-color: #1e2a5a;
+            --cyan: #00d4ff; --teal: #0891b2; --purple: #7c3aed;
+            --text-white: #ffffff; --text-muted: #94a3b8; --text-light: #cbd5e1;
+            --gradient-primary: linear-gradient(135deg, #00d4ff, #0891b2);
+            --gradient-accent: linear-gradient(135deg, #7c3aed, #00d4ff);
+            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --nav-height: 72px;
+        }
+        html { scroll-behavior: smooth; font-size: 16px; }
+        body { font-family: var(--font-family); background-color: var(--bg-primary); color: var(--text-white); line-height: 1.6; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+        a { text-decoration: none; color: inherit; transition: color 0.3s ease; }
+        ul, ol { list-style: none; }
+        img { max-width: 100%; height: auto; display: block; }
+        button, input, textarea, select { font-family: inherit; font-size: inherit; border: none; outline: none; background: none; }
+        .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+        .section { padding: 100px 0; }
+        .section__label { display: inline-block; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 3px; background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 12px; }
+        .section__title { font-size: 2.5rem; font-weight: 800; margin-bottom: 16px; line-height: 1.2; }
+        .section__subtitle { font-size: 1.125rem; color: var(--text-muted); max-width: 600px; margin-bottom: 48px; }
+        .section__header { text-align: center; margin-bottom: 60px; }
+        .section__header .section__subtitle { margin-left: auto; margin-right: auto; }
+
+        .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 32px; border-radius: 8px; font-weight: 600; font-size: 1rem; cursor: pointer; transition: all 0.3s ease; white-space: nowrap; }
+        .btn--primary { background: var(--gradient-primary); color: var(--text-white); border: none; box-shadow: 0 4px 20px rgba(0, 212, 255, 0.3); }
+        .btn--primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0, 212, 255, 0.4); }
+        .btn--outline { background: transparent; color: var(--text-white); border: 2px solid var(--border-color); }
+        .btn--outline:hover { border-color: var(--cyan); color: var(--cyan); transform: translateY(-2px); }
+        .btn--small { padding: 10px 24px; font-size: 0.875rem; }
+
+        /* Navigation */
+        .nav { position: fixed; top: 0; left: 0; width: 100%; height: var(--nav-height); z-index: 1000; background: rgba(10, 14, 39, 0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(30, 42, 90, 0.5); transition: all 0.3s ease; }
+        .nav--scrolled { background: rgba(10, 14, 39, 0.95); box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3); }
+        .nav__container { display: flex; align-items: center; justify-content: space-between; height: 100%; max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+        .nav__logo { font-size: 1.5rem; font-weight: 800; background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; letter-spacing: -0.5px; }
+        .nav__links { display: flex; align-items: center; gap: 32px; }
+        .nav__link { font-size: 0.9rem; font-weight: 500; color: var(--text-light); transition: color 0.3s ease; position: relative; }
+        .nav__link::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: var(--gradient-primary); transition: width 0.3s ease; }
+        .nav__link:hover { color: var(--cyan); }
+        .nav__link:hover::after { width: 100%; }
+        .nav__cta { padding: 10px 24px; font-size: 0.875rem; }
+        .nav__hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; z-index: 1001; }
+        .nav__hamburger-line { width: 24px; height: 2px; background: var(--text-white); transition: all 0.3s ease; border-radius: 2px; }
+        .nav__hamburger--active .nav__hamburger-line:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .nav__hamburger--active .nav__hamburger-line:nth-child(2) { opacity: 0; }
+        .nav__hamburger--active .nav__hamburger-line:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+        /* Page Hero */
+        .page-hero { padding: 160px 0 80px; position: relative; overflow: hidden; text-align: center; }
+        .page-hero__glow { position: absolute; width: 500px; height: 500px; border-radius: 50%; filter: blur(120px); opacity: 0.15; pointer-events: none; }
+        .page-hero__glow--cyan { background: var(--cyan); top: -200px; right: -100px; }
+        .page-hero__glow--purple { background: var(--purple); bottom: -200px; left: -100px; }
+        .page-hero__title { font-size: 3.5rem; font-weight: 900; margin-bottom: 20px; line-height: 1.1; }
+        .page-hero__title span { background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .page-hero__subtitle { font-size: 1.25rem; color: var(--text-muted); max-width: 650px; margin: 0 auto; }
+
+        /* Deliverables Grid */
+        .deliverables-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+        .deliverable-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; padding: 36px 28px; transition: all 0.3s ease; }
+        .deliverable-card:hover { transform: translateY(-4px); border-color: var(--cyan); box-shadow: 0 8px 30px rgba(0, 212, 255, 0.1); }
+        .deliverable-card__icon { font-size: 2.5rem; margin-bottom: 16px; }
+        .deliverable-card__title { font-size: 1.15rem; font-weight: 700; margin-bottom: 10px; }
+        .deliverable-card__text { color: var(--text-muted); font-size: 0.9rem; line-height: 1.7; }
+
+        /* Retainer Details */
+        .retainer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+        .retainer-item { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; padding: 28px 20px; text-align: center; transition: all 0.3s ease; }
+        .retainer-item:hover { border-color: var(--cyan); }
+        .retainer-item__icon { font-size: 2rem; margin-bottom: 12px; }
+        .retainer-item__text { color: var(--text-light); font-size: 0.9rem; font-weight: 500; }
+
+        /* Timeline */
+        .timeline { max-width: 800px; margin: 0 auto; }
+        .timeline-item { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; padding: 32px 36px; margin-bottom: 20px; display: flex; gap: 24px; align-items: flex-start; transition: all 0.3s ease; }
+        .timeline-item:hover { border-color: var(--cyan); box-shadow: 0 8px 30px rgba(0, 212, 255, 0.1); }
+        .timeline-item__month { background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-size: 1rem; font-weight: 800; text-transform: uppercase; white-space: nowrap; min-width: 100px; padding-top: 2px; }
+        .timeline-item__text { color: var(--text-light); font-size: 0.95rem; line-height: 1.7; }
+
+        /* Info Cards */
+        .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+        .info-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; padding: 40px; }
+        .info-card__title { font-size: 1.3rem; font-weight: 700; margin-bottom: 16px; }
+        .info-card__text { color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; }
+        .info-card__price { font-size: 2.5rem; font-weight: 900; background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 8px; }
+        .info-card__price-note { color: var(--text-muted); font-size: 0.9rem; }
+        .info-card__list { margin-top: 16px; }
+        .info-card__list li { padding: 8px 0; color: var(--text-light); font-size: 0.9rem; display: flex; align-items: flex-start; gap: 10px; }
+        .info-card__list li::before { content: '\2713'; color: var(--cyan); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+
+        /* Overview */
+        .overview-card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; padding: 48px; max-width: 900px; margin: 0 auto; }
+        .overview-card__text { color: var(--text-light); font-size: 1.05rem; line-height: 1.8; }
+
+        /* CTA Section */
+        .cta-section { text-align: center; padding: 100px 0; }
+        .cta-section__title { font-size: 2.5rem; font-weight: 800; margin-bottom: 16px; }
+        .cta-section__text { color: var(--text-muted); font-size: 1.1rem; max-width: 550px; margin: 0 auto 32px; }
+
+        /* Footer */
+        .footer { background: #060816; padding: 80px 0 0; border-top: 1px solid var(--border-color); }
+        .footer__grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr 1.5fr; gap: 40px; margin-bottom: 60px; }
+        .footer__brand-description { color: var(--text-muted); font-size: 0.9rem; margin-top: 16px; line-height: 1.7; }
+        .footer__aws-badge { display: inline-flex; align-items: center; gap: 6px; margin-top: 16px; padding: 6px 12px; background: rgba(255, 153, 0, 0.1); border: 1px solid rgba(255, 153, 0, 0.2); border-radius: 6px; font-size: 0.8rem; color: #ff9900; }
+        .footer__heading { font-size: 0.95rem; font-weight: 700; margin-bottom: 20px; }
+        .footer__link { display: block; color: var(--text-muted); font-size: 0.9rem; padding: 4px 0; transition: color 0.3s ease; }
+        .footer__link:hover { color: var(--cyan); }
+        .footer__contact-item { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 8px; }
+        .footer__social { display: flex; gap: 12px; margin-top: 16px; }
+        .footer__social-link { width: 36px; height: 36px; border-radius: 8px; background: var(--bg-card); border: 1px solid var(--border-color); display: flex; align-items: center; justify-content: center; font-size: 0.9rem; transition: all 0.3s ease; }
+        .footer__social-link:hover { border-color: var(--cyan); background: rgba(0, 212, 255, 0.1); }
+        .footer__newsletter-form { display: flex; gap: 8px; }
+        .footer__newsletter-input { flex: 1; padding: 10px 14px; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 8px; color: var(--text-white); font-size: 0.85rem; }
+        .footer__newsletter-btn { padding: 10px 16px; background: var(--gradient-primary); border: none; border-radius: 8px; color: var(--text-white); font-weight: 600; font-size: 0.85rem; cursor: pointer; }
+        .footer__bottom { padding: 24px 0; border-top: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+        .footer__copyright { color: var(--text-muted); font-size: 0.85rem; }
+        .footer__legal { display: flex; gap: 24px; }
+        .footer__legal-link { color: var(--text-muted); font-size: 0.85rem; transition: color 0.3s ease; }
+        .footer__legal-link:hover { color: var(--cyan); }
+
+        .whatsapp-float { position: fixed; bottom: 24px; right: 24px; width: 56px; height: 56px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4); z-index: 999; transition: transform 0.3s ease; }
+        .whatsapp-float:hover { transform: scale(1.1); }
+
+        [data-animate] { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
+        [data-animate].animated { opacity: 1; transform: translateY(0); }
+
+        @media (max-width: 768px) {
+            .nav__links { position: fixed; top: 0; right: -100%; width: 280px; height: 100vh; background: var(--bg-primary); flex-direction: column; justify-content: center; padding: 40px; border-left: 1px solid var(--border-color); transition: right 0.3s ease; }
+            .nav__links--active { right: 0; }
+            .nav__hamburger { display: flex; }
+            .page-hero__title { font-size: 2.5rem; }
+            .deliverables-grid { grid-template-columns: 1fr; }
+            .retainer-grid { grid-template-columns: 1fr 1fr; }
+            .info-grid { grid-template-columns: 1fr; }
+            .timeline-item { flex-direction: column; gap: 12px; }
+            .footer__grid { grid-template-columns: 1fr 1fr; }
+            .section__title { font-size: 2rem; }
+            .cta-section__title { font-size: 2rem; }
+        }
+        @media (max-width: 480px) {
+            .retainer-grid { grid-template-columns: 1fr; }
+            .footer__grid { grid-template-columns: 1fr; }
+            .page-hero__title { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===================== NAVIGATION ===================== -->
+    <nav class="nav" id="nav" role="navigation" aria-label="Main navigation">
+        <div class="nav__container">
+            <a href="../../index.html" class="nav__logo" aria-label="CloudAIP Home">CloudAIP</a>
+            <ul class="nav__links" id="navLinks" role="menubar">
+                <li role="none"><a href="../../index.html#services" class="nav__link" role="menuitem">Services</a></li>
+                <li role="none"><a href="../training.html" class="nav__link" role="menuitem">Training</a></li>
+                <li role="none"><a href="../pricing.html" class="nav__link" role="menuitem">Pricing</a></li>
+                <li role="none"><a href="../about.html" class="nav__link" role="menuitem">About</a></li>
+                <li role="none"><a href="../blog.html" class="nav__link" role="menuitem">Blog</a></li>
+                <li role="none"><a href="../../index.html#contact" class="btn btn--primary nav__cta" role="menuitem">Contact Us</a></li>
+            </ul>
+            <button class="nav__hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span class="nav__hamburger-line"></span>
+                <span class="nav__hamburger-line"></span>
+                <span class="nav__hamburger-line"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ===================== PAGE HERO ===================== -->
+    <section class="page-hero" aria-label="FinOps Smart Saver hero">
+        <div class="page-hero__glow page-hero__glow--cyan"></div>
+        <div class="page-hero__glow page-hero__glow--purple"></div>
+        <div class="container">
+            <h1 class="page-hero__title" data-animate><span>FinOps Smart Saver</span></h1>
+            <p class="page-hero__subtitle" data-animate>Your dedicated FinOps expert, on retainer.</p>
+        </div>
+    </section>
+
+    <!-- ===================== OVERVIEW ===================== -->
+    <section class="section" aria-label="Service overview">
+        <div class="container">
+            <div class="section__header">
+                <span class="section__label">Overview</span>
+                <h2 class="section__title">A Fractional FinOps Team Member</h2>
+            </div>
+            <div class="overview-card" data-animate>
+                <p class="overview-card__text">10 hours per month of dedicated FinOps consulting. Like having a fractional FinOps team member without the full-time cost. We monitor your cloud spend, identify optimization opportunities, manage your reserved instances, and train your team -- all on a predictable monthly retainer. Think of it as FinOps expertise on demand.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== WHAT'S INCLUDED ===================== -->
+    <section class="section" style="background: rgba(15, 20, 65, 0.4);" aria-label="What is included">
+        <div class="container">
+            <div class="section__header">
+                <span class="section__label">Deliverables</span>
+                <h2 class="section__title">What's Included</h2>
+                <p class="section__subtitle">Six ongoing services that keep your cloud costs optimized month after month.</p>
+            </div>
+            <div class="deliverables-grid">
+                <div class="deliverable-card" data-animate>
+                    <div class="deliverable-card__icon">&#x1F4C8;</div>
+                    <h3 class="deliverable-card__title">Monthly Cost Review & Analysis</h3>
+                    <p class="deliverable-card__text">Deep-dive review of your cloud spending trends, anomalies, and optimization opportunities every month. We find what you're missing.</p>
+                </div>
+                <div class="deliverable-card" data-animate>
+                    <div class="deliverable-card__icon">&#x1F4A1;</div>
+                    <h3 class="deliverable-card__title">Optimization Recommendations</h3>
+                    <p class="deliverable-card__text">Prioritized list of savings actions with implementation guidance. We identify, you implement (or we help). Every action ranked by effort vs. impact.</p>
+                </div>
+                <div class="deliverable-card" data-animate>
+                    <div class="deliverable-card__icon">&#x1F4B3;</div>
+                    <h3 class="deliverable-card__title">Reserved Instance Management</h3>
+                    <p class="deliverable-card__text">Ongoing management of RI portfolio: purchases, exchanges, modifications, utilization tracking. Maximize commitment discounts without the risk.</p>
+                </div>
+                <div class="deliverable-card" data-animate>
+                    <div class="deliverable-card__icon">&#x1F91D;</div>
+                    <h3 class="deliverable-card__title">Vendor Negotiation Support</h3>
+                    <p class="deliverable-card__text">Leverage our experience to negotiate better pricing with cloud vendors, SaaS providers, and third-party tools. We know the levers to pull.</p>
+                </div>
+                <div class="deliverable-card" data-animate>
+                    <div class="deliverable-card__icon">&#x1F393;</div>
+                    <h3 class="deliverable-card__title">Team Training & Enablement</h3>
+                    <p class="deliverable-card__text">Monthly knowledge transfer sessions to build FinOps skills within your team. Custom training on cost optimization best practices tailored to your stack.</p>
+                </div>
+                <div class="deliverable-card" data-animate>
+                    <div class="deliverable-card__icon">&#x1F4AC;</div>
+                    <h3 class="deliverable-card__title">Slack/Teams Channel Support</h3>
+                    <p class="deliverable-card__text">Dedicated channel for async FinOps questions. Get expert answers within 4 business hours. No more waiting for the next meeting to unblock decisions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== HOW THE RETAINER WORKS ===================== -->
+    <section class="section" aria-label="How the retainer works">
+        <div class="container">
+            <div class="section__header">
+                <span class="section__label">Retainer Model</span>
+                <h2 class="section__title">How the Retainer Works</h2>
+                <p class="section__subtitle">Simple, transparent, and designed for continuous improvement.</p>
+            </div>
+            <div class="retainer-grid">
+                <div class="retainer-item" data-animate>
+                    <div class="retainer-item__icon">&#x23F0;</div>
+                    <p class="retainer-item__text">10 hours per month of dedicated expert time</p>
+                </div>
+                <div class="retainer-item" data-animate>
+                    <div class="retainer-item__icon">&#x1F4CB;</div>
+                    <p class="retainer-item__text">Unused hours don't roll over to next month</p>
+                </div>
+                <div class="retainer-item" data-animate>
+                    <div class="retainer-item__icon">&#x1F4CA;</div>
+                    <p class="retainer-item__text">Hours tracked transparently in shared dashboard</p>
+                </div>
+                <div class="retainer-item" data-animate>
+                    <div class="retainer-item__icon">&#x1F4DD;</div>
+                    <p class="retainer-item__text">Monthly report of activities and outcomes delivered</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== TYPICAL ENGAGEMENT ===================== -->
+    <section class="section" style="background: rgba(15, 20, 65, 0.4);" aria-label="Typical engagement timeline">
+        <div class="container">
+            <div class="section__header">
+                <span class="section__label">What to Expect</span>
+                <h2 class="section__title">Typical Engagement</h2>
+                <p class="section__subtitle">Here's how the first three months typically unfold.</p>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item" data-animate>
+                    <div class="timeline-item__month">Month 1</div>
+                    <p class="timeline-item__text">Full cost audit and quick wins. We analyze your entire cloud estate, identify immediate savings opportunities, and implement the low-hanging fruit. Most clients see 10-15% savings in month one alone.</p>
+                </div>
+                <div class="timeline-item" data-animate>
+                    <div class="timeline-item__month">Month 2</div>
+                    <p class="timeline-item__text">RI strategy and implementation. We design your reserved instance strategy, analyze commitment vs. on-demand tradeoffs, and begin purchasing or modifying commitments to lock in deeper discounts.</p>
+                </div>
+                <div class="timeline-item" data-animate>
+                    <div class="timeline-item__month">Month 3</div>
+                    <p class="timeline-item__text">Governance setup and team training. We establish tagging policies, budget alerts, and cost allocation frameworks. Your team receives hands-on training to maintain momentum independently.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== PRICING & WHO IT'S FOR ===================== -->
+    <section class="section" aria-label="Pricing and fit">
+        <div class="container">
+            <div class="info-grid">
+                <div class="info-card" data-animate>
+                    <span class="section__label">Investment</span>
+                    <h3 class="info-card__title">Pricing</h3>
+                    <div class="info-card__price">$750 - $1,200/mo</div>
+                    <p class="info-card__price-note">Minimum 3-month commitment</p>
+                    <ul class="info-card__list" style="margin-top: 24px;">
+                        <li>10 hours per month of dedicated FinOps consulting</li>
+                        <li>Dedicated Slack/Teams channel for async support</li>
+                        <li>Monthly activity and outcomes report</li>
+                        <li>Price based on cloud complexity and account count</li>
+                    </ul>
+                </div>
+                <div class="info-card" data-animate>
+                    <span class="section__label">Ideal Fit</span>
+                    <h3 class="info-card__title">Who It's For</h3>
+                    <p class="info-card__text" style="margin-bottom: 16px;">Companies that need ongoing FinOps expertise but aren't ready for a full-time hire. Ideal for $10K-$100K/month cloud spend.</p>
+                    <ul class="info-card__list">
+                        <li>Growing companies with expanding cloud footprints</li>
+                        <li>Teams without dedicated FinOps headcount</li>
+                        <li>Organizations that want continuous optimization, not one-off audits</li>
+                        <li>Companies looking to build internal FinOps skills over time</li>
+                        <li>CTOs who want a trusted advisor for cloud financial decisions</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== CTA ===================== -->
+    <section class="cta-section" style="background: rgba(15, 20, 65, 0.4);" aria-label="Call to action">
+        <div class="container">
+            <span class="section__label">Get Started</span>
+            <h2 class="cta-section__title" data-animate>Ready to Start Saving Every Month?</h2>
+            <p class="cta-section__text" data-animate>Get a dedicated FinOps expert on your team without the full-time cost. Let's talk about your cloud spend.</p>
+            <a href="../../index.html#contact" class="btn btn--primary" data-animate>Start Your Retainer</a>
+        </div>
+    </section>
+
+    <!-- ===================== FOOTER ===================== -->
+    <footer class="footer" id="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer__grid">
+                <div>
+                    <a href="../../index.html" class="nav__logo" aria-label="CloudAIP Home">CloudAIP</a>
+                    <p class="footer__brand-description">Expert FinOps consulting and cloud certification training. Helping mid-size companies cut cloud costs by 20-40% through data-driven financial management and governance.</p>
+                    <div class="footer__aws-badge">&#x2601;&#xFE0F; Built on AWS</div>
+                </div>
+                <div>
+                    <h4 class="footer__heading">Quick Links</h4>
+                    <nav aria-label="Footer quick links">
+                        <a href="../../index.html" class="footer__link">Home</a>
+                        <a href="../../index.html#services" class="footer__link">Services</a>
+                        <a href="../../index.html#calculator" class="footer__link">ROI Calculator</a>
+                        <a href="../pricing.html" class="footer__link">Pricing</a>
+                        <a href="../about.html" class="footer__link">About Us</a>
+                        <a href="../../index.html#contact" class="footer__link">Contact</a>
+                    </nav>
+                </div>
+                <div>
+                    <h4 class="footer__heading">Services</h4>
+                    <nav aria-label="Footer services links">
+                        <a href="finops-assessment.html" class="footer__link">FinOps Assessment</a>
+                        <a href="finops-visualizer.html" class="footer__link">Cost Visualization</a>
+                        <a href="finops-optimizer.html" class="footer__link">Cloud Optimization</a>
+                        <a href="finops-enforcer.html" class="footer__link">Governance</a>
+                        <a href="finops-smart-saver.html" class="footer__link">Smart Saver</a>
+                        <a href="finops-faas.html" class="footer__link">Managed FinOps</a>
+                    </nav>
+                </div>
+                <div>
+                    <h4 class="footer__heading">Training</h4>
+                    <nav aria-label="Footer training links">
+                        <a href="../training.html" class="footer__link">FinOps Practitioner</a>
+                        <a href="../training.html" class="footer__link">AWS Certifications</a>
+                        <a href="../training.html" class="footer__link">Azure Certifications</a>
+                        <a href="../training.html" class="footer__link">GCP Certifications</a>
+                        <a href="../training.html" class="footer__link">Combo Bundles</a>
+                    </nav>
+                </div>
+                <div>
+                    <h4 class="footer__heading">Contact</h4>
+                    <div class="footer__contact-item">&#x2709;&#xFE0F; hello@cloudaip.com</div>
+                    <div class="footer__contact-item">&#x1F4DE; +1 (555) 123-4567</div>
+                    <div class="footer__social">
+                        <a href="https://linkedin.com/company/cloudaip" class="footer__social-link" aria-label="Follow CloudAIP on LinkedIn" target="_blank" rel="noopener noreferrer">in</a>
+                        <a href="https://twitter.com/cloudaip" class="footer__social-link" aria-label="Follow CloudAIP on Twitter" target="_blank" rel="noopener noreferrer">&#x1D54F;</a>
+                        <a href="https://youtube.com/@cloudaip" class="footer__social-link" aria-label="Subscribe to CloudAIP on YouTube" target="_blank" rel="noopener noreferrer">&#x25B6;</a>
+                    </div>
+                    <div class="footer__newsletter">
+                        <h4 class="footer__heading" style="margin-top: 24px;">Newsletter</h4>
+                        <form class="footer__newsletter-form" aria-label="Newsletter signup">
+                            <input type="email" class="footer__newsletter-input" placeholder="Your email" aria-label="Email for newsletter">
+                            <button type="submit" class="footer__newsletter-btn" aria-label="Subscribe to newsletter">Subscribe</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <p class="footer__copyright">&copy; 2024 CloudAIP. All rights reserved.</p>
+                <div class="footer__legal">
+                    <a href="#" class="footer__legal-link">Privacy Policy</a>
+                    <a href="#" class="footer__legal-link">Terms of Service</a>
+                    <a href="#" class="footer__legal-link">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/919876543210" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat with us on WhatsApp">&#x1F4AC;</a>
+
+    <script src="../../js/main.js"></script>
+    <script>
+        var hamburger = document.getElementById('hamburger');
+        var navLinks = document.getElementById('navLinks');
+        hamburger.addEventListener('click', function() {
+            this.classList.toggle('nav__hamburger--active');
+            navLinks.classList.toggle('nav__links--active');
+            var expanded = this.getAttribute('aria-expanded') === 'true';
+            this.setAttribute('aria-expanded', !expanded);
+        });
+        navLinks.querySelectorAll('.nav__link').forEach(function(link) {
+            link.addEventListener('click', function() {
+                hamburger.classList.remove('nav__hamburger--active');
+                navLinks.classList.remove('nav__links--active');
+                hamburger.setAttribute('aria-expanded', 'false');
+            });
+        });
+        var nav = document.getElementById('nav');
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 50) { nav.classList.add('nav--scrolled'); } else { nav.classList.remove('nav--scrolled'); }
+        });
+        var animateElements = document.querySelectorAll('[data-animate]');
+        function handleScrollAnimation() {
+            animateElements.forEach(function(el) {
+                var rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight * 0.85) { el.classList.add('animated'); }
+            });
+        }
+        window.addEventListener('scroll', handleScrollAnimation);
+        window.addEventListener('load', handleScrollAnimation);
+    </script>
+</body>
+</html>
