@@ -448,7 +448,6 @@ Resources:
         DefaultAuthorizer: JwtLambdaAuthorizer
         Authorizers:
           JwtLambdaAuthorizer:
-            AuthorizationScopes: []
             FunctionArn: !GetAtt JwtAuthorizerFunction.Arn
             FunctionInvokeRole: !GetAtt AuthorizerInvokeRole.Arn
             Identity:
