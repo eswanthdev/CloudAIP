@@ -61,8 +61,13 @@ jobs:
             --stack-name ${{ steps.env.outputs.STACK_NAME }} \
             --parameter-overrides \
               Environment=${{ steps.env.outputs.ENV_NAME }} \
+              JwtSecret=${{ secrets.JWT_SECRET }} \
+              JwtRefreshSecret=${{ secrets.JWT_REFRESH_SECRET }} \
               SESFromEmail=${{ vars.SES_FROM_EMAIL || 'hello@cloudaip.com' }} \
               AdminEmail=${{ vars.ADMIN_EMAIL || 'admin@cloudaip.com' }} \
+              StripeSecretKey=${{ secrets.STRIPE_SECRET_KEY || 'sk_test_placeholder' }} \
+              StripeWebhookSecret=${{ secrets.STRIPE_WEBHOOK_SECRET || 'whsec_placeholder' }} \
+              ClientUrl=${{ vars.CLIENT_URL || 'https://cloudaip.com' }} \
             --capabilities CAPABILITY_IAM CAPABILITY_NAMED_IAM \
             --no-confirm-changeset \
             --no-fail-on-empty-changeset \
