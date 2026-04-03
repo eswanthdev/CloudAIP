@@ -3,6 +3,13 @@ Transform: AWS::Serverless-2016-10-31
 Description: CloudAIP Serverless Backend - Contact Form & Lead Management API
 
 Parameters:
+  Environment:
+    Type: String
+    AllowedValues:
+      - staging
+      - prod
+    Default: staging
+    Description: Deployment environment
   SESFromEmail:
     Type: String
     Default: hello@cloudaip.com
@@ -27,7 +34,7 @@ Resources:
   CloudAIPApi:
     Type: AWS::Serverless::HttpApi
     Properties:
-      StageName: prod
+      StageName: !Ref Environment
       CorsConfiguration:
         AllowOrigins:
           - '*'
@@ -46,7 +53,7 @@ Resources:
   LeadsTable:
     Type: AWS::DynamoDB::Table
     Properties:
-      TableName: CloudAIP-Leads
+      TableName: !Sub 'CloudAIP-Leads-${Environment}'
       BillingMode: PAY_PER_REQUEST
       AttributeDefinitions:
         - AttributeName: leadId
@@ -82,12 +89,98 @@ Resources:
         Enabled: true
 
   # ---------------------------------------------------------------------------
+  # S3 Bucket for Frontend
+  # ---------------------------------------------------------------------------
+  FrontendBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub 'cloudaip-frontend-${Environment}'
+      WebsiteConfiguration:
+        IndexDocument: index.html
+        ErrorDocument: index.html
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+
+  FrontendBucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref FrontendBucket
+      PolicyDocument:
+        Statement:
+          - Sid: AllowCloudFrontOAC
+            Effect: Allow
+            Principal:
+              Service: cloudfront.amazonaws.com
+            Action: 's3:GetObject'
+            Resource: !Sub '${FrontendBucket.Arn}/*'
+            Condition:
+              StringEquals:
+                'AWS:SourceArn': !Sub 'arn:aws:cloudfront::${AWS::AccountId}:distribution/${CloudFrontDistribution}'
+
+  # ---------------------------------------------------------------------------
+  # CloudFront Origin Access Control
+  # ---------------------------------------------------------------------------
+  CloudFrontOAC:
+    Type: AWS::CloudFront::OriginAccessControl
+    Properties:
+      OriginAccessControlConfig:
+        Name: !Sub 'cloudaip-oac-${Environment}'
+        OriginAccessControlOriginType: s3
+        SigningBehavior: always
+        SigningProtocol: sigv4
+
+  # ---------------------------------------------------------------------------
+  # CloudFront Distribution
+  # ---------------------------------------------------------------------------
+  CloudFrontDistribution:
+    Type: AWS::CloudFront::Distribution
+    Properties:
+      DistributionConfig:
+        Enabled: true
+        DefaultRootObject: index.html
+        Comment: !Sub 'CloudAIP ${Environment} CDN'
+        PriceClass: PriceClass_100
+        Origins:
+          - Id: S3Origin
+            DomainName: !GetAtt FrontendBucket.RegionalDomainName
+            OriginAccessControlId: !Ref CloudFrontOAC
+            S3OriginConfig:
+              OriginAccessIdentity: ''
+        DefaultCacheBehavior:
+          TargetOriginId: S3Origin
+          ViewerProtocolPolicy: redirect-to-https
+          AllowedMethods:
+            - GET
+            - HEAD
+            - OPTIONS
+          CachedMethods:
+            - GET
+            - HEAD
+          Compress: true
+          CachePolicyId: 658327ea-f89d-4fab-a63d-7e88639e58f6  # CachingOptimized
+          DefaultTTL: 86400
+          MaxTTL: 31536000
+          MinTTL: 0
+        CustomErrorResponses:
+          - ErrorCode: 403
+            ResponseCode: 200
+            ResponsePagePath: /index.html
+            ErrorCachingMinTTL: 10
+          - ErrorCode: 404
+            ResponseCode: 200
+            ResponsePagePath: /index.html
+            ErrorCachingMinTTL: 10
+
+  # ---------------------------------------------------------------------------
   # Lambda: Contact Form Handler
   # ---------------------------------------------------------------------------
   ContactFormFunction:
     Type: AWS::Serverless::Function
     Properties:
-      FunctionName: CloudAIP-ContactForm
+      FunctionName: !Sub 'CloudAIP-ContactForm-${Environment}'
       CodeUri: lambda/contact-form/
       Handler: index.handler
       Environment:
@@ -95,6 +188,7 @@ Resources:
           TABLE_NAME: !Ref LeadsTable
           SES_FROM_EMAIL: !Ref SESFromEmail
           ADMIN_EMAIL: !Ref AdminEmail
+          ENVIRONMENT: !Ref Environment
       Policies:
         - DynamoDBCrudPolicy:
             TableName: !Ref LeadsTable
@@ -114,12 +208,13 @@ Resources:
   AdminApiFunction:
     Type: AWS::Serverless::Function
     Properties:
-      FunctionName: CloudAIP-AdminApi
+      FunctionName: !Sub 'CloudAIP-AdminApi-${Environment}'
       CodeUri: lambda/admin-api/
       Handler: index.handler
       Environment:
         Variables:
           TABLE_NAME: !Ref LeadsTable
+          ENVIRONMENT: !Ref Environment
       Policies:
         - DynamoDBReadPolicy:
             TableName: !Ref LeadsTable
@@ -146,8 +241,20 @@ Resources:
 
 Outputs:
   ApiUrl:
-    Description: CloudAIP API Gateway endpoint URL
-    Value: !Sub 'https://${CloudAIPApi}.execute-api.${AWS::Region}.amazonaws.com/prod'
+    Description: API Gateway endpoint URL
+    Value: !Sub 'https://${CloudAIPApi}.execute-api.${AWS::Region}.amazonaws.com/${Environment}'
+  FrontendBucketName:
+    Description: S3 bucket for frontend assets
+    Value: !Ref FrontendBucket
+  CloudFrontUrl:
+    Description: CloudFront Distribution URL
+    Value: !Sub 'https://${CloudFrontDistribution.DomainName}'
+  CloudFrontDistributionId:
+    Description: CloudFront Distribution ID for cache invalidation
+    Value: !Ref CloudFrontDistribution
   TableName:
     Description: DynamoDB Leads table name
     Value: !Ref LeadsTable
+  Environment:
+    Description: Current deployment environment
+    Value: !Ref Environment
