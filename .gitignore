@@ -21,3 +21,4 @@ shared/node_modules/
 # Docker volumes
 docker-volumes/
 mongodb_data/
+.claude/
