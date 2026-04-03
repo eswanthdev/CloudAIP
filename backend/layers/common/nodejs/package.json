@@ -24,6 +24,7 @@
     "@types/bcryptjs": "^2.4.6",
     "@types/uuid": "^9.0.8",
     "@types/aws-lambda": "^8.10.136",
-    "typescript": "^5.4.3"
+    "typescript": "^5.4.3",
+    "esbuild": "^0.21.0"
   }
 }
