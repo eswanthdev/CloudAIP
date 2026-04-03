@@ -1,0 +1,13 @@
+{
+  "name": "cloudaip-users-lambda",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.145",
+    "@types/node": "^20.14.0",
+    "typescript": "^5.5.0"
+  }
+}

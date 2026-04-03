@@ -1,0 +1,20 @@
+{
+  "name": "cloudaip-scripts",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "seed": "tsx seed-dynamo.ts",
+    "build": "tsc"
+  },
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.600.0",
+    "@aws-sdk/lib-dynamodb": "^3.600.0",
+    "bcryptjs": "^2.4.3"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/node": "^20.14.0",
+    "tsx": "^4.16.0",
+    "typescript": "^5.5.0"
+  }
+}

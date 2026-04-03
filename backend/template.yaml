@@ -1,6 +1,6 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
-Description: CloudAIP Serverless Backend - Contact Form & Lead Management API
+Description: CloudAIP Serverless Backend - Full Platform API
 
 Parameters:
   Environment:
@@ -10,6 +10,14 @@ Parameters:
       - prod
     Default: staging
     Description: Deployment environment
+  JwtSecret:
+    Type: String
+    NoEcho: true
+    Description: Secret key for signing JWT access tokens
+  JwtRefreshSecret:
+    Type: String
+    NoEcho: true
+    Description: Secret key for signing JWT refresh tokens
   SESFromEmail:
     Type: String
     Default: hello@cloudaip.com
@@ -17,7 +25,23 @@ Parameters:
   AdminEmail:
     Type: String
     Default: admin@cloudaip.com
-    Description: Admin email address for lead notifications
+    Description: Admin email address for notifications
+  StripeSecretKey:
+    Type: String
+    NoEcho: true
+    Description: Stripe secret API key
+  StripeWebhookSecret:
+    Type: String
+    NoEcho: true
+    Description: Stripe webhook signing secret
+  ClientUrl:
+    Type: String
+    Default: https://cloudaip.com
+    Description: Frontend client URL for CORS and email links
+  S3MediaBucket:
+    Type: String
+    Default: ''
+    Description: Override media bucket name (leave empty for auto-generated)
 
 Globals:
   Function:
@@ -26,30 +50,230 @@ Globals:
     Timeout: 10
     Architectures:
       - x86_64
+    Environment:
+      Variables:
+        ENVIRONMENT: !Ref Environment
+        MAIN_TABLE: !Ref MainTable
+        ACTIVITY_TABLE: !Ref ActivityTable
+        LEADS_TABLE: !Ref LeadsTable
+        JWT_SECRET: !Ref JwtSecret
+        JWT_REFRESH_SECRET: !Ref JwtRefreshSecret
+        STRIPE_SECRET_KEY: !Ref StripeSecretKey
+        STRIPE_WEBHOOK_SECRET: !Ref StripeWebhookSecret
+        SES_FROM_EMAIL: !Ref SESFromEmail
+        ADMIN_EMAIL: !Ref AdminEmail
+        S3_MEDIA_BUCKET: !Ref MediaBucket
+        CLIENT_URL: !Ref ClientUrl
 
 Resources:
-  # ---------------------------------------------------------------------------
-  # API Gateway (HTTP API with CORS)
-  # ---------------------------------------------------------------------------
-  CloudAIPApi:
-    Type: AWS::Serverless::HttpApi
-    Properties:
-      StageName: !Ref Environment
-      CorsConfiguration:
-        AllowOrigins:
-          - '*'
-        AllowMethods:
-          - POST
-          - GET
-          - OPTIONS
-        AllowHeaders:
-          - Content-Type
-          - Authorization
-        MaxAge: 3600
+  # ===========================================================================
+  # DynamoDB Tables
+  # ===========================================================================
 
-  # ---------------------------------------------------------------------------
-  # DynamoDB Table
-  # ---------------------------------------------------------------------------
+  MainTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: !Sub 'CloudAIP-Main-${Environment}'
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - AttributeName: pk
+          AttributeType: S
+        - AttributeName: sk
+          AttributeType: S
+        - AttributeName: email
+          AttributeType: S
+        - AttributeName: slug
+          AttributeType: S
+        - AttributeName: entityType
+          AttributeType: S
+        - AttributeName: createdAt
+          AttributeType: S
+        - AttributeName: category
+          AttributeType: S
+        - AttributeName: emailVerificationToken
+          AttributeType: S
+        - AttributeName: passwordResetToken
+          AttributeType: S
+        - AttributeName: certificateNumber
+          AttributeType: S
+        - AttributeName: certUserId
+          AttributeType: S
+        - AttributeName: issuedAt
+          AttributeType: S
+        - AttributeName: serviceEntityType
+          AttributeType: S
+        - AttributeName: serviceOrder
+          AttributeType: S
+        - AttributeName: role
+          AttributeType: S
+      KeySchema:
+        - AttributeName: pk
+          KeyType: HASH
+        - AttributeName: sk
+          KeyType: RANGE
+      GlobalSecondaryIndexes:
+        - IndexName: GSI1-EmailIndex
+          KeySchema:
+            - AttributeName: email
+              KeyType: HASH
+          Projection:
+            ProjectionType: ALL
+        - IndexName: GSI2-SlugIndex
+          KeySchema:
+            - AttributeName: slug
+              KeyType: HASH
+            - AttributeName: entityType
+              KeyType: RANGE
+          Projection:
+            ProjectionType: ALL
+        - IndexName: GSI3-EntityTypeIndex
+          KeySchema:
+            - AttributeName: entityType
+              KeyType: HASH
+            - AttributeName: createdAt
+              KeyType: RANGE
+          Projection:
+            ProjectionType: ALL
+        - IndexName: GSI4-CategoryIndex
+          KeySchema:
+            - AttributeName: category
+              KeyType: HASH
+            - AttributeName: createdAt
+              KeyType: RANGE
+          Projection:
+            ProjectionType: ALL
+        - IndexName: GSI5-VerifyTokenIndex
+          KeySchema:
+            - AttributeName: emailVerificationToken
+              KeyType: HASH
+          Projection:
+            ProjectionType: ALL
+        - IndexName: GSI6-ResetTokenIndex
+          KeySchema:
+            - AttributeName: passwordResetToken
+              KeyType: HASH
+          Projection:
+            ProjectionType: ALL
+        - IndexName: GSI7-CertNumberIndex
+          KeySchema:
+            - AttributeName: certificateNumber
+              KeyType: HASH
+          Projection:
+            ProjectionType: ALL
+        - IndexName: GSI8-CertUserIndex
+          KeySchema:
+            - AttributeName: certUserId
+              KeyType: HASH
+            - AttributeName: issuedAt
+              KeyType: RANGE
+          Projection:
+            ProjectionType: ALL
+        - IndexName: GSI9-ServiceListIndex
+          KeySchema:
+            - AttributeName: serviceEntityType
+              KeyType: HASH
+            - AttributeName: serviceOrder
+              KeyType: RANGE
+          Projection:
+            ProjectionType: ALL
+        - IndexName: GSI10-UserRoleIndex
+          KeySchema:
+            - AttributeName: role
+              KeyType: HASH
+            - AttributeName: createdAt
+              KeyType: RANGE
+          Projection:
+            ProjectionType: ALL
+
+  ActivityTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: !Sub 'CloudAIP-Activity-${Environment}'
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - AttributeName: pk
+          AttributeType: S
+        - AttributeName: sk
+          AttributeType: S
+        - AttributeName: enrollCourseKey
+          AttributeType: S
+        - AttributeName: createdAt
+          AttributeType: S
+        - AttributeName: enrollStatusKey
+          AttributeType: S
+        - AttributeName: progressUserKey
+          AttributeType: S
+        - AttributeName: progressCourseKey
+          AttributeType: S
+        - AttributeName: paymentStatusKey
+          AttributeType: S
+        - AttributeName: stripePaymentIntentId
+          AttributeType: S
+        - AttributeName: svcReqStatusKey
+          AttributeType: S
+        - AttributeName: entityType
+          AttributeType: S
+      KeySchema:
+        - AttributeName: pk
+          KeyType: HASH
+        - AttributeName: sk
+          KeyType: RANGE
+      GlobalSecondaryIndexes:
+        - IndexName: GSI1-EnrollCourseIndex
+          KeySchema:
+            - AttributeName: enrollCourseKey
+              KeyType: HASH
+            - AttributeName: createdAt
+              KeyType: RANGE
+          Projection:
+            ProjectionType: ALL
+        - IndexName: GSI2-EnrollStatusIndex
+          KeySchema:
+            - AttributeName: enrollStatusKey
+              KeyType: HASH
+            - AttributeName: createdAt
+              KeyType: RANGE
+          Projection:
+            ProjectionType: ALL
+        - IndexName: GSI3-ProgressCourseIndex
+          KeySchema:
+            - AttributeName: progressUserKey
+              KeyType: HASH
+            - AttributeName: progressCourseKey
+              KeyType: RANGE
+          Projection:
+            ProjectionType: ALL
+        - IndexName: GSI4-PaymentStatusIndex
+          KeySchema:
+            - AttributeName: paymentStatusKey
+              KeyType: HASH
+            - AttributeName: createdAt
+              KeyType: RANGE
+          Projection:
+            ProjectionType: ALL
+        - IndexName: GSI5-PaymentIntentIndex
+          KeySchema:
+            - AttributeName: stripePaymentIntentId
+              KeyType: HASH
+          Projection:
+            ProjectionType: ALL
+        - IndexName: GSI6-SvcReqStatusIndex
+          KeySchema:
+            - AttributeName: svcReqStatusKey
+              KeyType: HASH
+            - AttributeName: createdAt
+              KeyType: RANGE
+          Projection:
+            ProjectionType: ALL
+        - IndexName: GSI7-EntityTypeIndex
+          KeySchema:
+            - AttributeName: entityType
+              KeyType: HASH
+            - AttributeName: createdAt
+              KeyType: RANGE
+          Projection:
+            ProjectionType: ALL
+
   LeadsTable:
     Type: AWS::DynamoDB::Table
     Properties:
@@ -88,9 +312,10 @@ Resources:
         AttributeName: ttl
         Enabled: true
 
-  # ---------------------------------------------------------------------------
-  # S3 Bucket for Frontend
-  # ---------------------------------------------------------------------------
+  # ===========================================================================
+  # S3 Buckets
+  # ===========================================================================
+
   FrontendBucket:
     Type: AWS::S3::Bucket
     Properties:
@@ -120,9 +345,32 @@ Resources:
               StringEquals:
                 'AWS:SourceArn': !Sub 'arn:aws:cloudfront::${AWS::AccountId}:distribution/${CloudFrontDistribution}'
 
-  # ---------------------------------------------------------------------------
-  # CloudFront Origin Access Control
-  # ---------------------------------------------------------------------------
+  MediaBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub 'cloudaip-media-${Environment}'
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+      CorsConfiguration:
+        CorsRules:
+          - AllowedOrigins:
+              - !Ref ClientUrl
+            AllowedMethods:
+              - GET
+              - PUT
+            AllowedHeaders:
+              - '*'
+            MaxAge: 3600
+            ExposedHeaders:
+              - ETag
+
+  # ===========================================================================
+  # CloudFront
+  # ===========================================================================
+
   CloudFrontOAC:
     Type: AWS::CloudFront::OriginAccessControl
     Properties:
@@ -132,9 +380,6 @@ Resources:
         SigningBehavior: always
         SigningProtocol: sigv4
 
-  # ---------------------------------------------------------------------------
-  # CloudFront Distribution
-  # ---------------------------------------------------------------------------
   CloudFrontDistribution:
     Type: AWS::CloudFront::Distribution
     Properties:
@@ -160,7 +405,7 @@ Resources:
             - GET
             - HEAD
           Compress: true
-          CachePolicyId: 658327ea-f89d-4fab-a63d-7e88639e58f6  # CachingOptimized
+          CachePolicyId: 658327ea-f89d-4fab-a63d-7e88639e58f6
           DefaultTTL: 86400
           MaxTTL: 31536000
           MinTTL: 0
@@ -174,70 +419,737 @@ Resources:
             ResponsePagePath: /index.html
             ErrorCachingMinTTL: 10
 
-  # ---------------------------------------------------------------------------
-  # Lambda: Contact Form Handler
-  # ---------------------------------------------------------------------------
-  ContactFormFunction:
+  # ===========================================================================
+  # API Gateway (HTTP API)
+  # ===========================================================================
+
+  CloudAIPApi:
+    Type: AWS::Serverless::HttpApi
+    Properties:
+      StageName: !Ref Environment
+      CorsConfiguration:
+        AllowOrigins:
+          - !Ref ClientUrl
+          - 'http://localhost:3000'
+        AllowMethods:
+          - GET
+          - POST
+          - PUT
+          - PATCH
+          - DELETE
+          - OPTIONS
+        AllowHeaders:
+          - Content-Type
+          - Authorization
+          - X-Requested-With
+        AllowCredentials: true
+        MaxAge: 3600
+      Auth:
+        DefaultAuthorizer: JwtLambdaAuthorizer
+        Authorizers:
+          JwtLambdaAuthorizer:
+            AuthorizationScopes: []
+            FunctionArn: !GetAtt JwtAuthorizerFunction.Arn
+            FunctionInvokeRole: !GetAtt AuthorizerInvokeRole.Arn
+            Identity:
+              Headers:
+                - Authorization
+              ReauthorizeEvery: 300
+            AuthorizerPayloadFormatVersion: '2.0'
+            EnableSimpleResponses: true
+
+  AuthorizerInvokeRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: !Sub 'CloudAIP-AuthorizerInvoke-${Environment}'
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: apigateway.amazonaws.com
+            Action: 'sts:AssumeRole'
+      Policies:
+        - PolicyName: InvokeAuthorizerLambda
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action: 'lambda:InvokeFunction'
+                Resource: !GetAtt JwtAuthorizerFunction.Arn
+
+  # ===========================================================================
+  # Lambda Layer
+  # ===========================================================================
+
+  CommonLayer:
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+      LayerName: !Sub 'CloudAIP-CommonLayer-${Environment}'
+      Description: Shared utilities for CloudAIP Lambda functions
+      ContentUri: layers/common/
+      CompatibleRuntimes:
+        - nodejs20.x
+      RetentionPolicy: Retain
+    Metadata:
+      BuildMethod: nodejs20.x
+
+  # ===========================================================================
+  # Lambda Functions
+  # ===========================================================================
+
+  # 1. JWT Authorizer
+  JwtAuthorizerFunction:
     Type: AWS::Serverless::Function
     Properties:
-      FunctionName: !Sub 'CloudAIP-ContactForm-${Environment}'
-      CodeUri: lambda/contact-form/
+      FunctionName: !Sub 'CloudAIP-Authorizer-${Environment}'
+      CodeUri: lambda/authorizer/
       Handler: index.handler
+      Layers:
+        - !Ref CommonLayer
       Environment:
         Variables:
-          TABLE_NAME: !Ref LeadsTable
-          SES_FROM_EMAIL: !Ref SESFromEmail
-          ADMIN_EMAIL: !Ref AdminEmail
-          ENVIRONMENT: !Ref Environment
+          JWT_SECRET: !Ref JwtSecret
+    Metadata:
+      BuildMethod: esbuild
+      BuildProperties:
+        Minify: true
+        Target: es2022
+        EntryPoints:
+          - index.ts
+
+  # 2. Auth Function
+  AuthFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub 'CloudAIP-Auth-${Environment}'
+      CodeUri: lambda/auth/
+      Handler: index.handler
+      Timeout: 15
+      Layers:
+        - !Ref CommonLayer
       Policies:
         - DynamoDBCrudPolicy:
-            TableName: !Ref LeadsTable
+            TableName: !Ref MainTable
         - SESCrudPolicy:
             IdentityName: !Ref SESFromEmail
       Events:
-        PostContact:
+        Register:
           Type: HttpApi
           Properties:
             ApiId: !Ref CloudAIPApi
-            Path: /api/contact
+            Path: /auth/register
             Method: POST
+            Auth:
+              Authorizer: NONE
+        Login:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref CloudAIPApi
+            Path: /auth/login
+            Method: POST
+            Auth:
+              Authorizer: NONE
+        Refresh:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref CloudAIPApi
+            Path: /auth/refresh
+            Method: POST
+            Auth:
+              Authorizer: NONE
+        Logout:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref CloudAIPApi
+            Path: /auth/logout
+            Method: POST
+        ForgotPassword:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref CloudAIPApi
+            Path: /auth/forgot-password
+            Method: POST
+            Auth:
+              Authorizer: NONE
+        ResetPassword:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref CloudAIPApi
+            Path: /auth/reset-password/{token}
+            Method: POST
+            Auth:
+              Authorizer: NONE
+        VerifyEmail:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref CloudAIPApi
+            Path: /auth/verify-email/{token}
+            Method: GET
+            Auth:
+              Authorizer: NONE
+        Me:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref CloudAIPApi
+            Path: /auth/me
+            Method: GET
+    Metadata:
+      BuildMethod: esbuild
+      BuildProperties:
+        Minify: true
+        Target: es2022
+        EntryPoints:
+          - index.ts
 
-  # ---------------------------------------------------------------------------
-  # Lambda: Admin API Handler
-  # ---------------------------------------------------------------------------
-  AdminApiFunction:
+  # 3. User Function
+  UserFunction:
     Type: AWS::Serverless::Function
     Properties:
-      FunctionName: !Sub 'CloudAIP-AdminApi-${Environment}'
-      CodeUri: lambda/admin-api/
+      FunctionName: !Sub 'CloudAIP-Users-${Environment}'
+      CodeUri: lambda/users/
       Handler: index.handler
-      Environment:
-        Variables:
-          TABLE_NAME: !Ref LeadsTable
-          ENVIRONMENT: !Ref Environment
+      Layers:
+        - !Ref CommonLayer
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref MainTable
+      Events:
+        ListUsers:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref CloudAIPApi
+            Path: /users
+            Method: GET
+        GetUser:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref CloudAIPApi
+            Path: /users/{userId}
+            Method: GET
+        UpdateUser:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref CloudAIPApi
+            Path: /users/{userId}
+            Method: PATCH
+        DeleteUser:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref CloudAIPApi
+            Path: /users/{userId}
+            Method: DELETE
+    Metadata:
+      BuildMethod: esbuild
+      BuildProperties:
+        Minify: true
+        Target: es2022
+        EntryPoints:
+          - index.ts
+
+  # 4. Course Function
+  CourseFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub 'CloudAIP-Courses-${Environment}'
+      CodeUri: lambda/courses/
+      Handler: index.handler
+      Layers:
+        - !Ref CommonLayer
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref MainTable
+      Events:
+        ListCourses:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref CloudAIPApi
+            Path: /courses
+            Method: GET
+            Auth:
+              Authorizer: NONE
+        GetCourse:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref CloudAIPApi
+            Path: /courses/{courseId}
+            Method: GET
+            Auth:
+              Authorizer: NONE
+        CreateCourse:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref CloudAIPApi
+            Path: /courses
+            Method: POST
+        UpdateCourse:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref CloudAIPApi
+            Path: /courses/{courseId}
+            Method: PATCH
+        DeleteCourse:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref CloudAIPApi
+            Path: /courses/{courseId}
+            Method: DELETE
+    Metadata:
+      BuildMethod: esbuild
+      BuildProperties:
+        Minify: true
+        Target: es2022
+        EntryPoints:
+          - index.ts
+
+  # 5. Module Function
+  ModuleFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub 'CloudAIP-Modules-${Environment}'
+      CodeUri: lambda/modules/
+      Handler: index.handler
+      Layers:
+        - !Ref CommonLayer
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref MainTable
+      Events:
+        CreateModule:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref CloudAIPApi
+            Path: /courses/{courseId}/modules
+            Method: POST
+        UpdateModule:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref CloudAIPApi
+            Path: /modules/{moduleId}
+            Method: PATCH
+        DeleteModule:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref CloudAIPApi
+            Path: /modules/{moduleId}
+            Method: DELETE
+    Metadata:
+      BuildMethod: esbuild
+      BuildProperties:
+        Minify: true
+        Target: es2022
+        EntryPoints:
+          - index.ts
+
+  # 6. Lesson Function
+  LessonFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub 'CloudAIP-Lessons-${Environment}'
+      CodeUri: lambda/lessons/
+      Handler: index.handler
+      Layers:
+        - !Ref CommonLayer
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref MainTable
+        - S3ReadPolicy:
+            BucketName: !Ref MediaBucket
+      Events:
+        CreateLesson:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref CloudAIPApi
+            Path: /modules/{moduleId}/lessons
+            Method: POST
+        UpdateLesson:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref CloudAIPApi
+            Path: /lessons/{lessonId}
+            Method: PATCH
+        DeleteLesson:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref CloudAIPApi
+            Path: /lessons/{lessonId}
+            Method: DELETE
+        GetVideoUrl:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref CloudAIPApi
+            Path: /lessons/{lessonId}/video-url
+            Method: GET
+    Metadata:
+      BuildMethod: esbuild
+      BuildProperties:
+        Minify: true
+        Target: es2022
+        EntryPoints:
+          - index.ts
+
+  # 7. Enrollment Function
+  EnrollmentFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub 'CloudAIP-Enrollments-${Environment}'
+      CodeUri: lambda/enrollments/
+      Handler: index.handler
+      Layers:
+        - !Ref CommonLayer
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref ActivityTable
+        - DynamoDBReadPolicy:
+            TableName: !Ref MainTable
+      Events:
+        CreateEnrollment:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref CloudAIPApi
+            Path: /enrollments
+            Method: POST
+        ListEnrollments:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref CloudAIPApi
+            Path: /enrollments
+            Method: GET
+        GetEnrollment:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref CloudAIPApi
+            Path: /enrollments/{enrollmentId}
+            Method: GET
+    Metadata:
+      BuildMethod: esbuild
+      BuildProperties:
+        Minify: true
+        Target: es2022
+        EntryPoints:
+          - index.ts
+
+  # 8. Progress Function
+  ProgressFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub 'CloudAIP-Progress-${Environment}'
+      CodeUri: lambda/progress/
+      Handler: index.handler
+      Layers:
+        - !Ref CommonLayer
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref ActivityTable
+        - DynamoDBReadPolicy:
+            TableName: !Ref MainTable
+      Events:
+        UpdateProgress:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref CloudAIPApi
+            Path: /progress
+            Method: PUT
+        GetCourseProgress:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref CloudAIPApi
+            Path: /progress/courses/{courseId}
+            Method: GET
+        GetProgressSummary:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref CloudAIPApi
+            Path: /progress/summary
+            Method: GET
+    Metadata:
+      BuildMethod: esbuild
+      BuildProperties:
+        Minify: true
+        Target: es2022
+        EntryPoints:
+          - index.ts
+
+  # 9. Certificate Function
+  CertificateFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub 'CloudAIP-Certificates-${Environment}'
+      CodeUri: lambda/certificates/
+      Handler: index.handler
+      Layers:
+        - !Ref CommonLayer
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref MainTable
+        - DynamoDBReadPolicy:
+            TableName: !Ref ActivityTable
+        - S3CrudPolicy:
+            BucketName: !Ref MediaBucket
+      Events:
+        GenerateCertificate:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref CloudAIPApi
+            Path: /certificates/generate
+            Method: POST
+        ListCertificates:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref CloudAIPApi
+            Path: /certificates
+            Method: GET
+        GetCertificate:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref CloudAIPApi
+            Path: /certificates/{certId}
+            Method: GET
+        DownloadCertificate:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref CloudAIPApi
+            Path: /certificates/{certId}/download
+            Method: GET
+        VerifyCertificate:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref CloudAIPApi
+            Path: /certificates/verify/{certNumber}
+            Method: GET
+            Auth:
+              Authorizer: NONE
+    Metadata:
+      BuildMethod: esbuild
+      BuildProperties:
+        Minify: true
+        Target: es2022
+        EntryPoints:
+          - index.ts
+
+  # 10. Service Function
+  ServiceFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub 'CloudAIP-Services-${Environment}'
+      CodeUri: lambda/services/
+      Handler: index.handler
+      Layers:
+        - !Ref CommonLayer
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref MainTable
+      Events:
+        ListServices:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref CloudAIPApi
+            Path: /services
+            Method: GET
+            Auth:
+              Authorizer: NONE
+        GetService:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref CloudAIPApi
+            Path: /services/{serviceId}
+            Method: GET
+            Auth:
+              Authorizer: NONE
+        CreateService:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref CloudAIPApi
+            Path: /services
+            Method: POST
+        UpdateService:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref CloudAIPApi
+            Path: /services/{serviceId}
+            Method: PATCH
+        DeleteService:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref CloudAIPApi
+            Path: /services/{serviceId}
+            Method: DELETE
+    Metadata:
+      BuildMethod: esbuild
+      BuildProperties:
+        Minify: true
+        Target: es2022
+        EntryPoints:
+          - index.ts
+
+  # 11. Service Request Function
+  ServiceRequestFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub 'CloudAIP-ServiceRequests-${Environment}'
+      CodeUri: lambda/service-requests/
+      Handler: index.handler
+      Layers:
+        - !Ref CommonLayer
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref ActivityTable
+        - DynamoDBReadPolicy:
+            TableName: !Ref MainTable
+        - SESCrudPolicy:
+            IdentityName: !Ref SESFromEmail
+      Events:
+        CreateServiceRequest:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref CloudAIPApi
+            Path: /service-requests
+            Method: POST
+        ListServiceRequests:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref CloudAIPApi
+            Path: /service-requests
+            Method: GET
+        GetServiceRequest:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref CloudAIPApi
+            Path: /service-requests/{requestId}
+            Method: GET
+        UpdateServiceRequest:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref CloudAIPApi
+            Path: /service-requests/{requestId}
+            Method: PATCH
+    Metadata:
+      BuildMethod: esbuild
+      BuildProperties:
+        Minify: true
+        Target: es2022
+        EntryPoints:
+          - index.ts
+
+  # 12. Payment Function
+  PaymentFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub 'CloudAIP-Payments-${Environment}'
+      CodeUri: lambda/payments/
+      Handler: index.handler
+      Timeout: 15
+      Layers:
+        - !Ref CommonLayer
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref ActivityTable
+        - DynamoDBReadPolicy:
+            TableName: !Ref MainTable
+      Events:
+        CreatePaymentIntent:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref CloudAIPApi
+            Path: /payments/create-intent
+            Method: POST
+        Webhook:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref CloudAIPApi
+            Path: /payments/webhook
+            Method: POST
+            Auth:
+              Authorizer: NONE
+        ListPayments:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref CloudAIPApi
+            Path: /payments
+            Method: GET
+        GetPayment:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref CloudAIPApi
+            Path: /payments/{paymentId}
+            Method: GET
+    Metadata:
+      BuildMethod: esbuild
+      BuildProperties:
+        Minify: true
+        Target: es2022
+        EntryPoints:
+          - index.ts
+
+  # 13. Admin Function
+  AdminFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub 'CloudAIP-Admin-${Environment}'
+      CodeUri: lambda/admin/
+      Handler: index.handler
+      Layers:
+        - !Ref CommonLayer
       Policies:
         - DynamoDBReadPolicy:
+            TableName: !Ref MainTable
+        - DynamoDBReadPolicy:
+            TableName: !Ref ActivityTable
+        - DynamoDBReadPolicy:
             TableName: !Ref LeadsTable
-        - Statement:
-            - Effect: Allow
-              Action:
-                - dynamodb:UpdateItem
-              Resource:
-                - !GetAtt LeadsTable.Arn
-                - !Sub '${LeadsTable.Arn}/index/*'
       Events:
-        GetLeads:
+        GetStats:
           Type: HttpApi
           Properties:
             ApiId: !Ref CloudAIPApi
-            Path: /api/leads
+            Path: /admin/stats
             Method: GET
-        UpdateLead:
+        GetRecentActivity:
           Type: HttpApi
           Properties:
             ApiId: !Ref CloudAIPApi
-            Path: /api/leads/{leadId}
-            Method: PUT
+            Path: /admin/recent-activity
+            Method: GET
+    Metadata:
+      BuildMethod: esbuild
+      BuildProperties:
+        Minify: true
+        Target: es2022
+        EntryPoints:
+          - index.ts
+
+  # 14. Upload Function
+  UploadFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub 'CloudAIP-Uploads-${Environment}'
+      CodeUri: lambda/uploads/
+      Handler: index.handler
+      Layers:
+        - !Ref CommonLayer
+      Policies:
+        - S3CrudPolicy:
+            BucketName: !Ref MediaBucket
+      Events:
+        GetPresignedUrl:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref CloudAIPApi
+            Path: /uploads/presigned-url
+            Method: POST
+        DeleteUpload:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref CloudAIPApi
+            Path: /uploads/{key}
+            Method: DELETE
+    Metadata:
+      BuildMethod: esbuild
+      BuildProperties:
+        Minify: true
+        Target: es2022
+        EntryPoints:
+          - index.ts
 
 Outputs:
   ApiUrl:
@@ -246,15 +1158,21 @@ Outputs:
   FrontendBucketName:
     Description: S3 bucket for frontend assets
     Value: !Ref FrontendBucket
+  MediaBucketName:
+    Description: S3 bucket for media uploads
+    Value: !Ref MediaBucket
   CloudFrontUrl:
     Description: CloudFront Distribution URL
     Value: !Sub 'https://${CloudFrontDistribution.DomainName}'
   CloudFrontDistributionId:
     Description: CloudFront Distribution ID for cache invalidation
     Value: !Ref CloudFrontDistribution
-  TableName:
-    Description: DynamoDB Leads table name
+  MainTableName:
+    Description: Main DynamoDB table name
+    Value: !Ref MainTable
+  ActivityTableName:
+    Description: Activity DynamoDB table name
+    Value: !Ref ActivityTable
+  LeadsTableName:
+    Description: Leads DynamoDB table name
     Value: !Ref LeadsTable
-  Environment:
-    Description: Current deployment environment
-    Value: !Ref Environment
