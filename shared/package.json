@@ -1,0 +1,15 @@
+{
+  "name": "cloudaip-shared",
+  "version": "1.0.0",
+  "description": "Shared types and utilities for CloudAIP",
+  "main": "types/index.ts",
+  "types": "types/index.ts",
+  "files": [
+    "types/"
+  ],
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "license": "UNLICENSED",
+  "private": true
+}

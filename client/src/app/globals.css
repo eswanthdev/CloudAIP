@@ -1,0 +1,77 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+@layer base {
+  body {
+    @apply bg-primary text-white font-sans antialiased;
+  }
+
+  * {
+    @apply border-border;
+  }
+}
+
+@layer components {
+  .btn-gradient {
+    @apply bg-gradient-cyan text-white font-semibold rounded-lg transition-all duration-200;
+  }
+
+  .btn-gradient:hover {
+    @apply shadow-cyan-glow scale-[1.02];
+  }
+
+  .card-base {
+    @apply bg-card border border-border rounded-xl;
+  }
+
+  .card-hover {
+    @apply card-base transition-all duration-200 hover:border-cyan/30 hover:shadow-cyan-glow;
+  }
+
+  .input-base {
+    @apply w-full bg-navy-900 border border-border rounded-lg px-4 py-2.5 text-white placeholder-text-muted focus:outline-none focus:ring-2 focus:ring-cyan/50 focus:border-cyan/50 transition-all duration-200;
+  }
+
+  .text-gradient {
+    @apply bg-gradient-cyan bg-clip-text text-transparent;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0e27;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1e2a5a;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #2a3a6e;
+}
+
+/* Firefox Scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #1e2a5a #0a0e27;
+}
+
+/* Selection */
+::selection {
+  background: rgba(0, 212, 255, 0.2);
+  color: #ffffff;
+}
+
+/* Focus ring utility */
+.focus-ring {
+  @apply focus:outline-none focus:ring-2 focus:ring-cyan/50 focus:ring-offset-2 focus:ring-offset-primary;
+}

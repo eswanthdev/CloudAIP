@@ -1,3 +1,23 @@
 node_modules/
 .env
 *.log
+
+# Client
+client/.next/
+client/node_modules/
+client/out/
+
+# Server
+server/dist/
+server/node_modules/
+
+# Shared
+shared/node_modules/
+
+# Environment files
+*.env.local
+.env.*.local
+
+# Docker volumes
+docker-volumes/
+mongodb_data/
